@@ -8,7 +8,7 @@ namespace microcosm
 {
     interface DBManagerInterface
     {
-        DBData getObject();
+        UserData getObject();
 
     }
 }
