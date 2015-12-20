@@ -8,24 +8,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SwissEphNet;
+using microcosm.DB;
 
 namespace microcosm
 {
     public partial class MainForm : Form
     {
         private string DBFileName = "default.csm";
-        private DBManager DBFileData;
+
         public MainForm()
         {
             InitializeComponent();
 
             SwissEph s = new SwissEph();
-            DBManager DB = new DBManager(DBFileName);
         }
 
         private void OpenDatabaseOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Database db = new Database(DBFileName);
+            DatabaseForm db = new DatabaseForm(DBFileName);
             db.Show();
         }
 
@@ -41,7 +41,7 @@ namespace microcosm
             //ダイアログを表示する
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                Database db = new Database(ofd.FileName);
+                DatabaseForm db = new DatabaseForm(ofd.FileName);
                 db.Show();
             }
         }

@@ -1,25 +1,35 @@
 {"userdata": [
     {
-        "no": 1,
-        "name":"TEST",
-        "furigana":"test",
-        "birth_date": "19801221",
-        "birth_place": "ƒeƒXƒg",
-        "lat": 37.4,
-        "lng": 140.1,
-        "memo": "test data",
-        "jisa": "+0900"
+      "no": 1,
+      "name": "TEST",
+      "furigana": "test",
+      "birth_year": 1980,
+      "birth_month": 12,
+      "birth_day": 21,
+      "birth_hour": 7,
+      "birth_minute": 0,
+      "birth_second": 0,
+      "birth_place": "ãƒ†ã‚¹ãƒˆ",
+      "lat": 37.4,
+      "lng": 140.1,
+      "memo": "test data",
+      "timezone": "9"
     },
     {
         "no": 2,
         "name":"TEST2",
         "furigana":"test2",
-        "birth_date": "19810401",
-        "birth_place": "ƒeƒXƒg2",
+      "birth_year": 1981,
+      "birth_month": 4,
+      "birth_day": 1,
+      "birth_hour": 9,
+      "birth_minute": 15,
+      "birth_second": 10,
+        "birth_place": "ãƒ†ã‚¹ãƒˆ2",
         "lat": 35.4,
         "lng": 139.1,
         "memo": "test data 2",
-        "jisa": "+0900"
-    },
+        "timezone": "9"
+    }
 ]
 }

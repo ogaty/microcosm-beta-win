@@ -75,15 +75,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DB\Database.cs">
+    <Compile Include="DB\DatabaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DB\Database.Designer.cs">
-      <DependentUpon>Database.cs</DependentUpon>
+    <Compile Include="DB\DatabaseForm.Designer.cs">
+      <DependentUpon>DatabaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DB\JSONDBManager.cs" />
     <Compile Include="DB\UserData.cs" />
     <Compile Include="DB\DBManager.cs" />
     <Compile Include="DB\DBManagerInterface.cs" />
+    <Compile Include="DB\XMLDBManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,8 +94,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="DB\Database.resx">
-      <DependentUpon>Database.cs</DependentUpon>
+    <EmbeddedResource Include="DB\DatabaseForm.resx">
+      <DependentUpon>DatabaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -124,7 +126,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy $(ProjectDir)default.csm $(TargetDir)</PreBuildEvent>
+    <PreBuildEvent>copy "$(ProjectDir)default.csm" "$(TargetDir)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

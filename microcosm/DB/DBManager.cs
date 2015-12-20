@@ -14,46 +14,18 @@ namespace microcosm
     // というわけで基底クラスを作る
     public class DBManager : DBManagerInterface
     {
-        private JObject jData;
-        private List<UserData> ulist ;
+        protected JObject jData;
+        protected List<UserData> ulist ;
 
-        public DBManager (string jsonFile)
+        public DBManager ()
         {
-            jData = JObject.Parse(File.ReadAllText(jsonFile));
-            JArray items = (JArray)jData["userdata"];
-            JObject item;
-            JToken jtoken;
-            for (int i = 0; i < items.Count; i++)
-            {
-                item = (JObject)items[i];
-                jtoken = item.First;
-            }
-            ulist = new List<UserData>();
+            return;
         }
 
 
-        public UserData getObject()
+        public List<UserData> getObject()
         {
-            UserData udata = new UserData();
-            udata.setData(
-                (int)jData["no"],
-                (string)jData["name"],
-                (string)jData["furigana"],
-                (int)jData["birth_year"],
-                (int)jData["birth_month"],
-                (int)jData["birth_day"],
-                (int)jData["birth_hour"],
-                (int)jData["birth_minute"],
-                (int)jData["birth_second"],
-                (string)jData["lat"],
-                (string)jData["lng"],
-                (string)jData["birth_place"],
-                (string)jData["memo"],
-                (int)jData["jisa"]
-            );
-
-            // Listにしてね
-            return udata;
+            return ulist;
         }
 
     }

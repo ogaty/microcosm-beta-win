@@ -7,26 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using microcosm.DB;
 
 namespace microcosm
 {
     // ユーザーデータ選択ダイアログ
-    public partial class Database : Form
+    public partial class DatabaseForm : Form
     {
-        public DBManager DBObj;
-        public Database(String DBData)
+        public DBManager DBMgr;
+        public DatabaseForm(string DBFilename)
         {
             InitializeComponent();
 
             // マネージャー呼び出し
-            if (DBObj == null)
+            if (DBMgr == null)
             {
-                DBObj = new DBManager(DBData);
+                DBMgr = new JSONDBManager(DBFilename);
             }
 
             // DBファイルに従ってツリー構築
-            TreeNode node = new TreeNode("text");
-            dbDirTree.Nodes.Add(node);
+            List < UserData > UserList = DBMgr.getObject();
+            foreach (UserData user in UserList)
+            {
+                TreeNode node = new TreeNode(user.name);
+                dbDirTree.Nodes.Add(node);
+            }
 
         }
 

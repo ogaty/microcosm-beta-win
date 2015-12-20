@@ -1,6 +1,6 @@
 ﻿namespace microcosm
 {
-    partial class Database
+    partial class DatabaseForm
     {
         /// <summary>
         /// Required designer variable.

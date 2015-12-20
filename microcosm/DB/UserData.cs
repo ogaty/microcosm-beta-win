@@ -8,20 +8,20 @@ namespace microcosm
 {
     public class UserData
     {
-        private int no { get; set; }
-        private string name { get; set; }
-        private string furigana { get; set; }
-        private int birth_year { get; set; }
-        private int birth_month { get; set; }
-        private int birth_day { get; set; }
-        private int birth_hour { get; set; }
-        private int birth_minute { get; set; }
-        private int birth_second { get; set; }
-        private string lat { get; set; }
-        private string lng { get; set; }
-        private string birth_place { get; set; }
-        private string memo { get; set; }
-        private int jisa { get; set; }
+        public int no { get; set; }
+        public string name { get; set; }
+        public string furigana { get; set; }
+        public int birth_year { get; set; }
+        public int birth_month { get; set; }
+        public int birth_day { get; set; }
+        public int birth_hour { get; set; }
+        public int birth_minute { get; set; }
+        public int birth_second { get; set; }
+        public string lat { get; set; }
+        public string lng { get; set; }
+        public string birth_place { get; set; }
+        public string memo { get; set; }
+        public int timezone { get; set; }
 
         public UserData()
         {
@@ -42,7 +42,7 @@ namespace microcosm
             string lng,
             string birth_place,
             string memo,
-            int jisa
+            int timezone
             )
         {
             this.no = no;
@@ -58,7 +58,7 @@ namespace microcosm
             this.lng = lng;
             this.birth_place = birth_place;
             this.memo = memo;
-            this.jisa = jisa;
+            this.timezone = timezone;
         }
     }
 }
