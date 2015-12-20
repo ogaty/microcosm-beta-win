@@ -19,7 +19,11 @@ namespace microcosm
 
         private void OpenDatabaseOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // ファイルオープンダイアログ(CSM, Amateru CSV)
+        }
+
+        private void ChangeDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // ファイルオープンダイアログ(CSM)
             OpenFileDialog ofd = new OpenFileDialog();
             // デフォルトファイル
             ofd.FileName = "default.csm";

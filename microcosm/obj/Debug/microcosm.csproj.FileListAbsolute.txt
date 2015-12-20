@@ -7,3 +7,12 @@ c:\users\tryto\onedrive\ドキュメント\visual studio 2015\Projects\microcosm
 c:\users\tryto\onedrive\ドキュメント\visual studio 2015\Projects\microcosm\microcosm\obj\Debug\microcosm.csproj.GenerateResource.Cache
 c:\users\tryto\onedrive\ドキュメント\visual studio 2015\Projects\microcosm\microcosm\obj\Debug\microcosm.exe
 c:\users\tryto\onedrive\ドキュメント\visual studio 2015\Projects\microcosm\microcosm\obj\Debug\microcosm.pdb
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\microcosm.exe.config
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\microcosm.exe
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\microcosm.pdb
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csprojResolveAssemblyReference.cache
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.MainForm.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Properties.Resources.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csproj.GenerateResource.Cache
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.exe
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.pdb

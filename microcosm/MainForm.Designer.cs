@@ -31,6 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenDatabaseOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangeDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +48,8 @@
             // FileFToolStripMenuItem
             // 
             this.FileFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenDatabaseOToolStripMenuItem});
+            this.OpenDatabaseOToolStripMenuItem,
+            this.ChangeDatabaseToolStripMenuItem});
             this.FileFToolStripMenuItem.Name = "FileFToolStripMenuItem";
             this.FileFToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.FileFToolStripMenuItem.Text = "ファイル(&F)";
@@ -55,9 +57,16 @@
             // OpenDatabaseOToolStripMenuItem
             // 
             this.OpenDatabaseOToolStripMenuItem.Name = "OpenDatabaseOToolStripMenuItem";
-            this.OpenDatabaseOToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.OpenDatabaseOToolStripMenuItem.Text = "データベースを開く(&O)";
+            this.OpenDatabaseOToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.OpenDatabaseOToolStripMenuItem.Text = "データベースを開く(&N)";
             this.OpenDatabaseOToolStripMenuItem.Click += new System.EventHandler(this.OpenDatabaseOToolStripMenuItem_Click);
+            // 
+            // ChangeDatabaseToolStripMenuItem
+            // 
+            this.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem";
+            this.ChangeDatabaseToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.ChangeDatabaseToolStripMenuItem.Text = "データベースを変更(&O)";
+            this.ChangeDatabaseToolStripMenuItem.Click += new System.EventHandler(this.ChangeDatabaseToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -80,6 +89,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem FileFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenDatabaseOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ChangeDatabaseToolStripMenuItem;
     }
 }
 

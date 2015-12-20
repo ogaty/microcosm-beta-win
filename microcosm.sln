@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "microcosm", "microcosm\microcosm.csproj", "{35FF4914-65EC-4804-A239-949D8CEE063F}"
 EndProject
@@ -10,15 +10,25 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{35FF4914-65EC-4804-A239-949D8CEE063F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{35FF4914-65EC-4804-A239-949D8CEE063F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35FF4914-65EC-4804-A239-949D8CEE063F}.Debug|x86.ActiveCfg = Debug|x86
+		{35FF4914-65EC-4804-A239-949D8CEE063F}.Debug|x86.Build.0 = Debug|x86
 		{35FF4914-65EC-4804-A239-949D8CEE063F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35FF4914-65EC-4804-A239-949D8CEE063F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35FF4914-65EC-4804-A239-949D8CEE063F}.Release|x86.ActiveCfg = Release|x86
+		{35FF4914-65EC-4804-A239-949D8CEE063F}.Release|x86.Build.0 = Release|x86
 		{227D67DE-0CD2-4896-88C9-689AC6F46DD4}.Debug|Any CPU.ActiveCfg = Debug
+		{227D67DE-0CD2-4896-88C9-689AC6F46DD4}.Debug|x86.ActiveCfg = Debug
+		{227D67DE-0CD2-4896-88C9-689AC6F46DD4}.Debug|x86.Build.0 = Debug
 		{227D67DE-0CD2-4896-88C9-689AC6F46DD4}.Release|Any CPU.ActiveCfg = Release
+		{227D67DE-0CD2-4896-88C9-689AC6F46DD4}.Release|x86.ActiveCfg = Release
+		{227D67DE-0CD2-4896-88C9-689AC6F46DD4}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
