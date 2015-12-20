@@ -16,3 +16,7 @@ C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Propert
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csproj.GenerateResource.Cache
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.exe
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.pdb
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\SwissEphNet.dll
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Database.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\Newtonsoft.Json.xml
