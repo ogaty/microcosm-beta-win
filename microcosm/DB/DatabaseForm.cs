@@ -21,7 +21,6 @@ namespace microcosm
     public partial class DatabaseForm : Form
     {
         public XMLDBManager DBMgr;
-        public ContextMenuStrip rightmenu;
         public DatabaseForm(string DBFilename)
         {
             InitializeComponent();
@@ -31,10 +30,6 @@ namespace microcosm
             {
                 DBMgr = new XMLDBManager(DBFilename);
             }
-
-            // 共通右クリックメニュー
-            rightmenu = new ContextMenuStrip();
-            rightmenu.Items.Add("テスト");
 
 
             // DBファイルに従ってツリー構築
@@ -108,7 +103,7 @@ namespace microcosm
 
                 if (dbDirTree.SelectedNode != null)
                 {
-                    rightmenu.Show(dbDirTree, e.Location);
+                    contextMenuStrip1.Show(dbDirTree, e.Location);
                 }
             }
 

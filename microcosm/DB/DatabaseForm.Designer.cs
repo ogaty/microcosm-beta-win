@@ -32,13 +32,19 @@
             this.dbDirTree = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
-            this.namelabel = new System.Windows.Forms.Label();
             this.birthlabel = new System.Windows.Forms.Label();
+            this.namelabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.新規追加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.削除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.フォルダの追加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dbDirTree
@@ -65,14 +71,6 @@
             this.panel1.Size = new System.Drawing.Size(319, 158);
             this.panel1.TabIndex = 1;
             // 
-            // namelabel
-            // 
-            this.namelabel.AutoSize = true;
-            this.namelabel.Location = new System.Drawing.Point(17, 17);
-            this.namelabel.Name = "namelabel";
-            this.namelabel.Size = new System.Drawing.Size(0, 12);
-            this.namelabel.TabIndex = 0;
-            // 
             // birthlabel
             // 
             this.birthlabel.AutoSize = true;
@@ -80,6 +78,14 @@
             this.birthlabel.Name = "birthlabel";
             this.birthlabel.Size = new System.Drawing.Size(0, 12);
             this.birthlabel.TabIndex = 1;
+            // 
+            // namelabel
+            // 
+            this.namelabel.AutoSize = true;
+            this.namelabel.Location = new System.Drawing.Point(17, 17);
+            this.namelabel.Name = "namelabel";
+            this.namelabel.Size = new System.Drawing.Size(0, 12);
+            this.namelabel.TabIndex = 0;
             // 
             // button1
             // 
@@ -118,6 +124,40 @@
             this.button4.Text = "編集";
             this.button4.UseVisualStyleBackColor = true;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新規追加ToolStripMenuItem,
+            this.編集ToolStripMenuItem,
+            this.削除ToolStripMenuItem,
+            this.フォルダの追加ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 114);
+            // 
+            // 新規追加ToolStripMenuItem
+            // 
+            this.新規追加ToolStripMenuItem.Name = "新規追加ToolStripMenuItem";
+            this.新規追加ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.新規追加ToolStripMenuItem.Text = "新規追加";
+            // 
+            // 編集ToolStripMenuItem
+            // 
+            this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
+            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.編集ToolStripMenuItem.Text = "編集";
+            // 
+            // 削除ToolStripMenuItem
+            // 
+            this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
+            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.削除ToolStripMenuItem.Text = "削除";
+            // 
+            // フォルダの追加ToolStripMenuItem
+            // 
+            this.フォルダの追加ToolStripMenuItem.Name = "フォルダの追加ToolStripMenuItem";
+            this.フォルダの追加ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.フォルダの追加ToolStripMenuItem.Text = "フォルダの追加";
+            // 
             // DatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -134,6 +174,7 @@
             this.Load += new System.EventHandler(this.Database_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -149,5 +190,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem 新規追加ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 編集ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 削除ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem フォルダの追加ToolStripMenuItem;
     }
 }
