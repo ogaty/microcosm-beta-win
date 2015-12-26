@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
+using microcosm.DB;
 
 namespace microcosm
 {
@@ -15,7 +16,7 @@ namespace microcosm
     public class DBManager : DBManagerInterface
     {
         protected JObject jData;
-        protected List<UserData> ulist ;
+        public List<UserDir> ulist ;
 
         public DBManager ()
         {
@@ -23,7 +24,7 @@ namespace microcosm
         }
 
 
-        public List<UserData> getObject()
+        public List<UserDir> getObject()
         {
             return ulist;
         }

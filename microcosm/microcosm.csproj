@@ -81,10 +81,10 @@
     <Compile Include="DB\DatabaseForm.Designer.cs">
       <DependentUpon>DatabaseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DB\JSONDBManager.cs" />
     <Compile Include="DB\UserData.cs" />
     <Compile Include="DB\DBManager.cs" />
     <Compile Include="DB\DBManagerInterface.cs" />
+    <Compile Include="DB\UserDir.cs" />
     <Compile Include="DB\XMLDBManager.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

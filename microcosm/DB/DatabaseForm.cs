@@ -11,10 +11,16 @@ using microcosm.DB;
 
 namespace microcosm
 {
+    // 未テスト
+    // データが無いxml
+    // データが壊れたxml
+    // ディレクトリだけ
+
+
     // ユーザーデータ選択ダイアログ
     public partial class DatabaseForm : Form
     {
-        public DBManager DBMgr;
+        public XMLDBManager DBMgr;
         public DatabaseForm(string DBFilename)
         {
             InitializeComponent();
@@ -22,21 +28,51 @@ namespace microcosm
             // マネージャー呼び出し
             if (DBMgr == null)
             {
-                DBMgr = new JSONDBManager(DBFilename);
+                DBMgr = new XMLDBManager(DBFilename);
             }
 
             // DBファイルに従ってツリー構築
-            List < UserData > UserList = DBMgr.getObject();
-            foreach (UserData user in UserList)
+            List < UserDir > UserList = DBMgr.getObject();
+            foreach (UserDir userdirs in UserList)
             {
-                TreeNode node = new TreeNode(user.name);
+                TreeNode node = new TreeNode(userdirs.dir);
                 dbDirTree.Nodes.Add(node);
+                if (userdirs.data != null)
+                {
+                    foreach (UserData data in userdirs.data)
+                    {
+                        int index = node.Nodes.Add(new TreeNode(data.name));
+                        node.Nodes[index].Tag = data;
+                    }
+
+                } 
             }
+
+
+            return;
+        }
+
+        private void OnSelected(int index)
+        {
 
         }
 
         private void Database_Load(object sender, EventArgs e)
         {
+        }
+
+        private void dbDirTree_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            UserData data = (UserData)e.Node.Tag;
+            if (data != null) { 
+                namelabel.Text = data.name;
+                birthlabel.Text = String.Format("{0}年{1}月{2}日", data.birth_year.ToString(), data.birth_month.ToString(), data.birth_day.ToString());
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

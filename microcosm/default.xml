@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<userdata>
+    <dir>
+        <user>
+          <no>1</no>
+          <name>TEST</name>
+          <furigana>test</furigana>
+          <birth_year>1980</birth_year>
+          <birth_month>12</birth_month>
+          <birth_day>21</birth_day>
+          <birth_hour>7</birth_hour>
+          <birth_minute>0</birth_minute>
+          <birth_second>0</birth_second>
+          <birth_place>テスト</birth_place>
+          <lat>37.0</lat>
+          <lng>138.0</lng>
+          <memo>test data</memo>
+          <timezone>9</timezone>
+        </user>
+        <user>
+          <no>2</no>
+          <name>TEST2</name>
+          <furigana>test2</furigana>
+          <birth_year>1980</birth_year>
+          <birth_month>12</birth_month>
+          <birth_day>21</birth_day>
+          <birth_hour>7</birth_hour>
+          <birth_minute>0</birth_minute>
+          <birth_second>0</birth_second>
+          <birth_place>テスト2</birth_place>
+          <lat>37.0</lat>
+          <lng>138.0</lng>
+          <memo>test data</memo>
+          <timezone>9</timezone>
+        </user>
+    </dir>
+    <dir2>
+        <user>
+          <no>3</no>
+          <name>TEST3</name>
+          <furigana>test3</furigana>
+          <birth_year>1980</birth_year>
+          <birth_month>12</birth_month>
+          <birth_day>21</birth_day>
+          <birth_hour>7</birth_hour>
+          <birth_minute>0</birth_minute>
+          <birth_second>0</birth_second>
+          <birth_place>テスト3</birth_place>
+          <lat>37.0</lat>
+          <lng>138.0</lng>
+          <memo>test data</memo>
+          <timezone>9</timezone>
+        </user>
+    </dir2>
+</userdata>

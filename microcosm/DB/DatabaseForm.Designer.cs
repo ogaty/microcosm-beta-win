@@ -29,21 +29,22 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("default");
             this.dbDirTree = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.namelabel = new System.Windows.Forms.Label();
+            this.birthlabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dbDirTree
             // 
             this.dbDirTree.Location = new System.Drawing.Point(12, 12);
             this.dbDirTree.Name = "dbDirTree";
-            treeNode2.Name = "Root";
-            treeNode2.Text = "default";
-            this.dbDirTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
             this.dbDirTree.Size = new System.Drawing.Size(121, 237);
             this.dbDirTree.TabIndex = 0;
+            this.dbDirTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.dbDirTree_AfterSelect);
             // 
             // imageList1
             // 
@@ -51,15 +52,54 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // Database
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.birthlabel);
+            this.panel1.Controls.Add(this.namelabel);
+            this.panel1.Location = new System.Drawing.Point(155, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(237, 147);
+            this.panel1.TabIndex = 1;
+            // 
+            // namelabel
+            // 
+            this.namelabel.AutoSize = true;
+            this.namelabel.Location = new System.Drawing.Point(17, 17);
+            this.namelabel.Name = "namelabel";
+            this.namelabel.Size = new System.Drawing.Size(0, 12);
+            this.namelabel.TabIndex = 0;
+            // 
+            // birthlabel
+            // 
+            this.birthlabel.AutoSize = true;
+            this.birthlabel.Location = new System.Drawing.Point(17, 47);
+            this.birthlabel.Name = "birthlabel";
+            this.birthlabel.Size = new System.Drawing.Size(0, 12);
+            this.birthlabel.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(317, 226);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "表示";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // DatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(415, 261);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dbDirTree);
-            this.Name = "Database";
+            this.Name = "DatabaseForm";
             this.Text = "Database";
             this.Load += new System.EventHandler(this.Database_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -68,5 +108,9 @@
 
         private System.Windows.Forms.TreeView dbDirTree;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label birthlabel;
+        private System.Windows.Forms.Label namelabel;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -17,11 +17,11 @@ namespace microcosm
         public int birth_hour { get; set; }
         public int birth_minute { get; set; }
         public int birth_second { get; set; }
-        public string lat { get; set; }
-        public string lng { get; set; }
+        public double lat { get; set; }
+        public double lng { get; set; }
         public string birth_place { get; set; }
         public string memo { get; set; }
-        public int timezone { get; set; }
+        public double timezone { get; set; }
 
         public UserData()
         {
@@ -38,11 +38,11 @@ namespace microcosm
             int birth_hour,
             int birth_minute,
             int birth_second,
-            string lat,
-            string lng,
+            double lat,
+            double lng,
             string birth_place,
             string memo,
-            int timezone
+            double timezone
             )
         {
             this.no = no;

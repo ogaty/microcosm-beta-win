@@ -14,7 +14,7 @@ namespace microcosm
 {
     public partial class MainForm : Form
     {
-        private string DBFileName = "default.csm";
+        private string DBFileName = "default.xml";
 
         public MainForm()
         {
