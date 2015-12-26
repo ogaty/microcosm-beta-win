@@ -21,6 +21,7 @@ namespace microcosm
     public partial class DatabaseForm : Form
     {
         public XMLDBManager DBMgr;
+        public ContextMenuStrip rightmenu;
         public DatabaseForm(string DBFilename)
         {
             InitializeComponent();
@@ -31,21 +32,42 @@ namespace microcosm
                 DBMgr = new XMLDBManager(DBFilename);
             }
 
+            // 共通右クリックメニュー
+            rightmenu = new ContextMenuStrip();
+            rightmenu.Items.Add("テスト");
+
+
             // DBファイルに従ってツリー構築
-            List < UserDir > UserList = DBMgr.getObject();
+            List< UserDir > UserList = DBMgr.getObject();
             foreach (UserDir userdirs in UserList)
             {
-                TreeNode node = new TreeNode(userdirs.dir);
-                dbDirTree.Nodes.Add(node);
-                if (userdirs.data != null)
+                if (userdirs.dir != "nodir")
                 {
-                    foreach (UserData data in userdirs.data)
+                    TreeNode node = new TreeNode(userdirs.dir);
+                    dbDirTree.Nodes.Add(node);
+                    if (userdirs.data != null)
                     {
-                        int index = node.Nodes.Add(new TreeNode(data.name));
-                        node.Nodes[index].Tag = data;
+                        foreach (UserData data in userdirs.data)
+                        {
+                            int index = node.Nodes.Add(new TreeNode(data.name));
+                            node.Nodes[index].Tag = data;
+                        }
+
+                    }
+                } else
+                {
+                    // ディレクトリ無し
+                    if (userdirs.data != null)
+                    {
+                        foreach (UserData data in userdirs.data)
+                        {
+                            int index = dbDirTree.Nodes.Add(new TreeNode(data.name));
+                            dbDirTree.Nodes[index].Tag = data;
+                        }
+
                     }
 
-                } 
+                }
             }
 
 
@@ -70,9 +92,26 @@ namespace microcosm
             }
         }
 
+        // 表示ボタン
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        // 右クリック
+        private void dbDirTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // Select the clicked node
+                dbDirTree.SelectedNode = dbDirTree.GetNodeAt(e.X, e.Y);
+
+                if (dbDirTree.SelectedNode != null)
+                {
+                    rightmenu.Show(dbDirTree, e.Location);
+                }
+            }
+
         }
     }
 }

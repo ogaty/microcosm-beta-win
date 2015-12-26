@@ -52,4 +52,22 @@
           <timezone>9</timezone>
         </user>
     </dir2>
+    <nodir>
+        <user>
+          <no>3</no>
+          <name>TEST3</name>
+          <furigana>test3</furigana>
+          <birth_year>1980</birth_year>
+          <birth_month>12</birth_month>
+          <birth_day>21</birth_day>
+          <birth_hour>7</birth_hour>
+          <birth_minute>0</birth_minute>
+          <birth_second>0</birth_second>
+          <birth_place>テスト3</birth_place>
+          <lat>37.0</lat>
+          <lng>138.0</lng>
+          <memo>test data</memo>
+          <timezone>9</timezone>
+        </user>
+    </nodir>
 </userdata>
