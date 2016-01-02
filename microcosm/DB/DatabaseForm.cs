@@ -16,24 +16,30 @@ namespace microcosm
     // データが壊れたxml
     // ディレクトリだけ
 
-
     // ユーザーデータ選択ダイアログ
     public partial class DatabaseForm : Form
     {
+        private MainForm mainform;
         public XMLDBManager DBMgr;
-        public DatabaseForm(string DBFilename)
+        public DatabaseForm(MainForm mainform, string DBFilename)
         {
             InitializeComponent();
+            this.mainform = mainform;
 
             // マネージャー呼び出し
-            if (DBMgr == null)
+            if (this.DBMgr == null)
             {
-                DBMgr = new XMLDBManager(DBFilename);
+                this.DBMgr = new XMLDBManager(DBFilename);
             }
 
 
+            return;
+        }
+
+        public void CreateUserList()
+        {
             // DBファイルに従ってツリー構築
-            List< UserDir > UserList = DBMgr.getObject();
+            List<UserDir> UserList = this.DBMgr.getObject();
             foreach (UserDir userdirs in UserList)
             {
                 if (userdirs.dir != "nodir")
@@ -49,7 +55,8 @@ namespace microcosm
                         }
 
                     }
-                } else
+                }
+                else
                 {
                     // ディレクトリ無し
                     if (userdirs.data != null)
@@ -65,8 +72,6 @@ namespace microcosm
                 }
             }
 
-
-            return;
         }
 
         private void OnSelected(int index)
@@ -90,6 +95,12 @@ namespace microcosm
         // 表示ボタン
         private void button1_Click(object sender, EventArgs e)
         {
+            if (this.dbDirTree.SelectedNode == null)
+            {
+                return;
+            }
+            UserData data = (UserData)this.dbDirTree.SelectedNode.Tag;
+            this.mainform.ReflactUserData(data);
             this.Close();
         }
 

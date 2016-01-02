@@ -10,16 +10,17 @@ C:\Users\tryto\onedrive\ドキュメント\visual studio 2015\Projects\microcosm
 C:\Users\tryto\onedrive\ドキュメント\visual studio 2015\Projects\microcosm\microcosm\obj\Debug\microcosm.exe
 C:\Users\tryto\onedrive\ドキュメント\visual studio 2015\Projects\microcosm\microcosm\obj\Debug\microcosm.pdb
 C:\Users\tryto\onedrive\ドキュメント\visual studio 2015\Projects\microcosm\microcosm\obj\Debug\microcosm.DatabaseForm.resources
-C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csprojResolveAssemblyReference.cache
-C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DatabaseForm.resources
-C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.MainForm.resources
-C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Properties.Resources.resources
-C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csproj.GenerateResource.Cache
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\microcosm.exe.config
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\microcosm.exe
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\microcosm.pdb
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\Newtonsoft.Json.dll
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\SwissEphNet.dll
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\Newtonsoft.Json.xml
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csprojResolveAssemblyReference.cache
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Config.ConfigForm.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DatabaseForm.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.MainForm.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Properties.Resources.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csproj.GenerateResource.Cache
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.exe
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.pdb
