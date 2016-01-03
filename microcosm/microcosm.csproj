@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="Config\ConfigData.cs" />
     <Compile Include="DB\DatabaseForm.cs">
       <SubType>Form</SubType>
@@ -82,10 +83,23 @@
     <Compile Include="DB\DatabaseForm.Designer.cs">
       <DependentUpon>DatabaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DB\DBEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DB\DBEditForm.Designer.cs">
+      <DependentUpon>DBEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB\DirEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DB\DirEditForm.Designer.cs">
+      <DependentUpon>DirEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB\UserData.cs" />
     <Compile Include="DB\DBManager.cs" />
     <Compile Include="DB\DBManagerInterface.cs" />
     <Compile Include="DB\UserDir.cs" />
+    <Compile Include="DB\UserEvent.cs" />
     <Compile Include="DB\XMLDBManager.cs" />
     <Compile Include="Config\ConfigForm.cs">
       <SubType>Form</SubType>
@@ -106,6 +120,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DB\DatabaseForm.resx">
       <DependentUpon>DatabaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DB\DBEditForm.resx">
+      <DependentUpon>DBEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DB\DirEditForm.resx">
+      <DependentUpon>DirEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

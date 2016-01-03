@@ -29,18 +29,17 @@ namespace microcosm
         private void OpenDatabaseOToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DatabaseForm db = new DatabaseForm(this, DBFileName);
-            db.CreateUserList();
             db.Show();
         }
 
         // DB変更
         private void ChangeDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // ファイルオープンダイアログ(CSM)
+            // ファイルオープンダイアログ(XML) 後ほど拡張子変えるかも
             OpenFileDialog ofd = new OpenFileDialog();
             // デフォルトファイル
-            ofd.FileName = "default.csm";
-            ofd.Filter = "microcosm DB(*.csm)|*.csm|すべてのファイル(*.*)|*.*";
+            ofd.FileName = "default.xml";
+            ofd.Filter = "microcosm DB(*.xml)|*.xml|すべてのファイル(*.*)|*.*";
             ofd.Title = "ファイルを選択してください";
 
             //ダイアログを表示する

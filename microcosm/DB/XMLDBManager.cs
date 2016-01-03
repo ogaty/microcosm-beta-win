@@ -27,12 +27,20 @@ namespace microcosm.DB
             XmlNodeList nodedata = xml.SelectNodes("userdata");
             XmlNode nodes = nodedata[0];
 
+            // <userdata><dir>を探す
             foreach (XmlNode dirnode in nodes)
             {
                 UserDir dir = new UserDir();
-                dir.dir = dirnode.Name;
+                dir.dir = ((XmlElement)dirnode).GetAttribute("name");
                 dir.data = new ArrayList();
 
+                if (dir.dir == "")
+                {
+                    // magic name
+                    dir.dir = "__nodir";
+                }
+
+                // 子供があれば
                 if (dirnode.ChildNodes != null)
                 {
                     foreach (XmlNode usernode in dirnode)
@@ -79,7 +87,76 @@ namespace microcosm.DB
                                     udata.memo = userdetailnode.InnerText;
                                     break;
                                 case "timezone":
-                                    udata.timezone = double.Parse(userdetailnode.InnerText);
+                                    udata.timezone = userdetailnode.InnerText;
+                                    break;
+                                case "eventlist":
+                                    // userdetailnode.Value = <eventlist>
+                                    List<UserEvent> usereventlist = new List<UserEvent>();
+                                    foreach (XmlNode eventlist in userdetailnode)
+                                    {
+                                        // eventlist.Value = <event>
+                                        UserEvent userevent = new UserEvent();
+                                        foreach (XmlNode eventnode in eventlist)
+                                        {
+                                            // eventnode.Value = <event_name>
+                                            switch (eventnode.Name)
+                                            {
+                                                case "event_name":
+                                                    userevent.event_name = eventnode.InnerText;
+                                                    break;
+                                                case "eventdetail":
+                                                    if (eventnode.FirstChild != null)
+                                                    {
+                                                        userevent.event_detail = true;
+                                                        foreach (XmlNode eventdetail in eventnode)
+                                                        {
+                                                            switch (eventdetail.Name)
+                                                            {
+                                                                case "event_year":
+                                                                    userevent.event_year = int.Parse(eventdetail.InnerText);
+                                                                    break;
+                                                                case "event_month":
+                                                                    userevent.event_month = int.Parse(eventdetail.InnerText);
+                                                                    break;
+                                                                case "event_day":
+                                                                    userevent.event_day = int.Parse(eventdetail.InnerText);
+                                                                    break;
+                                                                case "event_hour":
+                                                                    userevent.event_hour = int.Parse(eventdetail.InnerText);
+                                                                    break;
+                                                                case "event_minute":
+                                                                    userevent.event_minute = int.Parse(eventdetail.InnerText);
+                                                                    break;
+                                                                case "event_second":
+                                                                    userevent.event_second = int.Parse(eventdetail.InnerText);
+                                                                    break;
+                                                                case "event_place":
+                                                                    userevent.event_place = eventdetail.InnerText;
+                                                                    break;
+                                                                case "event_lat":
+                                                                    userevent.event_lat = double.Parse(eventdetail.InnerText);
+                                                                    break;
+                                                                case "event_lng":
+                                                                    userevent.event_lng = double.Parse(eventdetail.InnerText);
+                                                                    break;
+                                                                case "event_timezone":
+                                                                    userevent.event_timezone = eventdetail.InnerText;
+                                                                    break;
+                                                                case "event_memo":
+                                                                    userevent.event_memo = eventdetail.InnerText;
+                                                                    break;
+                                                            }
+                                                        }
+                                                    } else
+                                                    {
+                                                        userevent.event_detail = false;
+                                                    }
+                                                    break;
+                                            }
+                                        }
+                                        usereventlist.Add(userevent);
+                                    }
+                                    udata.userevent = usereventlist;
                                     break;
 
                             }
