@@ -104,7 +104,7 @@ namespace microcosm.DB
                                                 case "event_name":
                                                     userevent.event_name = eventnode.InnerText;
                                                     break;
-                                                case "eventdetail":
+                                                case "event_detail":
                                                     if (eventnode.FirstChild != null)
                                                     {
                                                         userevent.event_detail = true;

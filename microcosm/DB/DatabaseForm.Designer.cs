@@ -32,6 +32,25 @@
             this.dbDirTree = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.eventMemoLabel = new System.Windows.Forms.Label();
+            this.eventTimezoneLabel = new System.Windows.Forms.Label();
+            this.eventLatlngLabel = new System.Windows.Forms.Label();
+            this.eventPlaceLabel = new System.Windows.Forms.Label();
+            this.eventBirthLabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.eventList = new System.Windows.Forms.ListBox();
+            this.memoLabel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.timezoneLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.latlnglabel = new System.Windows.Forms.Label();
+            this.placelabel = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.birthlabel = new System.Windows.Forms.Label();
             this.namelabel = new System.Windows.Forms.Label();
             this.displayButton = new System.Windows.Forms.Button();
@@ -39,34 +58,15 @@
             this.addButton = new System.Windows.Forms.Button();
             this.edit = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.新規追加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.編集ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.削除ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.フォルダの追加ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.データベースDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ChangeDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.placelabel = new System.Windows.Forms.Label();
-            this.latlnglabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.timezoneLabel = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.memoLabel = new System.Windows.Forms.Label();
-            this.eventList = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.eventBirthLabel = new System.Windows.Forms.Label();
-            this.eventPlaceLabel = new System.Windows.Forms.Label();
-            this.eventLatlngLabel = new System.Windows.Forms.Label();
-            this.eventTimezoneLabel = new System.Windows.Forms.Label();
-            this.eventMemoLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -78,8 +78,12 @@
             this.dbDirTree.Name = "dbDirTree";
             this.dbDirTree.Size = new System.Drawing.Size(121, 330);
             this.dbDirTree.TabIndex = 0;
+            this.dbDirTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.dbDirTree_ItemDrag);
             this.dbDirTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.dbDirTree_AfterSelect);
             this.dbDirTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.dbDirTree_NodeMouseClick);
+            this.dbDirTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.dbDirTree_DragDrop);
+            this.dbDirTree.DragOver += new System.Windows.Forms.DragEventHandler(this.dbDirTree_DragOver);
+            this.dbDirTree.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dbDirTree_MouseUp);
             // 
             // imageList1
             // 
@@ -116,6 +120,178 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(504, 301);
             this.panel1.TabIndex = 1;
+            // 
+            // eventMemoLabel
+            // 
+            this.eventMemoLabel.AutoSize = true;
+            this.eventMemoLabel.Location = new System.Drawing.Point(183, 250);
+            this.eventMemoLabel.Name = "eventMemoLabel";
+            this.eventMemoLabel.Size = new System.Drawing.Size(41, 24);
+            this.eventMemoLabel.TabIndex = 20;
+            this.eventMemoLabel.Text = "memo\r\nmemo1";
+            // 
+            // eventTimezoneLabel
+            // 
+            this.eventTimezoneLabel.AutoSize = true;
+            this.eventTimezoneLabel.Location = new System.Drawing.Point(183, 203);
+            this.eventTimezoneLabel.Name = "eventTimezoneLabel";
+            this.eventTimezoneLabel.Size = new System.Drawing.Size(50, 12);
+            this.eventTimezoneLabel.TabIndex = 19;
+            this.eventTimezoneLabel.Text = "timezone";
+            // 
+            // eventLatlngLabel
+            // 
+            this.eventLatlngLabel.AutoSize = true;
+            this.eventLatlngLabel.Location = new System.Drawing.Point(183, 154);
+            this.eventLatlngLabel.Name = "eventLatlngLabel";
+            this.eventLatlngLabel.Size = new System.Drawing.Size(33, 12);
+            this.eventLatlngLabel.TabIndex = 18;
+            this.eventLatlngLabel.Text = "latlng";
+            // 
+            // eventPlaceLabel
+            // 
+            this.eventPlaceLabel.AutoSize = true;
+            this.eventPlaceLabel.Location = new System.Drawing.Point(183, 130);
+            this.eventPlaceLabel.Name = "eventPlaceLabel";
+            this.eventPlaceLabel.Size = new System.Drawing.Size(32, 12);
+            this.eventPlaceLabel.TabIndex = 17;
+            this.eventPlaceLabel.Text = "place";
+            // 
+            // eventBirthLabel
+            // 
+            this.eventBirthLabel.AutoSize = true;
+            this.eventBirthLabel.Location = new System.Drawing.Point(183, 82);
+            this.eventBirthLabel.Name = "eventBirthLabel";
+            this.eventBirthLabel.Size = new System.Drawing.Size(28, 12);
+            this.eventBirthLabel.TabIndex = 16;
+            this.eventBirthLabel.Text = "birth";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(166, 228);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(35, 12);
+            this.label9.TabIndex = 15;
+            this.label9.Text = "memo";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(166, 180);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(61, 12);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "タイムゾーン";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(166, 108);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(41, 12);
+            this.label7.TabIndex = 13;
+            this.label7.Text = "発生地";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(166, 60);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "イベント時刻";
+            // 
+            // eventList
+            // 
+            this.eventList.FormattingEnabled = true;
+            this.eventList.ItemHeight = 12;
+            this.eventList.Location = new System.Drawing.Point(364, 15);
+            this.eventList.Name = "eventList";
+            this.eventList.Size = new System.Drawing.Size(120, 268);
+            this.eventList.TabIndex = 11;
+            // 
+            // memoLabel
+            // 
+            this.memoLabel.AutoSize = true;
+            this.memoLabel.Location = new System.Drawing.Point(24, 250);
+            this.memoLabel.Name = "memoLabel";
+            this.memoLabel.Size = new System.Drawing.Size(41, 24);
+            this.memoLabel.TabIndex = 10;
+            this.memoLabel.Text = "memo\r\nmemo1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(11, 228);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 12);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "memo";
+            // 
+            // timezoneLabel
+            // 
+            this.timezoneLabel.AutoSize = true;
+            this.timezoneLabel.Location = new System.Drawing.Point(24, 203);
+            this.timezoneLabel.Name = "timezoneLabel";
+            this.timezoneLabel.Size = new System.Drawing.Size(50, 12);
+            this.timezoneLabel.TabIndex = 8;
+            this.timezoneLabel.Text = "timezone";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 180);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(61, 12);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "タイムゾーン";
+            // 
+            // latlnglabel
+            // 
+            this.latlnglabel.AutoSize = true;
+            this.latlnglabel.Location = new System.Drawing.Point(24, 154);
+            this.latlnglabel.Name = "latlnglabel";
+            this.latlnglabel.Size = new System.Drawing.Size(33, 12);
+            this.latlnglabel.TabIndex = 6;
+            this.latlnglabel.Text = "latlng";
+            // 
+            // placelabel
+            // 
+            this.placelabel.AutoSize = true;
+            this.placelabel.Location = new System.Drawing.Point(24, 130);
+            this.placelabel.Name = "placelabel";
+            this.placelabel.Size = new System.Drawing.Size(32, 12);
+            this.placelabel.TabIndex = 5;
+            this.placelabel.Text = "place";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 12);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "出生地";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "出生時刻";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(11, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "名前";
             // 
             // birthlabel
             // 
@@ -178,36 +354,40 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.新規追加ToolStripMenuItem,
-            this.編集ToolStripMenuItem,
-            this.削除ToolStripMenuItem,
-            this.フォルダの追加ToolStripMenuItem});
+            this.addUserToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem,
+            this.addDirToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(144, 92);
             // 
-            // 新規追加ToolStripMenuItem
+            // addUserToolStripMenuItem
             // 
-            this.新規追加ToolStripMenuItem.Name = "新規追加ToolStripMenuItem";
-            this.新規追加ToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.新規追加ToolStripMenuItem.Text = "新規追加";
+            this.addUserToolStripMenuItem.Name = "addUserToolStripMenuItem";
+            this.addUserToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.addUserToolStripMenuItem.Text = "新規追加";
+            this.addUserToolStripMenuItem.Click += new System.EventHandler(this.addUserToolStripMenuItem_Click);
             // 
-            // 編集ToolStripMenuItem
+            // editToolStripMenuItem
             // 
-            this.編集ToolStripMenuItem.Name = "編集ToolStripMenuItem";
-            this.編集ToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.編集ToolStripMenuItem.Text = "編集";
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.editToolStripMenuItem.Text = "編集";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // 削除ToolStripMenuItem
+            // deleteToolStripMenuItem
             // 
-            this.削除ToolStripMenuItem.Name = "削除ToolStripMenuItem";
-            this.削除ToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.削除ToolStripMenuItem.Text = "削除";
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.deleteToolStripMenuItem.Text = "削除";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // フォルダの追加ToolStripMenuItem
+            // addDirToolStripMenuItem
             // 
-            this.フォルダの追加ToolStripMenuItem.Name = "フォルダの追加ToolStripMenuItem";
-            this.フォルダの追加ToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.フォルダの追加ToolStripMenuItem.Text = "フォルダの追加";
+            this.addDirToolStripMenuItem.Name = "addDirToolStripMenuItem";
+            this.addDirToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.addDirToolStripMenuItem.Text = "フォルダの追加";
+            this.addDirToolStripMenuItem.Click += new System.EventHandler(this.addDirToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -250,177 +430,6 @@
             this.cancelToolStripMenuItem.Text = "閉じる(&X)";
             this.cancelToolStripMenuItem.Click += new System.EventHandler(this.cancelToolStripMenuItem_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "名前";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "出生時刻";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 108);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(41, 12);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "出生地";
-            // 
-            // placelabel
-            // 
-            this.placelabel.AutoSize = true;
-            this.placelabel.Location = new System.Drawing.Point(24, 130);
-            this.placelabel.Name = "placelabel";
-            this.placelabel.Size = new System.Drawing.Size(32, 12);
-            this.placelabel.TabIndex = 5;
-            this.placelabel.Text = "place";
-            // 
-            // latlnglabel
-            // 
-            this.latlnglabel.AutoSize = true;
-            this.latlnglabel.Location = new System.Drawing.Point(24, 154);
-            this.latlnglabel.Name = "latlnglabel";
-            this.latlnglabel.Size = new System.Drawing.Size(33, 12);
-            this.latlnglabel.TabIndex = 6;
-            this.latlnglabel.Text = "latlng";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 180);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 12);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "タイムゾーン";
-            // 
-            // timezoneLabel
-            // 
-            this.timezoneLabel.AutoSize = true;
-            this.timezoneLabel.Location = new System.Drawing.Point(24, 203);
-            this.timezoneLabel.Name = "timezoneLabel";
-            this.timezoneLabel.Size = new System.Drawing.Size(50, 12);
-            this.timezoneLabel.TabIndex = 8;
-            this.timezoneLabel.Text = "timezone";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 228);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 12);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "memo";
-            // 
-            // memoLabel
-            // 
-            this.memoLabel.AutoSize = true;
-            this.memoLabel.Location = new System.Drawing.Point(24, 250);
-            this.memoLabel.Name = "memoLabel";
-            this.memoLabel.Size = new System.Drawing.Size(41, 24);
-            this.memoLabel.TabIndex = 10;
-            this.memoLabel.Text = "memo\r\nmemo1";
-            // 
-            // eventList
-            // 
-            this.eventList.FormattingEnabled = true;
-            this.eventList.ItemHeight = 12;
-            this.eventList.Location = new System.Drawing.Point(364, 15);
-            this.eventList.Name = "eventList";
-            this.eventList.Size = new System.Drawing.Size(120, 268);
-            this.eventList.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(166, 60);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "イベント時刻";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(166, 108);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 12);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "発生地";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(166, 180);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 12);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "タイムゾーン";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(166, 228);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 12);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "memo";
-            // 
-            // eventBirthLabel
-            // 
-            this.eventBirthLabel.AutoSize = true;
-            this.eventBirthLabel.Location = new System.Drawing.Point(183, 82);
-            this.eventBirthLabel.Name = "eventBirthLabel";
-            this.eventBirthLabel.Size = new System.Drawing.Size(28, 12);
-            this.eventBirthLabel.TabIndex = 16;
-            this.eventBirthLabel.Text = "birth";
-            // 
-            // eventPlaceLabel
-            // 
-            this.eventPlaceLabel.AutoSize = true;
-            this.eventPlaceLabel.Location = new System.Drawing.Point(183, 130);
-            this.eventPlaceLabel.Name = "eventPlaceLabel";
-            this.eventPlaceLabel.Size = new System.Drawing.Size(32, 12);
-            this.eventPlaceLabel.TabIndex = 17;
-            this.eventPlaceLabel.Text = "place";
-            // 
-            // eventLatlngLabel
-            // 
-            this.eventLatlngLabel.AutoSize = true;
-            this.eventLatlngLabel.Location = new System.Drawing.Point(183, 154);
-            this.eventLatlngLabel.Name = "eventLatlngLabel";
-            this.eventLatlngLabel.Size = new System.Drawing.Size(33, 12);
-            this.eventLatlngLabel.TabIndex = 18;
-            this.eventLatlngLabel.Text = "latlng";
-            // 
-            // eventTimezoneLabel
-            // 
-            this.eventTimezoneLabel.AutoSize = true;
-            this.eventTimezoneLabel.Location = new System.Drawing.Point(183, 203);
-            this.eventTimezoneLabel.Name = "eventTimezoneLabel";
-            this.eventTimezoneLabel.Size = new System.Drawing.Size(50, 12);
-            this.eventTimezoneLabel.TabIndex = 19;
-            this.eventTimezoneLabel.Text = "timezone";
-            // 
-            // eventMemoLabel
-            // 
-            this.eventMemoLabel.AutoSize = true;
-            this.eventMemoLabel.Location = new System.Drawing.Point(183, 250);
-            this.eventMemoLabel.Name = "eventMemoLabel";
-            this.eventMemoLabel.Size = new System.Drawing.Size(41, 24);
-            this.eventMemoLabel.TabIndex = 20;
-            this.eventMemoLabel.Text = "memo\r\nmemo1";
-            // 
             // DatabaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -460,10 +469,10 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Button edit;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 新規追加ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 編集ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 削除ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem フォルダの追加ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addDirToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem データベースDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ChangeDBToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;

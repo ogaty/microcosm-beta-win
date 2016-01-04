@@ -23,6 +23,7 @@ namespace microcosm
             InitializeComponent();
 
             SwissEph s = new SwissEph();
+            singleChartRender();
         }
 
         // DB開く
@@ -70,6 +71,11 @@ namespace microcosm
 
             ConfigForm config = new ConfigForm(this);
             config.Show();
+        }
+
+        private void centerSlider_Scroll(object sender, EventArgs e)
+        {
+            singleChartRender(centerSlider.Value);
         }
     }
 }

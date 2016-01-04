@@ -42,12 +42,16 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.astroWindow = new System.Windows.Forms.PictureBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.centerSlider = new System.Windows.Forms.TrackBar();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -152,7 +156,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 432);
+            this.panel1.Size = new System.Drawing.Size(200, 464);
             this.panel1.TabIndex = 6;
             // 
             // groupBox1
@@ -174,35 +178,58 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 432);
+            this.panel3.Size = new System.Drawing.Size(200, 464);
             this.panel3.TabIndex = 1;
             // 
-            // panel2
+            // astroWindow
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Desktop;
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(200, 24);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(704, 432);
-            this.panel2.TabIndex = 7;
+            this.astroWindow.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.astroWindow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.astroWindow.Location = new System.Drawing.Point(200, 24);
+            this.astroWindow.Name = "astroWindow";
+            this.astroWindow.Size = new System.Drawing.Size(704, 464);
+            this.astroWindow.TabIndex = 7;
+            this.astroWindow.TabStop = false;
             // 
-            // panel4
+            // groupBox2
             // 
-            this.panel4.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(572, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(132, 432);
-            this.panel4.TabIndex = 0;
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.centerSlider);
+            this.groupBox2.Location = new System.Drawing.Point(692, 376);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 100);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "サイズ";
+            // 
+            // centerSlider
+            // 
+            this.centerSlider.Location = new System.Drawing.Point(90, 18);
+            this.centerSlider.Maximum = 120;
+            this.centerSlider.Minimum = 60;
+            this.centerSlider.Name = "centerSlider";
+            this.centerSlider.Size = new System.Drawing.Size(104, 45);
+            this.centerSlider.TabIndex = 0;
+            this.centerSlider.Value = 90;
+            this.centerSlider.Scroll += new System.EventHandler(this.centerSlider_Scroll);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "中心円";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(904, 456);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(904, 488);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.astroWindow);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -213,7 +240,10 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,11 +262,13 @@
         private System.Windows.Forms.Label lngLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ToolStripMenuItem オプションOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConfigToolStripMenuItem;
+        private System.Windows.Forms.PictureBox astroWindow;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TrackBar centerSlider;
     }
 }
 

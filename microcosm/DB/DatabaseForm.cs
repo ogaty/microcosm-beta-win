@@ -45,10 +45,12 @@ namespace microcosm
             this.CreateUserList();
         }
 
-
+        // TreeView生成
         public void CreateUserList()
         {
             dbDirTree.Nodes.Clear();
+            TreeNode root = new TreeNode("userlist");
+
             // DBファイルに従ってツリー構築
             List<UserDir> UserList = this.DBMgr.getObject();
             foreach (UserDir userdirs in UserList)
@@ -57,7 +59,7 @@ namespace microcosm
                 {
                     // ディレクトリあり
                     TreeNode node = new TreeNode(userdirs.dir);
-                    dbDirTree.Nodes.Add(node);
+                    root.Nodes.Add(node);
                     if (userdirs.data != null)
                     {
                         foreach (UserData data in userdirs.data)
@@ -75,14 +77,16 @@ namespace microcosm
                     {
                         foreach (UserData data in userdirs.data)
                         {
-                            int index = dbDirTree.Nodes.Add(new TreeNode(data.name));
-                            dbDirTree.Nodes[index].Tag = data;
+                            int index = root.Nodes.Add(new TreeNode(data.name));
+                            root.Nodes[index].Tag = data;
                         }
 
                     }
 
                 }
             }
+            root.Expand();
+            dbDirTree.Nodes.Add(root);
 
         }
 
@@ -111,11 +115,16 @@ namespace microcosm
                     data.timezone,
                     data.memo
                 );
-                for (int i = 0; i < data.userevent.Count; i++)
-                {
-                    eventList.Items.Add(data.userevent[i].event_name);
+                eventList.Items.Clear();
+                if (null != data.userevent)
+                { 
+                    for (int i = 0; i < data.userevent.Count; i++)
+                    {
+                        eventList.Items.Add(data.userevent[i].event_name);
+                    }
                 }
-            } else
+            }
+            else
             {
                 this.clearLabels();
             }
@@ -168,28 +177,7 @@ namespace microcosm
         // 追加ボタン
         private void addButton_Click(object sender, EventArgs e)
         {
-            UserData addData = new UserData(
-                9999,
-                "新規データ",
-                "しんきでーた",
-                2000,
-                1,
-                1,
-                12,
-                0,
-                0,
-                35.685175,
-                139.7528,
-                "東京都中央区",
-                "",
-                "JST"
-                );
-
-            TreeNode node = new TreeNode("新規データ");
-            node.Tag = addData;
-            var index = dbDirTree.Nodes.Add(node);
-            dbDirTree.SelectedNode = dbDirTree.Nodes[index];
-            this.changed = true;
+            addUser();
 
         }
 
@@ -240,7 +228,7 @@ namespace microcosm
 
             xml.AppendChild(declaration);
 
-            foreach (TreeNode nodes in dbDirTree.Nodes)
+            foreach (TreeNode nodes in dbDirTree.Nodes[0].Nodes)
             {
                 if (nodes.Tag == null)
                 {
@@ -309,6 +297,67 @@ namespace microcosm
                         timezone.InnerText = udata.timezone.ToString();
                         userdir.AppendChild(timezone);
 
+                        XmlElement eventlist = xml.CreateElement("eventlist");
+
+                        for (int i = 0; i < udata.userevent.Count; i++)
+                        {
+                            XmlElement eventdir = xml.CreateElement("event");
+                            XmlElement eventname = xml.CreateElement("event_name");
+                            eventname.InnerText = udata.userevent[i].event_name;
+                            eventdir.AppendChild(eventname);
+                            XmlElement eventdetail = xml.CreateElement("event_detail");
+                            if (udata.userevent[i].event_detail == true)
+                            {
+                                XmlElement eventyear = xml.CreateElement("event_year");
+                                eventyear.InnerText = udata.userevent[i].event_year.ToString();
+                                eventdetail.AppendChild(eventyear);
+
+                                XmlElement eventmonth = xml.CreateElement("event_month");
+                                eventmonth.InnerText = udata.userevent[i].event_month.ToString();
+                                eventdetail.AppendChild(eventmonth);
+
+                                XmlElement eventday = xml.CreateElement("event_day");
+                                eventday.InnerText = udata.userevent[i].event_day.ToString();
+                                eventdetail.AppendChild(eventday);
+
+                                XmlElement eventhour = xml.CreateElement("event_hour");
+                                eventhour.InnerText = udata.userevent[i].event_hour.ToString();
+                                eventdetail.AppendChild(eventhour);
+
+                                XmlElement eventminute = xml.CreateElement("event_minute");
+                                eventminute.InnerText = udata.userevent[i].event_minute.ToString();
+                                eventdetail.AppendChild(eventminute);
+
+                                XmlElement eventsecond = xml.CreateElement("event_second");
+                                eventsecond.InnerText = udata.userevent[i].event_second.ToString();
+                                eventdetail.AppendChild(eventsecond);
+
+                                XmlElement eventplace = xml.CreateElement("event_place");
+                                eventplace.InnerText = udata.userevent[i].event_place.ToString();
+                                eventdetail.AppendChild(eventplace);
+
+                                XmlElement eventlat = xml.CreateElement("event_lat");
+                                eventlat.InnerText = udata.userevent[i].event_lat.ToString();
+                                eventdetail.AppendChild(eventlat);
+
+                                XmlElement eventlng = xml.CreateElement("event_lng");
+                                eventlng.InnerText = udata.userevent[i].event_lng.ToString();
+                                eventdetail.AppendChild(eventlng);
+
+                                XmlElement eventmemo = xml.CreateElement("event_memo");
+                                eventmemo.InnerText = udata.userevent[i].event_memo.ToString();
+                                eventdetail.AppendChild(eventmemo);
+
+                                XmlElement eventtimezone = xml.CreateElement("event_timezone");
+                                eventtimezone.InnerText = udata.userevent[i].event_timezone.ToString();
+                                eventdetail.AppendChild(eventtimezone);
+
+                            }
+                            eventdir.AppendChild(eventdetail);
+                            eventlist.AppendChild(eventdir);
+
+                        }
+                        userdir.AppendChild(eventlist);
 
                         dir.AppendChild(userdir);
                     }
@@ -376,12 +425,75 @@ namespace microcosm
                     timezone.InnerText = udata.timezone.ToString();
                     userdir.AppendChild(timezone);
 
+                    XmlElement eventlist = xml.CreateElement("eventlist");
+
+                    for (int i = 0; i < udata.userevent.Count; i++)
+                    {
+                        XmlElement eventdir = xml.CreateElement("event");
+                        XmlElement eventname = xml.CreateElement("event_name");
+                        eventname.InnerText = udata.userevent[i].event_name;
+                        eventdir.AppendChild(eventname);
+                        XmlElement eventdetail = xml.CreateElement("event_detail");
+                        if (udata.userevent[i].event_detail == true)
+                        {
+                            XmlElement eventyear = xml.CreateElement("event_year");
+                            eventyear.InnerText = udata.userevent[i].event_year.ToString();
+                            eventdetail.AppendChild(eventyear);
+
+                            XmlElement eventmonth = xml.CreateElement("event_month");
+                            eventmonth.InnerText = udata.userevent[i].event_month.ToString();
+                            eventdetail.AppendChild(eventmonth);
+
+                            XmlElement eventday = xml.CreateElement("event_day");
+                            eventday.InnerText = udata.userevent[i].event_day.ToString();
+                            eventdetail.AppendChild(eventday);
+
+                            XmlElement eventhour = xml.CreateElement("event_hour");
+                            eventhour.InnerText = udata.userevent[i].event_hour.ToString();
+                            eventdetail.AppendChild(eventhour);
+
+                            XmlElement eventminute = xml.CreateElement("event_minute");
+                            eventminute.InnerText = udata.userevent[i].event_minute.ToString();
+                            eventdetail.AppendChild(eventminute);
+
+                            XmlElement eventsecond = xml.CreateElement("event_second");
+                            eventsecond.InnerText = udata.userevent[i].event_second.ToString();
+                            eventdetail.AppendChild(eventsecond);
+
+                            XmlElement eventplace = xml.CreateElement("event_place");
+                            eventplace.InnerText = udata.userevent[i].event_place.ToString();
+                            eventdetail.AppendChild(eventplace);
+
+                            XmlElement eventlat = xml.CreateElement("event_lat");
+                            eventlat.InnerText = udata.userevent[i].event_lat.ToString();
+                            eventdetail.AppendChild(eventlat);
+
+                            XmlElement eventlng = xml.CreateElement("event_lng");
+                            eventlng.InnerText = udata.userevent[i].event_lng.ToString();
+                            eventdetail.AppendChild(eventlng);
+
+                            XmlElement eventmemo = xml.CreateElement("event_memo");
+                            eventmemo.InnerText = udata.userevent[i].event_memo.ToString();
+                            eventdetail.AppendChild(eventmemo);
+
+                            XmlElement eventtimezone = xml.CreateElement("event_timezone");
+                            eventtimezone.InnerText = udata.userevent[i].event_timezone.ToString();
+                            eventdetail.AppendChild(eventtimezone);
+
+                        }
+                        eventdir.AppendChild(eventdetail);
+                        eventlist.AppendChild(eventdir);
+                    }
+
+                    userdir.AppendChild(eventlist);
+
                     nodirtree.AppendChild(userdir);
                 }
             }
             root.AppendChild(nodirtree);
             xml.AppendChild(root);
-            xml.Save(this.filename);
+//            xml.Save(this.filename);
+            xml.Save("test.xml");
         }
 
         private void edit_Click(object sender, EventArgs e)
@@ -396,7 +508,8 @@ namespace microcosm
             {
                 DirEditForm edit = new DirEditForm(this, select.Index);
                 edit.Show();
-            } else
+            }
+            else
             {
                 DBEditForm edit = new DBEditForm(this, select.Index, (UserData)select.Tag);
                 edit.Show();
@@ -406,6 +519,120 @@ namespace microcosm
         public void setDirName(int index, string dirname)
         {
             dbDirTree.Nodes[index].Text = dirname;
+        }
+
+        private void dbDirTree_MouseUp(object sender, MouseEventArgs e)
+        {
+//            dbDirTree.SelectedNode = null;
+            if (e.Button == MouseButtons.Right)
+            {
+                contextMenuStrip1.Show(Cursor.Position);
+
+            }
+        }
+
+        private void addUser()
+        {
+            UserData addData = new UserData(
+                9999,
+                "新規データ",
+                "しんきでーた",
+                2000,
+                1,
+                1,
+                12,
+                0,
+                0,
+                35.685175,
+                139.7528,
+                "東京都中央区",
+                "",
+                "JST"
+            );
+
+            TreeNode node = new TreeNode("新規データ");
+            node.Tag = addData;
+            var index = dbDirTree.Nodes[0].Nodes.Add(node);
+            //dbDirTree.SelectedNode = dbDirTree.Nodes[index];
+            this.changed = true;
+
+        }
+
+        private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            addUser();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode select = dbDirTree.SelectedNode;
+            if (select == null)
+            {
+                return;
+            }
+
+            if (select.Tag == null)
+            {
+                DirEditForm edit = new DirEditForm(this, select.Index);
+                edit.Show();
+            }
+            else
+            {
+                DBEditForm edit = new DBEditForm(this, select.Index, (UserData)select.Tag);
+                edit.Show();
+            }
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dbDirTree.SelectedNode.Remove();
+            this.clearLabels();
+            this.changed = true;
+        }
+
+        private void addDirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode node = new TreeNode("新規フォルダ");
+            node.Tag = null;
+            var index = dbDirTree.Nodes[0].Nodes.Add(node);
+//            dbDirTree.SelectedNode = dbDirTree.Nodes[index];
+            this.changed = true;
+        }
+
+        private void dbDirTree_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            TreeView tv = (TreeView)sender;
+            tv.SelectedNode = (TreeNode)e.Item;
+            tv.Focus();
+            //ノードのドラッグを開始する
+            DragDropEffects dde =
+                tv.DoDragDrop(e.Item, DragDropEffects.All);
+            //移動した時は、ドラッグしたノードを削除する
+            if ((dde & DragDropEffects.Move) == DragDropEffects.Move)
+                tv.Nodes.Remove((TreeNode)e.Item);
+        }
+
+        private void dbDirTree_DragOver(object sender, DragEventArgs e)
+        {
+            //ドラッグされているデータがTreeNodeか調べる
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
+            {
+
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+                //TreeNodeでなければ受け入れない
+                e.Effect = DragDropEffects.None;
+
+        }
+
+        private void dbDirTree_DragDrop(object sender, DragEventArgs e)
+        {
+            //ドロップされたデータがTreeNodeか調べる
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
+            {
+            }
         }
     }
 }
