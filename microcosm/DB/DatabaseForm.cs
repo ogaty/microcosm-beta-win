@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.IO;
 using microcosm.DB;
+using System.Reflection;
 
 namespace microcosm
 {
@@ -24,71 +26,44 @@ namespace microcosm
         public XMLDBManager DBMgr;
         public bool changed;
         private string filename;
-        public DatabaseForm(MainForm mainform, string DBFilename)
+        public DatabaseForm(MainForm mainform)
         {
             InitializeComponent();
             this.mainform = mainform;
-
-            // マネージャー呼び出し
-            if (this.DBMgr == null)
-            {
-                this.DBMgr = new XMLDBManager(DBFilename);
-            }
-            this.filename = DBFilename;
-
 
             return;
         }
 
         private void Database_Load(object sender, EventArgs e)
         {
-            this.CreateUserList();
+            //            this.CreateUserList();
+            CreateTree();
         }
 
-        // TreeView生成
-        public void CreateUserList()
+        public void CreateTree()
         {
             dbDirTree.Nodes.Clear();
-            TreeNode root = new TreeNode("userlist");
 
-            // DBファイルに従ってツリー構築
-            List<UserDir> UserList = this.DBMgr.getObject();
-            foreach (UserDir userdirs in UserList)
-            {
-                if (userdirs.dir != "__nodir")
-                {
-                    // ディレクトリあり
-                    TreeNode node = new TreeNode(userdirs.dir);
-                    root.Nodes.Add(node);
-                    if (userdirs.data != null)
-                    {
-                        foreach (UserData data in userdirs.data)
-                        {
-                            int index = node.Nodes.Add(new TreeNode(data.name));
-                            node.Nodes[index].Tag = data;
-                        }
-
-                    }
-                }
-                else
-                {
-                    // ディレクトリ無し
-                    if (userdirs.data != null)
-                    {
-                        foreach (UserData data in userdirs.data)
-                        {
-                            int index = root.Nodes.Add(new TreeNode(data.name));
-                            root.Nodes[index].Tag = data;
-                        }
-
-                    }
-
-                }
-            }
-            root.Expand();
-            dbDirTree.Nodes.Add(root);
-
+            var rootDirectoryInfo = new DirectoryInfo(System.Windows.Forms.Application.StartupPath + @"\data");
+            dbDirTree.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
+            dbDirTree.Nodes[0].Expand();
         }
+
+
+        private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
+        {
+            var directoryNode = new TreeNode(directoryInfo.Name);
+            foreach (var directory in directoryInfo.GetDirectories())
+                directoryNode.Nodes.Add(CreateDirectoryNode(directory));
+            foreach (var file in directoryInfo.GetFiles("*.csm"))
+            {
+                TreeNode node = new TreeNode(file.Name);
+                node.Tag = file;
+                directoryNode.Nodes.Add(node);
+            }
+            return directoryNode;
+        }
+
 
         private void OnSelected(int index)
         {
@@ -98,7 +73,28 @@ namespace microcosm
         // 選択した時
         private void dbDirTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            UserData data = (UserData)e.Node.Tag;
+            if (null == e.Node.Tag) return;
+
+            XMLDBManager DBMgr = new XMLDBManager(((FileInfo)e.Node.Tag).FullName);
+            UserData data = DBMgr.getObject();
+
+            this.setLabels(data.name,
+                String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                    data.birth_year,
+                    data.birth_month,
+                    data.birth_day,
+                    data.birth_hour,
+                    data.birth_minute,
+                    data.birth_second
+                ),
+                data.birth_place,
+                String.Format("({0},{1})", data.lat, data.lng),
+                data.timezone,
+                data.memo
+            );
+
+            return;
+            data = (UserData)e.Node.Tag;
             if (data != null)
             {
                 this.setLabels(data.name,
@@ -134,6 +130,7 @@ namespace microcosm
         private void clearLabels()
         {
             this.setLabels("", "", "", "", "", "");
+            this.setEventLabels("", "", "", "", "");
         }
         // ラベル設定
         private void setLabels(string name, string birth_text, string birth_place, string latlng_text, string timezone, string memo)
@@ -144,6 +141,15 @@ namespace microcosm
             latlnglabel.Text = latlng_text;
             timezoneLabel.Text = timezone;
             memoLabel.Text = memo;
+        }
+
+        private void setEventLabels(string event_birth_text, string event_place, string event_latlng, string event_timezone, string event_memo)
+        {
+            eventBirthLabel.Text = event_birth_text;
+            eventPlaceLabel.Text = event_place;
+            eventLatlngLabel.Text = event_latlng;
+            eventTimezoneLabel.Text = event_timezone;
+            eventMemoLabel.Text = event_memo;
         }
 
         // 右クリック
@@ -206,9 +212,9 @@ namespace microcosm
             //ダイアログを表示する
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                this.DBMgr = new XMLDBManager(ofd.FileName);
-                this.CreateUserList();
-                this.clearLabels();
+//                this.DBMgr = new XMLDBManager(ofd.FileName);
+//                this.CreateUserList();
+//                this.clearLabels();
             }
         }
 
@@ -240,10 +246,6 @@ namespace microcosm
                     {
                         XmlElement userdir = xml.CreateElement("user");
                         UserData udata = (UserData)detailnodes.Tag;
-
-                        XmlElement userno = xml.CreateElement("no");
-                        userno.InnerText = udata.no.ToString();
-                        userdir.AppendChild(userno);
 
                         XmlElement userdata = xml.CreateElement("name");
                         userdata.InnerText = detailnodes.Text;
@@ -306,6 +308,7 @@ namespace microcosm
                             eventname.InnerText = udata.userevent[i].event_name;
                             eventdir.AppendChild(eventname);
                             XmlElement eventdetail = xml.CreateElement("event_detail");
+                            /*
                             if (udata.userevent[i].event_detail == true)
                             {
                                 XmlElement eventyear = xml.CreateElement("event_year");
@@ -353,6 +356,7 @@ namespace microcosm
                                 eventdetail.AppendChild(eventtimezone);
 
                             }
+                            */
                             eventdir.AppendChild(eventdetail);
                             eventlist.AppendChild(eventdir);
 
@@ -368,10 +372,6 @@ namespace microcosm
                 {
                     XmlElement userdir = xml.CreateElement("user");
                     UserData udata = (UserData)nodes.Tag;
-
-                    XmlElement userno = xml.CreateElement("no");
-                    userno.InnerText = udata.no.ToString();
-                    userdir.AppendChild(userno);
 
                     XmlElement userdata = xml.CreateElement("name");
                     userdata.InnerText = nodes.Text;
@@ -434,6 +434,7 @@ namespace microcosm
                         eventname.InnerText = udata.userevent[i].event_name;
                         eventdir.AppendChild(eventname);
                         XmlElement eventdetail = xml.CreateElement("event_detail");
+                        /*
                         if (udata.userevent[i].event_detail == true)
                         {
                             XmlElement eventyear = xml.CreateElement("event_year");
@@ -481,6 +482,7 @@ namespace microcosm
                             eventdetail.AppendChild(eventtimezone);
 
                         }
+                        */
                         eventdir.AppendChild(eventdetail);
                         eventlist.AppendChild(eventdir);
                     }
@@ -534,7 +536,6 @@ namespace microcosm
         private void addUser()
         {
             UserData addData = new UserData(
-                9999,
                 "新規データ",
                 "しんきでーた",
                 2000,

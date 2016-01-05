@@ -15,7 +15,6 @@ namespace microcosm
 {
     public partial class MainForm : Form
     {
-        private string DBFileName = "default.xml";
         public ConfigData config;
 
         public MainForm()
@@ -29,7 +28,7 @@ namespace microcosm
         // DB開く
         private void OpenDatabaseOToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DatabaseForm db = new DatabaseForm(this, DBFileName);
+            DatabaseForm db = new DatabaseForm(this);
             db.Show();
         }
 
@@ -46,9 +45,9 @@ namespace microcosm
             //ダイアログを表示する
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                DatabaseForm db = new DatabaseForm(this, ofd.FileName);
-                db.CreateUserList();
-                db.Show();
+//                DatabaseForm db = new DatabaseForm(this, ofd.FileName);
+//                db.CreateUserList();
+//                db.Show();
             }
         }
 

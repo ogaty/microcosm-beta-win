@@ -4,25 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using microcosm.DB;
+using System.Xml.Serialization;
 
 namespace microcosm
 {
+    [XmlRoot("userdata")]
     public class UserData
     {
-        public int no { get; set; }
+        [XmlElement("name")]
         public string name { get; set; }
+        [XmlElement("furigana")]
         public string furigana { get; set; }
+        [XmlElement("birth_year")]
         public int birth_year { get; set; }
+        [XmlElement("birth_month")]
         public int birth_month { get; set; }
+        [XmlElement("birth_day")]
         public int birth_day { get; set; }
+        [XmlElement("birth_hour")]
         public int birth_hour { get; set; }
+        [XmlElement("birth_minute")]
         public int birth_minute { get; set; }
+        [XmlElement("birth_second")]
         public int birth_second { get; set; }
+        [XmlElement("lat")]
         public double lat { get; set; }
+        [XmlElement("lng")]
         public double lng { get; set; }
+        [XmlElement("birth_place")]
         public string birth_place { get; set; }
+        [XmlElement("memo")]
         public string memo { get; set; }
+        [XmlElement("timezone")]
         public string timezone { get; set; }
+        [XmlArray("eventlist")]
+        [XmlArrayItem("event")]
         public List<UserEvent> userevent { get; set; }
 
         public UserData()
@@ -31,7 +47,6 @@ namespace microcosm
         }
 
         public UserData(
-            int no,
             string name,
             string furigana,
             int birth_year,
@@ -47,7 +62,6 @@ namespace microcosm
             string timezone
             )
         {
-            this.no = no;
             this.name = name;
             this.furigana = furigana;
             this.birth_year = birth_year;
@@ -64,7 +78,6 @@ namespace microcosm
         }
 
         public void setData(
-            int no,
             string name,
             string furigana,
             int birth_year,
@@ -80,7 +93,6 @@ namespace microcosm
             string timezone
             )
         {
-            this.no = no;
             this.name = name;
             this.furigana = furigana;
             this.birth_year = birth_year;
