@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,12 @@ namespace microcosm.DB
     public partial class DirEditForm : Form
     {
         private DatabaseForm dbform;
-        private int index;
-        public DirEditForm(DatabaseForm dbform, int index)
+        private string filename;
+        public DirEditForm(DatabaseForm dbform, string filename)
         {
             InitializeComponent();
             this.dbform = dbform;
-            this.index = index;
+            this.filename = filename;
         }
 
         private void cancelBtn_Click(object sender, EventArgs e)
@@ -28,8 +29,30 @@ namespace microcosm.DB
 
         private void okBtn_Click(object sender, EventArgs e)
         {
-            dbform.setDirName(index, dirnameBox.Text);
+            if (File.Exists(filename))
+            {
+                if (File.Exists(dbform.datadir + @"\" + dirnameBox.Text) || Directory.Exists(dbform.datadir + @"\" + dirnameBox.Text))
+                {
+                    MessageBox.Show(Properties.Resources.FILE_EXIST);
+                    return;
+                }
+                File.Move(filename, dbform.datadir + @"\" + dirnameBox.Text);
+            } else if (Directory.Exists(filename))
+            {
+                if (File.Exists(dbform.datadir + @"\" + dirnameBox.Text) || Directory.Exists(dbform.datadir + @"\" + dirnameBox.Text))
+                {
+                    MessageBox.Show(Properties.Resources.FILE_EXIST);
+                    return;
+                }
+                Directory.Move(filename, dbform.datadir + @"\" + dirnameBox.Text);
+            }
+            dbform.CreateTree();
             this.Close();
+        }
+
+        private void DirEditForm_Load(object sender, EventArgs e)
+        {
+            dirnameBox.Text = (new FileInfo(filename)).Name;
         }
     }
 }

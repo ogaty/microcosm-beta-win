@@ -39,9 +39,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 12);
+            this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ディレクトリ名";
+            this.label1.Text = "新規名称";
             // 
             // dirnameBox
             // 
@@ -81,6 +81,7 @@
             this.Controls.Add(this.label1);
             this.Name = "DirEditForm";
             this.Text = "DirEditForm";
+            this.Load += new System.EventHandler(this.DirEditForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

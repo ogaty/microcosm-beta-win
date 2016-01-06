@@ -11,6 +11,7 @@ using System.Xml;
 using System.IO;
 using microcosm.DB;
 using System.Reflection;
+using System.Xml.Serialization;
 
 namespace microcosm
 {
@@ -25,7 +26,7 @@ namespace microcosm
         private MainForm mainform;
         public XMLDBManager DBMgr;
         public bool changed;
-        private string filename;
+        public string datadir { get; } = System.Windows.Forms.Application.StartupPath + @"\data";
         public DatabaseForm(MainForm mainform)
         {
             InitializeComponent();
@@ -44,7 +45,7 @@ namespace microcosm
         {
             dbDirTree.Nodes.Clear();
 
-            var rootDirectoryInfo = new DirectoryInfo(System.Windows.Forms.Application.StartupPath + @"\data");
+            var rootDirectoryInfo = new DirectoryInfo(datadir);
             dbDirTree.Nodes.Add(CreateDirectoryNode(rootDirectoryInfo));
             dbDirTree.Nodes[0].Expand();
         }
@@ -52,14 +53,13 @@ namespace microcosm
 
         private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
         {
-            var directoryNode = new TreeNode(directoryInfo.Name);
-            foreach (var directory in directoryInfo.GetDirectories())
+            var directoryNode = new TreeNode(directoryInfo.Name) { Tag = directoryInfo.FullName };
+            foreach (var directory in directoryInfo.GetDirectories()) { 
                 directoryNode.Nodes.Add(CreateDirectoryNode(directory));
+            }
             foreach (var file in directoryInfo.GetFiles("*.csm"))
             {
-                TreeNode node = new TreeNode(file.Name);
-                node.Tag = file;
-                directoryNode.Nodes.Add(node);
+                directoryNode.Nodes.Add(new TreeNode(file.Name) { Tag = file.FullName });
             }
             return directoryNode;
         }
@@ -73,12 +73,13 @@ namespace microcosm
         // 選択した時
         private void dbDirTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (null == e.Node.Tag) return;
+            if (Directory.Exists(e.Node.Tag.ToString())) return;
 
-            XMLDBManager DBMgr = new XMLDBManager(((FileInfo)e.Node.Tag).FullName);
+            XMLDBManager DBMgr = new XMLDBManager(e.Node.Tag.ToString());
             UserData data = DBMgr.getObject();
 
-            this.setLabels(data.name,
+            eventListView.Items.Clear();
+            this.setBirth(data.name,
                 String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
                     data.birth_year,
                     data.birth_month,
@@ -93,63 +94,54 @@ namespace microcosm
                 data.memo
             );
 
-            return;
-            data = (UserData)e.Node.Tag;
-            if (data != null)
+            if (data.userevent == null)
             {
-                this.setLabels(data.name,
+                return;
+            }
+
+            foreach (UserEvent ev in data.userevent)
+            {
+                setEventData(ev.event_name,
                     String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
-                        data.birth_year,
-                        data.birth_month,
-                        data.birth_day,
-                        data.birth_hour,
-                        data.birth_minute,
-                        data.birth_second
+                        ev.event_year,
+                        ev.event_month,
+                        ev.event_day,
+                        ev.event_hour,
+                        ev.event_minute,
+                        ev.event_second
                     ),
-                    data.birth_place,
-                    String.Format("({0},{1})", data.lat, data.lng),
-                    data.timezone,
-                    data.memo
-                );
-                eventList.Items.Clear();
-                if (null != data.userevent)
-                { 
-                    for (int i = 0; i < data.userevent.Count; i++)
-                    {
-                        eventList.Items.Add(data.userevent[i].event_name);
-                    }
-                }
+                    ev.event_place,
+                    String.Format("({0},{1})", ev.event_lat, ev.event_lng),
+                    ev.event_timezone,
+                    ev.event_memo
+                 );
             }
-            else
-            {
-                this.clearLabels();
-            }
+
+            return;
         }
 
         // ラベルクリア
         private void clearLabels()
         {
-            this.setLabels("", "", "", "", "", "");
-            this.setEventLabels("", "", "", "", "");
+            eventListView.Items.Clear();
         }
         // ラベル設定
-        private void setLabels(string name, string birth_text, string birth_place, string latlng_text, string timezone, string memo)
+        private void setBirth(string name, string birth_text, string birth_place, string latlng_text, string timezone, string memo)
         {
-            namelabel.Text = name;
-            birthlabel.Text = birth_text;
-            placelabel.Text = birth_place;
-            latlnglabel.Text = latlng_text;
-            timezoneLabel.Text = timezone;
-            memoLabel.Text = memo;
+            ListViewItem item = new ListViewItem(name);
+            string[] subitems = { birth_text, birth_place, latlng_text, timezone };
+            item.SubItems.AddRange(subitems);
+            item.Tag = memo;
+            eventListView.Items.Add(item);
         }
 
-        private void setEventLabels(string event_birth_text, string event_place, string event_latlng, string event_timezone, string event_memo)
+        private void setEventData(string event_name, string event_birth_text, string event_place, string event_latlng, string event_timezone, string event_memo)
         {
-            eventBirthLabel.Text = event_birth_text;
-            eventPlaceLabel.Text = event_place;
-            eventLatlngLabel.Text = event_latlng;
-            eventTimezoneLabel.Text = event_timezone;
-            eventMemoLabel.Text = event_memo;
+            ListViewItem item = new ListViewItem("- " + event_name);
+            string[] subitems = { event_birth_text, event_place, event_latlng, event_timezone, event_memo };
+            item.SubItems.AddRange(subitems);
+            item.Tag = event_memo;
+            eventListView.Items.Add(item);
         }
 
         // 右クリック
@@ -498,31 +490,6 @@ namespace microcosm
             xml.Save("test.xml");
         }
 
-        private void edit_Click(object sender, EventArgs e)
-        {
-            TreeNode select = dbDirTree.SelectedNode;
-            if (select == null)
-            {
-                return;
-            }
-
-            if (select.Tag == null)
-            {
-                DirEditForm edit = new DirEditForm(this, select.Index);
-                edit.Show();
-            }
-            else
-            {
-                DBEditForm edit = new DBEditForm(this, select.Index, (UserData)select.Tag);
-                edit.Show();
-            }
-        }
-
-        public void setDirName(int index, string dirname)
-        {
-            dbDirTree.Nodes[index].Text = dirname;
-        }
-
         private void dbDirTree_MouseUp(object sender, MouseEventArgs e)
         {
 //            dbDirTree.SelectedNode = null;
@@ -533,6 +500,7 @@ namespace microcosm
             }
         }
 
+        // ユーザーファイル追加
         private void addUser()
         {
             UserData addData = new UserData(
@@ -551,54 +519,60 @@ namespace microcosm
                 "JST"
             );
 
-            TreeNode node = new TreeNode("新規データ");
-            node.Tag = addData;
-            var index = dbDirTree.Nodes[0].Nodes.Add(node);
-            //dbDirTree.SelectedNode = dbDirTree.Nodes[index];
-            this.changed = true;
+            int i = 1;
+            while (File.Exists(datadir + @"\user" + i.ToString() + ".csm"))
+            {
+                i++;
+            }
+
+            XmlSerializer serializer = new XmlSerializer(typeof(UserData));
+            FileStream fs = new FileStream(datadir + @"\user" + i.ToString() + ".csm", FileMode.Create);
+            MessageBox.Show(datadir + @"\user" + i.ToString() + ".csm");
+            StreamWriter sw = new StreamWriter(fs);
+            serializer.Serialize(sw, addData);
+            sw.Close();
+            fs.Close();
+            CreateTree();
 
         }
 
+        // ツリー右クリック新規追加
         private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             addUser();
         }
 
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            TreeNode select = dbDirTree.SelectedNode;
-            if (select == null)
-            {
-                return;
-            }
-
-            if (select.Tag == null)
-            {
-                DirEditForm edit = new DirEditForm(this, select.Index);
-                edit.Show();
-            }
-            else
-            {
-                DBEditForm edit = new DBEditForm(this, select.Index, (UserData)select.Tag);
-                edit.Show();
-            }
-
-        }
-
+        // ツリー右クリック削除
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dbDirTree.SelectedNode.Remove();
-            this.clearLabels();
-            this.changed = true;
+            DialogResult result = MessageBox.Show("削除してよろしいですか？",
+                "ファイルを削除します",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Exclamation);
+            if (result == DialogResult.OK)
+            {
+                if (File.Exists(dbDirTree.SelectedNode.Tag.ToString())) {
+                    File.Delete(dbDirTree.SelectedNode.Tag.ToString());
+                } else if (Directory.Exists(dbDirTree.SelectedNode.Tag.ToString()))
+                {
+                    Directory.Delete(dbDirTree.SelectedNode.Tag.ToString());
+                }
+
+                CreateTree();
+            }
         }
 
+        // ツリー右クリックディレクトリ作成
         private void addDirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TreeNode node = new TreeNode("新規フォルダ");
-            node.Tag = null;
-            var index = dbDirTree.Nodes[0].Nodes.Add(node);
-//            dbDirTree.SelectedNode = dbDirTree.Nodes[index];
-            this.changed = true;
+            int i = 1;
+            while (Directory.Exists(datadir + @"\dir" + i.ToString()))
+            {
+                i++;
+            }
+
+            Directory.CreateDirectory(datadir + @"\dir" + i.ToString());
+            CreateTree();
         }
 
         private void dbDirTree_ItemDrag(object sender, ItemDragEventArgs e)
@@ -635,5 +609,32 @@ namespace microcosm
             {
             }
         }
+
+        // キャンセルボタン
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // リストを選択
+        private void eventListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (((ListView)sender).SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            if (((ListView)sender).SelectedItems[0].Tag != null) {
+                memo.Text = (string)((ListView)sender).SelectedItems[0].Tag.ToString();
+            }
+        }
+
+        private void fileNameChangeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DirEditForm diredit = new DirEditForm(this, dbDirTree.SelectedNode.Tag.ToString());
+            diredit.Show();
+        }
+
+
     }
 }

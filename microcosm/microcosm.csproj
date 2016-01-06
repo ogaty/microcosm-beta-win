@@ -100,7 +100,6 @@
     <Compile Include="DB\DBManager.cs" />
     <Compile Include="DB\DBManagerInterface.cs" />
     <Compile Include="DB\UserDir.cs" />
-    <Compile Include="DB\UserEvents.cs" />
     <Compile Include="DB\UserEvent.cs" />
     <Compile Include="DB\XMLDBManager.cs" />
     <Compile Include="Config\ConfigForm.cs">
@@ -143,6 +142,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="default.csm" />
     <None Include="packages.config" />
