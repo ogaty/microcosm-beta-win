@@ -107,5 +107,12 @@ namespace microcosm
             this.memo = memo;
             this.timezone = timezone;
         }
+
+        public static explicit operator UserEvent(UserData val)
+        {
+            return new UserEvent(val.name, val.birth_year, val.birth_month, val.birth_day,
+                val.birth_hour, val.birth_minute, val.birth_second, val.birth_place,
+                val.lat, val.lng, val.timezone, val.memo);
+        }
     }
 }

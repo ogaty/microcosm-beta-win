@@ -44,11 +44,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.astroWindow = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.centerSlider = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
+            this.centerSlider = new System.Windows.Forms.TrackBar();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.ovalShape1 = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).BeginInit();
@@ -99,7 +102,7 @@
             // ConfigToolStripMenuItem
             // 
             this.ConfigToolStripMenuItem.Name = "ConfigToolStripMenuItem";
-            this.ConfigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ConfigToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.ConfigToolStripMenuItem.Text = "設定(&C)";
             this.ConfigToolStripMenuItem.Click += new System.EventHandler(this.ConfigToolStripMenuItem_Click);
             // 
@@ -175,6 +178,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Window;
+            this.panel3.Controls.Add(this.shapeContainer1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -202,6 +206,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "サイズ";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "中心円";
+            // 
             // centerSlider
             // 
             this.centerSlider.Location = new System.Drawing.Point(90, 18);
@@ -213,14 +226,25 @@
             this.centerSlider.Value = 90;
             this.centerSlider.Scroll += new System.EventHandler(this.centerSlider_Scroll);
             // 
-            // label1
+            // shapeContainer1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "中心円";
+            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.ovalShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(200, 464);
+            this.shapeContainer1.TabIndex = 0;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // ovalShape1
+            // 
+            this.ovalShape1.BorderWidth = 2;
+            this.ovalShape1.Location = new System.Drawing.Point(55, 183);
+            this.ovalShape1.Name = "ovalShape1";
+            this.ovalShape1.Size = new System.Drawing.Size(75, 81);
+            this.ovalShape1.MouseHover += new System.EventHandler(this.ovalShape1_MouseHover);
+            this.ovalShape1.MouseLeave += new System.EventHandler(this.ovalShape1_MouseLeave);
             // 
             // MainForm
             // 
@@ -240,6 +264,7 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -269,6 +294,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar centerSlider;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape1;
     }
 }
 

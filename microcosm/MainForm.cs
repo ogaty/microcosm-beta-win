@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.PowerPacks;
 using SwissEphNet;
 using microcosm.DB;
 using microcosm.Config;
@@ -51,13 +52,28 @@ namespace microcosm
             }
         }
 
-        public void ReflactUserData(UserData udata)
+        // DBから取得したデータを反映
+        public void ReflactUserData(User u)
         {
-            this.usernameLabel.Text = udata.name;
-            this.birthLabel.Text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}", 
-                udata.birth_year, udata.birth_month, udata.birth_day,
-                udata.birth_hour, udata.birth_minute, udata.birth_second);
-            this.placeLabel.Text = udata.birth_place;
+            if (u.udata == null)
+            {
+                UserEvent uevent = u.uevent;
+                this.usernameLabel.Text = uevent.event_name;
+                this.birthLabel.Text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                    uevent.event_year, uevent.event_month, uevent.event_day,
+                    uevent.event_hour, uevent.event_minute, uevent.event_second);
+                this.placeLabel.Text = uevent.event_place;
+
+            }
+            else
+            {
+                UserData udata = u.udata;
+                this.usernameLabel.Text = udata.name;
+                this.birthLabel.Text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                    udata.birth_year, udata.birth_month, udata.birth_day,
+                    udata.birth_hour, udata.birth_minute, udata.birth_second);
+                this.placeLabel.Text = udata.birth_place;
+            }
 
         }
 
@@ -75,6 +91,16 @@ namespace microcosm
         private void centerSlider_Scroll(object sender, EventArgs e)
         {
             singleChartRender(centerSlider.Value);
+        }
+
+        private void ovalShape1_MouseHover(object sender, EventArgs e)
+        {
+            ((OvalShape)sender).BorderWidth = 3;
+        }
+
+        private void ovalShape1_MouseLeave(object sender, EventArgs e)
+        {
+            ((OvalShape)sender).BorderWidth = 2;
         }
     }
 }

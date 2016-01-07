@@ -13,7 +13,7 @@ using microcosm.DB;
 using System.Reflection;
 using System.Xml.Serialization;
 
-namespace microcosm
+namespace microcosm.DB
 {
     // 未テスト
     // データが無いxml
@@ -41,6 +41,7 @@ namespace microcosm
             CreateTree();
         }
 
+        // ツリー作成
         public void CreateTree()
         {
             dbDirTree.Nodes.Clear();
@@ -70,7 +71,7 @@ namespace microcosm
 
         }
 
-        // 選択した時
+        // ツリーを選択した時
         private void dbDirTree_AfterSelect(object sender, TreeViewEventArgs e)
         {
             if (Directory.Exists(e.Node.Tag.ToString())) return;
@@ -79,20 +80,7 @@ namespace microcosm
             UserData data = DBMgr.getObject();
 
             eventListView.Items.Clear();
-            this.setBirth(data.name,
-                String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
-                    data.birth_year,
-                    data.birth_month,
-                    data.birth_day,
-                    data.birth_hour,
-                    data.birth_minute,
-                    data.birth_second
-                ),
-                data.birth_place,
-                String.Format("({0},{1})", data.lat, data.lng),
-                data.timezone,
-                data.memo
-            );
+            this.setBirth(data);
 
             if (data.userevent == null)
             {
@@ -101,20 +89,7 @@ namespace microcosm
 
             foreach (UserEvent ev in data.userevent)
             {
-                setEventData(ev.event_name,
-                    String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
-                        ev.event_year,
-                        ev.event_month,
-                        ev.event_day,
-                        ev.event_hour,
-                        ev.event_minute,
-                        ev.event_second
-                    ),
-                    ev.event_place,
-                    String.Format("({0},{1})", ev.event_lat, ev.event_lng),
-                    ev.event_timezone,
-                    ev.event_memo
-                 );
+                setEventData(ev);
             }
 
             return;
@@ -126,25 +101,46 @@ namespace microcosm
             eventListView.Items.Clear();
         }
         // ラベル設定
-        private void setBirth(string name, string birth_text, string birth_place, string latlng_text, string timezone, string memo)
+        private void setBirth(UserData data)
         {
-            ListViewItem item = new ListViewItem(name);
-            string[] subitems = { birth_text, birth_place, latlng_text, timezone };
+            ListViewItem item = new ListViewItem(data.name);
+            string birth_text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                    data.birth_year,
+                    data.birth_month,
+                    data.birth_day,
+                    data.birth_hour,
+                    data.birth_minute,
+                    data.birth_second
+                );
+            string latlng_text = String.Format("({0},{1})", data.lat, data.lng);
+            string timezone = data.timezone;
+
+            string[] subitems = { birth_text, data.birth_place, latlng_text, timezone };
             item.SubItems.AddRange(subitems);
-            item.Tag = memo;
+            item.Tag = new User(data, null);
             eventListView.Items.Add(item);
         }
 
-        private void setEventData(string event_name, string event_birth_text, string event_place, string event_latlng, string event_timezone, string event_memo)
+        private void setEventData(UserEvent uevent)
         {
-            ListViewItem item = new ListViewItem("- " + event_name);
-            string[] subitems = { event_birth_text, event_place, event_latlng, event_timezone, event_memo };
+            ListViewItem item = new ListViewItem("- " + uevent.event_name);
+            string event_birth_text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                        uevent.event_year,
+                        uevent.event_month,
+                        uevent.event_day,
+                        uevent.event_hour,
+                        uevent.event_minute,
+                        uevent.event_second
+                    );
+            string event_latlng = String.Format("({0},{1})", uevent.event_lat, uevent.event_lng);
+
+            string[] subitems = { event_birth_text, uevent.event_place, event_latlng, uevent.event_timezone };
             item.SubItems.AddRange(subitems);
-            item.Tag = event_memo;
+            item.Tag = new User(null, uevent);
             eventListView.Items.Add(item);
         }
 
-        // 右クリック
+        // ツリー右クリック
         private void dbDirTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -163,51 +159,14 @@ namespace microcosm
         // 表示ボタン
         private void displayButton_Click(object sender, EventArgs e)
         {
-            if (this.dbDirTree.SelectedNode == null)
+            if (eventListView.FocusedItem == null)
             {
                 return;
             }
-            UserData data = (UserData)this.dbDirTree.SelectedNode.Tag;
-            this.mainform.ReflactUserData(data);
+            User u = (User)this.eventListView.FocusedItem.Tag;
+            this.mainform.ReflactUserData(u);
+
             this.Close();
-        }
-
-        // 追加ボタン
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            addUser();
-
-        }
-
-        // 削除
-        private void deleteButton_Click(object sender, EventArgs e)
-        {
-            dbDirTree.SelectedNode.Remove();
-            this.clearLabels();
-            this.changed = true;
-        }
-
-        // DB切り替え
-        private void ChangeDBToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (this.changed)
-            {
-                MessageBox.Show("変更されています。保存しますか？");
-            }
-            // ファイルオープンダイアログ(XML) 後ほど拡張子変えるかも
-            OpenFileDialog ofd = new OpenFileDialog();
-            // デフォルトファイル
-            ofd.FileName = "default.xml";
-            ofd.Filter = "microcosm DB(*.xml)|*.xml|すべてのファイル(*.*)|*.*";
-            ofd.Title = "ファイルを選択してください";
-
-            //ダイアログを表示する
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-//                this.DBMgr = new XMLDBManager(ofd.FileName);
-//                this.CreateUserList();
-//                this.clearLabels();
-            }
         }
 
         // 閉じる
@@ -575,6 +534,14 @@ namespace microcosm
             CreateTree();
         }
 
+        // ツリー右クリック名前変更
+        private void fileNameChangeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DirEditForm diredit = new DirEditForm(this, dbDirTree.SelectedNode.Tag.ToString());
+            diredit.Show();
+        }
+
+
         private void dbDirTree_ItemDrag(object sender, ItemDragEventArgs e)
         {
             TreeView tv = (TreeView)sender;
@@ -616,25 +583,18 @@ namespace microcosm
             this.Close();
         }
 
-        // リストを選択
-        private void eventListView_SelectedIndexChanged(object sender, EventArgs e)
+        // リスト右クリック表示
+        private void displayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (((ListView)sender).SelectedItems.Count == 0)
+            if (eventListView.FocusedItem == null)
             {
                 return;
             }
+            User u = (User)this.eventListView.FocusedItem.Tag;
+            this.mainform.ReflactUserData(u);
 
-            if (((ListView)sender).SelectedItems[0].Tag != null) {
-                memo.Text = (string)((ListView)sender).SelectedItems[0].Tag.ToString();
-            }
+            this.Close();
+
         }
-
-        private void fileNameChangeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DirEditForm diredit = new DirEditForm(this, dbDirTree.SelectedNode.Tag.ToString());
-            diredit.Show();
-        }
-
-
     }
 }

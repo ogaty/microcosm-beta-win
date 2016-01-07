@@ -18,7 +18,6 @@ C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\SwissEphNet.dll
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\Newtonsoft.Json.xml
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csprojResolveAssemblyReference.cache
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Config.ConfigForm.resources
-C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DatabaseForm.resources
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.MainForm.resources
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Properties.Resources.resources
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csproj.GenerateResource.Cache
@@ -26,3 +25,6 @@ C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.exe
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.pdb
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DB.DBEditForm.resources
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DB.DirEditForm.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\bin\Debug\ja\Microsoft.VisualBasic.PowerPacks.resources.dll
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DB.DatabaseForm.resources
