@@ -50,6 +50,7 @@ namespace microcosm.DB
             this.event_hour = event_hour;
             this.event_minute = event_minute;
             this.event_second = event_second;
+            this.event_place = event_place;
             this.event_lat = event_lat;
             this.event_lng = event_lng;
             this.event_timezone = event_timezone;

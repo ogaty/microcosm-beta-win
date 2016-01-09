@@ -37,10 +37,6 @@
             this.addDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileNameChangeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.データベースDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancel = new System.Windows.Forms.Button();
             this.eventListView = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -51,22 +47,27 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.memo = new System.Windows.Forms.TextBox();
-            this.save = new System.Windows.Forms.Button();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.displayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addEvent3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editEventToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dbDirTree
             // 
-            this.dbDirTree.Location = new System.Drawing.Point(12, 27);
+            this.dbDirTree.LabelEdit = true;
+            this.dbDirTree.Location = new System.Drawing.Point(12, 35);
             this.dbDirTree.Name = "dbDirTree";
-            this.dbDirTree.Size = new System.Drawing.Size(121, 330);
+            this.dbDirTree.Size = new System.Drawing.Size(121, 322);
             this.dbDirTree.TabIndex = 0;
-            this.dbDirTree.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.dbDirTree_ItemDrag);
             this.dbDirTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.dbDirTree_AfterSelect);
             this.dbDirTree.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.dbDirTree_NodeMouseClick);
             this.dbDirTree.DragDrop += new System.Windows.Forms.DragEventHandler(this.dbDirTree_DragDrop);
@@ -127,39 +128,6 @@
             this.fileNameChangeToolStripMenuItem.Text = "ファイル名の変更";
             this.fileNameChangeToolStripMenuItem.Click += new System.EventHandler(this.fileNameChangeToolStripMenuItem_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.データベースDToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(797, 24);
-            this.menuStrip1.TabIndex = 6;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // データベースDToolStripMenuItem
-            // 
-            this.データベースDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveToolStripMenuItem,
-            this.cancelToolStripMenuItem});
-            this.データベースDToolStripMenuItem.Name = "データベースDToolStripMenuItem";
-            this.データベースDToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-            this.データベースDToolStripMenuItem.Text = "データベース(&D)";
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.saveToolStripMenuItem.Text = "上書き保存(&S)";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
-            // 
-            // cancelToolStripMenuItem
-            // 
-            this.cancelToolStripMenuItem.Name = "cancelToolStripMenuItem";
-            this.cancelToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.cancelToolStripMenuItem.Text = "閉じる(&X)";
-            this.cancelToolStripMenuItem.Click += new System.EventHandler(this.cancelToolStripMenuItem_Click);
-            // 
             // cancel
             // 
             this.cancel.Location = new System.Drawing.Point(710, 334);
@@ -180,9 +148,9 @@
             this.timezone});
             this.eventListView.ContextMenuStrip = this.contextMenuStrip2;
             this.eventListView.FullRowSelect = true;
-            this.eventListView.Location = new System.Drawing.Point(159, 27);
+            this.eventListView.Location = new System.Drawing.Point(159, 35);
             this.eventListView.Name = "eventListView";
-            this.eventListView.Size = new System.Drawing.Size(626, 220);
+            this.eventListView.Size = new System.Drawing.Size(626, 212);
             this.eventListView.TabIndex = 22;
             this.eventListView.UseCompatibleStateImageBehavior = false;
             this.eventListView.View = System.Windows.Forms.View.Details;
@@ -226,6 +194,7 @@
             this.addEventToolStripMenuItem.Name = "addEventToolStripMenuItem";
             this.addEventToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.addEventToolStripMenuItem.Text = "イベント追加";
+            this.addEventToolStripMenuItem.Click += new System.EventHandler(this.addEventToolStripMenuItem_Click);
             // 
             // memo
             // 
@@ -235,28 +204,67 @@
             this.memo.Size = new System.Drawing.Size(626, 75);
             this.memo.TabIndex = 23;
             // 
-            // save
-            // 
-            this.save.Location = new System.Drawing.Point(548, 334);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(75, 23);
-            this.save.TabIndex = 24;
-            this.save.Text = "保存";
-            this.save.UseVisualStyleBackColor = true;
-            // 
             // contextMenuStrip3
             // 
             this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.displayToolStripMenuItem});
+            this.displayToolStripMenuItem,
+            this.addEvent3ToolStripMenuItem,
+            this.deleteEventToolStripMenuItem,
+            this.editEventToolStripMenuItem});
             this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip3.Size = new System.Drawing.Size(134, 92);
             // 
             // displayToolStripMenuItem
             // 
             this.displayToolStripMenuItem.Name = "displayToolStripMenuItem";
-            this.displayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.displayToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.displayToolStripMenuItem.Text = "表示";
             this.displayToolStripMenuItem.Click += new System.EventHandler(this.displayToolStripMenuItem_Click);
+            // 
+            // addEvent3ToolStripMenuItem
+            // 
+            this.addEvent3ToolStripMenuItem.Name = "addEvent3ToolStripMenuItem";
+            this.addEvent3ToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.addEvent3ToolStripMenuItem.Text = "イベント追加";
+            this.addEvent3ToolStripMenuItem.Click += new System.EventHandler(this.addEvent3ToolStripMenuItem_Click);
+            // 
+            // deleteEventToolStripMenuItem
+            // 
+            this.deleteEventToolStripMenuItem.Name = "deleteEventToolStripMenuItem";
+            this.deleteEventToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.deleteEventToolStripMenuItem.Text = "イベント削除";
+            this.deleteEventToolStripMenuItem.Click += new System.EventHandler(this.deleteEventToolStripMenuItem_Click);
+            // 
+            // editEventToolStripMenuItem
+            // 
+            this.editEventToolStripMenuItem.Name = "editEventToolStripMenuItem";
+            this.editEventToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.editEventToolStripMenuItem.Text = "編集";
+            this.editEventToolStripMenuItem.Click += new System.EventHandler(this.editEventToolStripMenuItem_Click);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(797, 24);
+            this.menuStrip1.TabIndex = 24;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(88, 20);
+            this.toolStripMenuItem1.Text = "データベース(&D)";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Text = "閉じる(&X)";
             // 
             // DatabaseForm
             // 
@@ -264,22 +272,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(797, 369);
-            this.Controls.Add(this.save);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.memo);
             this.Controls.Add(this.eventListView);
             this.Controls.Add(this.cancel);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.displayButton);
             this.Controls.Add(this.dbDirTree);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "DatabaseForm";
             this.Text = "Database";
             this.Load += new System.EventHandler(this.Database_Load);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.contextMenuStrip2.ResumeLayout(false);
             this.contextMenuStrip3.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,10 +300,6 @@
         private System.Windows.Forms.ToolStripMenuItem addUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addDirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem データベースDToolStripMenuItem;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cancelToolStripMenuItem;
         private System.Windows.Forms.Button cancel;
         private System.Windows.Forms.ListView eventListView;
         private System.Windows.Forms.ColumnHeader name;
@@ -306,11 +308,16 @@
         private System.Windows.Forms.ColumnHeader latlng;
         private System.Windows.Forms.ColumnHeader timezone;
         private System.Windows.Forms.TextBox memo;
-        private System.Windows.Forms.Button save;
         private System.Windows.Forms.ToolStripMenuItem fileNameChangeToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem addEventToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.ToolStripMenuItem displayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addEvent3ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteEventToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editEventToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

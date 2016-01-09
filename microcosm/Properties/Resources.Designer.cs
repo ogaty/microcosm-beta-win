@@ -61,11 +61,56 @@ namespace microcosm.Properties {
         }
         
         /// <summary>
+        ///   データが取得できませんでした。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ERROR_ERROR_RESPONSE {
+            get {
+                return ResourceManager.GetString("ERROR_ERROR_RESPONSE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   対象のファイルが存在します。 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string FILE_EXIST {
+        internal static string ERROR_FILE_EXIST {
             get {
-                return ResourceManager.GetString("FILE_EXIST", resourceCulture);
+                return ResourceManager.GetString("ERROR_FILE_EXIST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   GMT(世界標準) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TIMEZONE_GMT_STR_LONG {
+            get {
+                return ResourceManager.GetString("TIMEZONE_GMT_STR_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   GMT に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TIMEZONE_GMT_STR_SHORT {
+            get {
+                return ResourceManager.GetString("TIMEZONE_GMT_STR_SHORT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   JST(日本標準) に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TIMEZONE_JST_STR_LONG {
+            get {
+                return ResourceManager.GetString("TIMEZONE_JST_STR_LONG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   JST に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TIMEZONE_JST_STR_SHORT {
+            get {
+                return ResourceManager.GetString("TIMEZONE_JST_STR_SHORT", resourceCulture);
             }
         }
     }

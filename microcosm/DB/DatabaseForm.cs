@@ -79,20 +79,7 @@ namespace microcosm.DB
             XMLDBManager DBMgr = new XMLDBManager(e.Node.Tag.ToString());
             UserData data = DBMgr.getObject();
 
-            eventListView.Items.Clear();
-            this.setBirth(data);
-
-            if (data.userevent == null)
-            {
-                return;
-            }
-
-            foreach (UserEvent ev in data.userevent)
-            {
-                setEventData(ev);
-            }
-
-            return;
+            eventListViewRender(data, datadir + @"\" + e.Node.Text);
         }
 
         // ラベルクリア
@@ -101,7 +88,7 @@ namespace microcosm.DB
             eventListView.Items.Clear();
         }
         // ラベル設定
-        private void setBirth(UserData data)
+        private void setBirth(UserData data, string filename)
         {
             ListViewItem item = new ListViewItem(data.name);
             string birth_text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
@@ -117,11 +104,11 @@ namespace microcosm.DB
 
             string[] subitems = { birth_text, data.birth_place, latlng_text, timezone };
             item.SubItems.AddRange(subitems);
-            item.Tag = new User(data, null);
+            item.Tag = new User(data, null, filename, -1);
             eventListView.Items.Add(item);
         }
 
-        private void setEventData(UserEvent uevent)
+        private void setEventData(UserEvent uevent, string filename, int index)
         {
             ListViewItem item = new ListViewItem("- " + uevent.event_name);
             string event_birth_text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
@@ -136,7 +123,7 @@ namespace microcosm.DB
 
             string[] subitems = { event_birth_text, uevent.event_place, event_latlng, uevent.event_timezone };
             item.SubItems.AddRange(subitems);
-            item.Tag = new User(null, uevent);
+            item.Tag = new User(null, uevent, filename, index);
             eventListView.Items.Add(item);
         }
 
@@ -169,284 +156,10 @@ namespace microcosm.DB
             this.Close();
         }
 
-        // 閉じる
+        // メニュー→閉じる
         private void cancelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        // 保存
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            XmlDocument xml = new XmlDocument();
-            XmlDeclaration declaration = xml.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement root = xml.CreateElement("userdata");
-            XmlElement nodirtree = xml.CreateElement("dir");
-
-            xml.AppendChild(declaration);
-
-            foreach (TreeNode nodes in dbDirTree.Nodes[0].Nodes)
-            {
-                if (nodes.Tag == null)
-                {
-                    // フォルダ
-                    XmlElement dir = xml.CreateElement("dir");
-                    dir.SetAttribute("name", nodes.Text);
-
-                    foreach (TreeNode detailnodes in nodes.Nodes)
-                    {
-                        XmlElement userdir = xml.CreateElement("user");
-                        UserData udata = (UserData)detailnodes.Tag;
-
-                        XmlElement userdata = xml.CreateElement("name");
-                        userdata.InnerText = detailnodes.Text;
-                        userdir.AppendChild(userdata);
-
-                        XmlElement furigana = xml.CreateElement("furigana");
-                        furigana.InnerText = udata.furigana;
-                        userdir.AppendChild(furigana);
-
-                        XmlElement birth_year = xml.CreateElement("birth_year");
-                        birth_year.InnerText = udata.birth_year.ToString();
-                        userdir.AppendChild(birth_year);
-
-                        XmlElement birth_month = xml.CreateElement("birth_month");
-                        birth_month.InnerText = udata.birth_month.ToString();
-                        userdir.AppendChild(birth_month);
-
-                        XmlElement birth_day = xml.CreateElement("birth_day");
-                        birth_day.InnerText = udata.birth_day.ToString();
-                        userdir.AppendChild(birth_day);
-
-                        XmlElement birth_hour = xml.CreateElement("birth_hour");
-                        birth_hour.InnerText = udata.birth_hour.ToString();
-                        userdir.AppendChild(birth_hour);
-
-                        XmlElement birth_minute = xml.CreateElement("birth_minute");
-                        birth_minute.InnerText = udata.birth_minute.ToString();
-                        userdir.AppendChild(birth_minute);
-
-                        XmlElement birth_second = xml.CreateElement("birth_second");
-                        birth_second.InnerText = udata.birth_second.ToString();
-                        userdir.AppendChild(birth_second);
-
-                        XmlElement birth_place = xml.CreateElement("birth_place");
-                        birth_place.InnerText = udata.birth_place;
-                        userdir.AppendChild(birth_place);
-
-                        XmlElement lat = xml.CreateElement("lat");
-                        lat.InnerText = udata.lat.ToString();
-                        userdir.AppendChild(lat);
-
-                        XmlElement lng = xml.CreateElement("lng");
-                        lng.InnerText = udata.lng.ToString();
-                        userdir.AppendChild(lng);
-
-                        XmlElement memo = xml.CreateElement("memo");
-                        memo.InnerText = udata.memo;
-                        userdir.AppendChild(memo);
-
-                        XmlElement timezone = xml.CreateElement("timezone");
-                        timezone.InnerText = udata.timezone.ToString();
-                        userdir.AppendChild(timezone);
-
-                        XmlElement eventlist = xml.CreateElement("eventlist");
-
-                        for (int i = 0; i < udata.userevent.Count; i++)
-                        {
-                            XmlElement eventdir = xml.CreateElement("event");
-                            XmlElement eventname = xml.CreateElement("event_name");
-                            eventname.InnerText = udata.userevent[i].event_name;
-                            eventdir.AppendChild(eventname);
-                            XmlElement eventdetail = xml.CreateElement("event_detail");
-                            /*
-                            if (udata.userevent[i].event_detail == true)
-                            {
-                                XmlElement eventyear = xml.CreateElement("event_year");
-                                eventyear.InnerText = udata.userevent[i].event_year.ToString();
-                                eventdetail.AppendChild(eventyear);
-
-                                XmlElement eventmonth = xml.CreateElement("event_month");
-                                eventmonth.InnerText = udata.userevent[i].event_month.ToString();
-                                eventdetail.AppendChild(eventmonth);
-
-                                XmlElement eventday = xml.CreateElement("event_day");
-                                eventday.InnerText = udata.userevent[i].event_day.ToString();
-                                eventdetail.AppendChild(eventday);
-
-                                XmlElement eventhour = xml.CreateElement("event_hour");
-                                eventhour.InnerText = udata.userevent[i].event_hour.ToString();
-                                eventdetail.AppendChild(eventhour);
-
-                                XmlElement eventminute = xml.CreateElement("event_minute");
-                                eventminute.InnerText = udata.userevent[i].event_minute.ToString();
-                                eventdetail.AppendChild(eventminute);
-
-                                XmlElement eventsecond = xml.CreateElement("event_second");
-                                eventsecond.InnerText = udata.userevent[i].event_second.ToString();
-                                eventdetail.AppendChild(eventsecond);
-
-                                XmlElement eventplace = xml.CreateElement("event_place");
-                                eventplace.InnerText = udata.userevent[i].event_place.ToString();
-                                eventdetail.AppendChild(eventplace);
-
-                                XmlElement eventlat = xml.CreateElement("event_lat");
-                                eventlat.InnerText = udata.userevent[i].event_lat.ToString();
-                                eventdetail.AppendChild(eventlat);
-
-                                XmlElement eventlng = xml.CreateElement("event_lng");
-                                eventlng.InnerText = udata.userevent[i].event_lng.ToString();
-                                eventdetail.AppendChild(eventlng);
-
-                                XmlElement eventmemo = xml.CreateElement("event_memo");
-                                eventmemo.InnerText = udata.userevent[i].event_memo.ToString();
-                                eventdetail.AppendChild(eventmemo);
-
-                                XmlElement eventtimezone = xml.CreateElement("event_timezone");
-                                eventtimezone.InnerText = udata.userevent[i].event_timezone.ToString();
-                                eventdetail.AppendChild(eventtimezone);
-
-                            }
-                            */
-                            eventdir.AppendChild(eventdetail);
-                            eventlist.AppendChild(eventdir);
-
-                        }
-                        userdir.AppendChild(eventlist);
-
-                        dir.AppendChild(userdir);
-                    }
-
-                    root.AppendChild(dir);
-                }
-                else
-                {
-                    XmlElement userdir = xml.CreateElement("user");
-                    UserData udata = (UserData)nodes.Tag;
-
-                    XmlElement userdata = xml.CreateElement("name");
-                    userdata.InnerText = nodes.Text;
-                    userdir.AppendChild(userdata);
-
-                    XmlElement furigana = xml.CreateElement("furigana");
-                    furigana.InnerText = udata.furigana;
-                    userdir.AppendChild(furigana);
-
-                    XmlElement birth_year = xml.CreateElement("birth_year");
-                    birth_year.InnerText = udata.birth_year.ToString();
-                    userdir.AppendChild(birth_year);
-
-                    XmlElement birth_month = xml.CreateElement("birth_month");
-                    birth_month.InnerText = udata.birth_month.ToString();
-                    userdir.AppendChild(birth_month);
-
-                    XmlElement birth_day = xml.CreateElement("birth_day");
-                    birth_day.InnerText = udata.birth_day.ToString();
-                    userdir.AppendChild(birth_day);
-
-                    XmlElement birth_hour = xml.CreateElement("birth_hour");
-                    birth_hour.InnerText = udata.birth_hour.ToString();
-                    userdir.AppendChild(birth_hour);
-
-                    XmlElement birth_minute = xml.CreateElement("birth_minute");
-                    birth_minute.InnerText = udata.birth_minute.ToString();
-                    userdir.AppendChild(birth_minute);
-
-                    XmlElement birth_second = xml.CreateElement("birth_second");
-                    birth_second.InnerText = udata.birth_second.ToString();
-                    userdir.AppendChild(birth_second);
-
-                    XmlElement birth_place = xml.CreateElement("birth_place");
-                    birth_place.InnerText = udata.birth_place;
-                    userdir.AppendChild(birth_place);
-
-                    XmlElement lat = xml.CreateElement("lat");
-                    lat.InnerText = udata.lat.ToString();
-                    userdir.AppendChild(lat);
-
-                    XmlElement lng = xml.CreateElement("lng");
-                    lng.InnerText = udata.lng.ToString();
-                    userdir.AppendChild(lng);
-
-                    XmlElement memo = xml.CreateElement("memo");
-                    memo.InnerText = udata.memo;
-                    userdir.AppendChild(memo);
-
-                    XmlElement timezone = xml.CreateElement("timezone");
-                    timezone.InnerText = udata.timezone.ToString();
-                    userdir.AppendChild(timezone);
-
-                    XmlElement eventlist = xml.CreateElement("eventlist");
-
-                    for (int i = 0; i < udata.userevent.Count; i++)
-                    {
-                        XmlElement eventdir = xml.CreateElement("event");
-                        XmlElement eventname = xml.CreateElement("event_name");
-                        eventname.InnerText = udata.userevent[i].event_name;
-                        eventdir.AppendChild(eventname);
-                        XmlElement eventdetail = xml.CreateElement("event_detail");
-                        /*
-                        if (udata.userevent[i].event_detail == true)
-                        {
-                            XmlElement eventyear = xml.CreateElement("event_year");
-                            eventyear.InnerText = udata.userevent[i].event_year.ToString();
-                            eventdetail.AppendChild(eventyear);
-
-                            XmlElement eventmonth = xml.CreateElement("event_month");
-                            eventmonth.InnerText = udata.userevent[i].event_month.ToString();
-                            eventdetail.AppendChild(eventmonth);
-
-                            XmlElement eventday = xml.CreateElement("event_day");
-                            eventday.InnerText = udata.userevent[i].event_day.ToString();
-                            eventdetail.AppendChild(eventday);
-
-                            XmlElement eventhour = xml.CreateElement("event_hour");
-                            eventhour.InnerText = udata.userevent[i].event_hour.ToString();
-                            eventdetail.AppendChild(eventhour);
-
-                            XmlElement eventminute = xml.CreateElement("event_minute");
-                            eventminute.InnerText = udata.userevent[i].event_minute.ToString();
-                            eventdetail.AppendChild(eventminute);
-
-                            XmlElement eventsecond = xml.CreateElement("event_second");
-                            eventsecond.InnerText = udata.userevent[i].event_second.ToString();
-                            eventdetail.AppendChild(eventsecond);
-
-                            XmlElement eventplace = xml.CreateElement("event_place");
-                            eventplace.InnerText = udata.userevent[i].event_place.ToString();
-                            eventdetail.AppendChild(eventplace);
-
-                            XmlElement eventlat = xml.CreateElement("event_lat");
-                            eventlat.InnerText = udata.userevent[i].event_lat.ToString();
-                            eventdetail.AppendChild(eventlat);
-
-                            XmlElement eventlng = xml.CreateElement("event_lng");
-                            eventlng.InnerText = udata.userevent[i].event_lng.ToString();
-                            eventdetail.AppendChild(eventlng);
-
-                            XmlElement eventmemo = xml.CreateElement("event_memo");
-                            eventmemo.InnerText = udata.userevent[i].event_memo.ToString();
-                            eventdetail.AppendChild(eventmemo);
-
-                            XmlElement eventtimezone = xml.CreateElement("event_timezone");
-                            eventtimezone.InnerText = udata.userevent[i].event_timezone.ToString();
-                            eventdetail.AppendChild(eventtimezone);
-
-                        }
-                        */
-                        eventdir.AppendChild(eventdetail);
-                        eventlist.AppendChild(eventdir);
-                    }
-
-                    userdir.AppendChild(eventlist);
-
-                    nodirtree.AppendChild(userdir);
-                }
-            }
-            root.AppendChild(nodirtree);
-            xml.AppendChild(root);
-//            xml.Save(this.filename);
-            xml.Save("test.xml");
         }
 
         private void dbDirTree_MouseUp(object sender, MouseEventArgs e)
@@ -486,7 +199,6 @@ namespace microcosm.DB
 
             XmlSerializer serializer = new XmlSerializer(typeof(UserData));
             FileStream fs = new FileStream(datadir + @"\user" + i.ToString() + ".csm", FileMode.Create);
-            MessageBox.Show(datadir + @"\user" + i.ToString() + ".csm");
             StreamWriter sw = new StreamWriter(fs);
             serializer.Serialize(sw, addData);
             sw.Close();
@@ -595,6 +307,28 @@ namespace microcosm.DB
 
             this.Close();
 
+        }
+
+        //リスト右クリック編集
+        private void editEventToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (eventListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            User udata = (User)eventListView.Items[0].Tag;
+            User uevent = (User)eventListView.SelectedItems[0].Tag;
+
+            if (uevent.udata == null)
+            {
+                int index = uevent.index;
+                UserEventEditForm ueventedit = new UserEventEditForm(this, udata.udata, index, udata.filename);
+                ueventedit.Show();
+            } else
+            {
+                UserDataEditForm udataedit = new UserDataEditForm(this, udata.udata, udata.filename);
+                udataedit.Show();
+            }
         }
     }
 }

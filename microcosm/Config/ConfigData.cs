@@ -14,6 +14,9 @@ namespace microcosm.Config
     public class ConfigData
     {
         public ECentric centric { get; set; }
+        public string defaultPlace { get; set; }
+        public double lat { get; set; }
+        public double lng { get; set; }
 
         public ConfigData()
         {

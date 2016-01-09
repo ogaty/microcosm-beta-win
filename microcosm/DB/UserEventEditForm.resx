@@ -117,22 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ERROR_ERROR_RESPONSE" xml:space="preserve">
-    <value>データが取得できませんでした。</value>
-  </data>
-  <data name="ERROR_FILE_EXIST" xml:space="preserve">
-    <value>対象のファイルが存在します。</value>
-  </data>
-  <data name="TIMEZONE_GMT_STR_LONG" xml:space="preserve">
-    <value>GMT(世界標準)</value>
-  </data>
-  <data name="TIMEZONE_GMT_STR_SHORT" xml:space="preserve">
-    <value>GMT</value>
-  </data>
-  <data name="TIMEZONE_JST_STR_LONG" xml:space="preserve">
-    <value>JST(日本標準)</value>
-  </data>
-  <data name="TIMEZONE_JST_STR_SHORT" xml:space="preserve">
-    <value>JST</value>
-  </data>
 </root>

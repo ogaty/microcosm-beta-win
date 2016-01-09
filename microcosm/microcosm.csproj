@@ -89,24 +89,38 @@
     <Compile Include="DB\DatabaseForm_List.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DB\DBEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DB\DBEditForm.Designer.cs">
-      <DependentUpon>DBEditForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="DB\DirEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DB\DirEditForm.Designer.cs">
       <DependentUpon>DirEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DB\GoogleLatLng.cs" />
+    <Compile Include="DB\LatLng.cs" />
+    <Compile Include="DB\SearchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DB\SearchForm.Designer.cs">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB\User.cs" />
     <Compile Include="DB\UserData.cs" />
     <Compile Include="DB\DBManager.cs" />
     <Compile Include="DB\DBManagerInterface.cs" />
+    <Compile Include="DB\UserDataEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DB\UserDataEditForm.Designer.cs">
+      <DependentUpon>UserDataEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB\UserDir.cs" />
     <Compile Include="DB\UserEvent.cs" />
+    <Compile Include="DB\UserEventEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DB\UserEventEditForm.Designer.cs">
+      <DependentUpon>UserEventEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DB\XMLDBManager.cs" />
     <Compile Include="Config\ConfigForm.cs">
       <SubType>Form</SubType>
@@ -131,11 +145,17 @@
     <EmbeddedResource Include="DB\DatabaseForm.resx">
       <DependentUpon>DatabaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DB\DBEditForm.resx">
-      <DependentUpon>DBEditForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DB\DirEditForm.resx">
       <DependentUpon>DirEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DB\SearchForm.resx">
+      <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DB\UserDataEditForm.resx">
+      <DependentUpon>UserDataEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DB\UserEventEditForm.resx">
+      <DependentUpon>UserEventEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

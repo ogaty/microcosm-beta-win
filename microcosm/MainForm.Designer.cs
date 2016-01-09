@@ -31,7 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenDatabaseOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ChangeDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.オプションOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usernameLabel = new System.Windows.Forms.Label();
@@ -42,12 +41,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.ovalShape1 = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.astroWindow = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.centerSlider = new System.Windows.Forms.TrackBar();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.ovalShape1 = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -71,8 +70,7 @@
             // FileFToolStripMenuItem
             // 
             this.FileFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenDatabaseOToolStripMenuItem,
-            this.ChangeDatabaseToolStripMenuItem});
+            this.OpenDatabaseOToolStripMenuItem});
             this.FileFToolStripMenuItem.Name = "FileFToolStripMenuItem";
             this.FileFToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.FileFToolStripMenuItem.Text = "ファイル(&F)";
@@ -83,13 +81,6 @@
             this.OpenDatabaseOToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.OpenDatabaseOToolStripMenuItem.Text = "データベースを開く(&N)";
             this.OpenDatabaseOToolStripMenuItem.Click += new System.EventHandler(this.OpenDatabaseOToolStripMenuItem_Click);
-            // 
-            // ChangeDatabaseToolStripMenuItem
-            // 
-            this.ChangeDatabaseToolStripMenuItem.Name = "ChangeDatabaseToolStripMenuItem";
-            this.ChangeDatabaseToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.ChangeDatabaseToolStripMenuItem.Text = "データベースを変更(&O)";
-            this.ChangeDatabaseToolStripMenuItem.Click += new System.EventHandler(this.ChangeDatabaseToolStripMenuItem_Click);
             // 
             // オプションOToolStripMenuItem
             // 
@@ -185,6 +176,26 @@
             this.panel3.Size = new System.Drawing.Size(200, 464);
             this.panel3.TabIndex = 1;
             // 
+            // shapeContainer1
+            // 
+            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.ovalShape1});
+            this.shapeContainer1.Size = new System.Drawing.Size(200, 464);
+            this.shapeContainer1.TabIndex = 0;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // ovalShape1
+            // 
+            this.ovalShape1.BorderWidth = 2;
+            this.ovalShape1.Location = new System.Drawing.Point(55, 183);
+            this.ovalShape1.Name = "ovalShape1";
+            this.ovalShape1.Size = new System.Drawing.Size(75, 81);
+            this.ovalShape1.MouseHover += new System.EventHandler(this.ovalShape1_MouseHover);
+            this.ovalShape1.MouseLeave += new System.EventHandler(this.ovalShape1_MouseLeave);
+            // 
             // astroWindow
             // 
             this.astroWindow.BackColor = System.Drawing.Color.PaleTurquoise;
@@ -226,26 +237,6 @@
             this.centerSlider.Value = 90;
             this.centerSlider.Scroll += new System.EventHandler(this.centerSlider_Scroll);
             // 
-            // shapeContainer1
-            // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.ovalShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(200, 464);
-            this.shapeContainer1.TabIndex = 0;
-            this.shapeContainer1.TabStop = false;
-            // 
-            // ovalShape1
-            // 
-            this.ovalShape1.BorderWidth = 2;
-            this.ovalShape1.Location = new System.Drawing.Point(55, 183);
-            this.ovalShape1.Name = "ovalShape1";
-            this.ovalShape1.Size = new System.Drawing.Size(75, 81);
-            this.ovalShape1.MouseHover += new System.EventHandler(this.ovalShape1_MouseHover);
-            this.ovalShape1.MouseLeave += new System.EventHandler(this.ovalShape1_MouseLeave);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -259,6 +250,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "microcosm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -279,7 +271,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem FileFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenDatabaseOToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ChangeDatabaseToolStripMenuItem;
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label birthLabel;
         private System.Windows.Forms.Label placeLabel;

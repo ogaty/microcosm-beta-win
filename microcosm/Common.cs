@@ -25,8 +25,6 @@ namespace microcosm
 
         const double TIMEZONE_JST = 9.0;
         const double TIMEZONE_GMT = 0.0;
-        const string TIMEZONE_JST_STR = "JST(日本標準)";
-        const string TIMEZONE_GMT_STR = "GMT(世界標準)";
 
         public static double getTimezone(string timezone)
         {
@@ -39,16 +37,27 @@ namespace microcosm
             }
             return TIMEZONE_GMT;
         }
-        public static string getTimezoneText(string timezone)
+        public static string getTimezoneLongText(string timezone)
         {
             switch (timezone)
             {
                 case "JST":
-                    return TIMEZONE_JST_STR;
+                    return Properties.Resources.TIMEZONE_JST_STR_LONG;
                 default:
                     break;
             }
-            return TIMEZONE_GMT_STR;
+            return Properties.Resources.TIMEZONE_GMT_STR_LONG;
+        }
+        public static string getTimezoneShortText(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    return Properties.Resources.TIMEZONE_JST_STR_SHORT;
+                default:
+                    break;
+            }
+            return Properties.Resources.TIMEZONE_GMT_STR_SHORT;
         }
 
     }

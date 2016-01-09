@@ -33,7 +33,7 @@ namespace microcosm.DB
             {
                 if (File.Exists(dbform.datadir + @"\" + dirnameBox.Text) || Directory.Exists(dbform.datadir + @"\" + dirnameBox.Text))
                 {
-                    MessageBox.Show(Properties.Resources.FILE_EXIST);
+                    MessageBox.Show(Properties.Resources.ERROR_FILE_EXIST);
                     return;
                 }
                 File.Move(filename, dbform.datadir + @"\" + dirnameBox.Text);
@@ -41,7 +41,7 @@ namespace microcosm.DB
             {
                 if (File.Exists(dbform.datadir + @"\" + dirnameBox.Text) || Directory.Exists(dbform.datadir + @"\" + dirnameBox.Text))
                 {
-                    MessageBox.Show(Properties.Resources.FILE_EXIST);
+                    MessageBox.Show(Properties.Resources.ERROR_FILE_EXIST);
                     return;
                 }
                 Directory.Move(filename, dbform.datadir + @"\" + dirnameBox.Text);
