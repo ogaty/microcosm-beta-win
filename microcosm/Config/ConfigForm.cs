@@ -52,7 +52,7 @@ namespace microcosm.Config
         // OK
         private void button1_Click(object sender, EventArgs e)
         {
-            this.mainform.config.centric = centric_geo.Checked == true ? ECentric.GEO_CENTRIC : ECentric.HERIO_SENCTRIC;
+            this.mainform.config.centric = centric_geo.Checked == true ? ECentric.GEO_CENTRIC : ECentric.HELIO_CENTRIC;
             this.mainform.config.defaultPlace = placeBox.Text;
             this.mainform.config.lat = double.Parse(latBox.Text);
             this.mainform.config.lng = double.Parse(lngBox.Text);

@@ -13,6 +13,7 @@ using Microsoft.VisualBasic.PowerPacks;
 using SwissEphNet;
 using microcosm.DB;
 using microcosm.Config;
+using microcosm.Calc;
 
 namespace microcosm
 {
@@ -37,10 +38,28 @@ namespace microcosm
                 this.config = new ConfigData();
             }
 
+            string name = "現在";
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+            int day = DateTime.Now.Day;
+            int hour = DateTime.Now.Hour;
+            int minute = DateTime.Now.Minute;
+            int second = DateTime.Now.Second;
+            string birth = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                        year.ToString(),
+                        month.ToString(),
+                        day.ToString(),
+                        hour.ToString(),
+                        minute.ToString(),
+                        second.ToString()
+                    );
+            string place = "東京都中央区";
+            double lat = 35.670587;
+            double lng = 139.772003;
             if (!File.Exists(filename))
             {
                 // 初期データ
-                setMainData();
+                setMainData(name, birth, place, lat, lng);
             }
             else
             {
@@ -52,24 +71,28 @@ namespace microcosm
                 if (config.lat == 0 || config.lng == 0)
                 {
                     // 初期データ
-                    setMainData();
+                    setMainData(name, birth, place, lat, lng);
                 } else
                 {
-                    setMainData("現在",
-                        String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
-                            DateTime.Now.Year.ToString(),
-                            DateTime.Now.Month.ToString(),
-                            DateTime.Now.Day.ToString(),
-                            DateTime.Now.Hour.ToString(),
-                            DateTime.Now.Minute.ToString(),
-                            DateTime.Now.Second.ToString()
-                        ),
-                        config.defaultPlace,
-                        config.lat,
-                        config.lng);
+                    place = config.defaultPlace;
+                    lat = config.lat;
+                    lng = config.lng;
+                    setMainData(name,
+                        birth,
+                        place,
+                        lat,
+                        lng);
                 }
 
             }
+            if (config.ephepath == null)
+            {
+                config.ephepath = System.Windows.Forms.Application.StartupPath + @"\ephe"; ;
+            }
+
+            // 計算
+            AstroCalc calc = new AstroCalc(config);
+            calc.PositionCalc(year, month, day, hour, minute, second, lat, lng);
 
         }
 
@@ -158,5 +181,14 @@ namespace microcosm
             ((OvalShape)sender).BorderWidth = 2;
         }
 
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            if (!File.Exists(filename))
+            {
+                MessageBox.Show("初期設定を行います。");
+                ConfigForm configform = new ConfigForm(this);
+                configform.Show();
+            }
+        }
     }
 }

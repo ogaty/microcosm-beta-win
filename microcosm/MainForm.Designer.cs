@@ -43,17 +43,17 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
             this.ovalShape1 = new Microsoft.VisualBasic.PowerPacks.OvalShape();
-            this.astroWindow = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.centerSlider = new System.Windows.Forms.TrackBar();
+            this.astroWindow = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -196,16 +196,6 @@
             this.ovalShape1.MouseHover += new System.EventHandler(this.ovalShape1_MouseHover);
             this.ovalShape1.MouseLeave += new System.EventHandler(this.ovalShape1_MouseLeave);
             // 
-            // astroWindow
-            // 
-            this.astroWindow.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.astroWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.astroWindow.Location = new System.Drawing.Point(200, 24);
-            this.astroWindow.Name = "astroWindow";
-            this.astroWindow.Size = new System.Drawing.Size(704, 464);
-            this.astroWindow.TabIndex = 7;
-            this.astroWindow.TabStop = false;
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label1);
@@ -237,6 +227,16 @@
             this.centerSlider.Value = 90;
             this.centerSlider.Scroll += new System.EventHandler(this.centerSlider_Scroll);
             // 
+            // astroWindow
+            // 
+            this.astroWindow.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.astroWindow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.astroWindow.Location = new System.Drawing.Point(200, 24);
+            this.astroWindow.Name = "astroWindow";
+            this.astroWindow.Size = new System.Drawing.Size(704, 464);
+            this.astroWindow.TabIndex = 7;
+            this.astroWindow.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -251,16 +251,17 @@
             this.Name = "MainForm";
             this.Text = "microcosm";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,12 +282,12 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ToolStripMenuItem オプションOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConfigToolStripMenuItem;
-        private System.Windows.Forms.PictureBox astroWindow;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar centerSlider;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape1;
+        private System.Windows.Forms.PictureBox astroWindow;
     }
 }
 

@@ -30,22 +30,26 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.centric_herio = new System.Windows.Forms.RadioButton();
             this.centric_geo = new System.Windows.Forms.RadioButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.googleBtn = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
+            this.lngBox = new System.Windows.Forms.TextBox();
+            this.latBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.placeBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.placeBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.latBox = new System.Windows.Forms.TextBox();
-            this.lngBox = new System.Windows.Forms.TextBox();
-            this.searchBtn = new System.Windows.Forms.Button();
-            this.googleBtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -64,6 +68,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -72,6 +77,39 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "計算";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButton2);
+            this.groupBox3.Controls.Add(this.radioButton1);
+            this.groupBox3.Location = new System.Drawing.Point(8, 100);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(123, 72);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "春分点計算";
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(7, 42);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(63, 16);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.Text = "sidereal";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(7, 19);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(61, 16);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "tropical";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -82,7 +120,7 @@
             this.groupBox1.Size = new System.Drawing.Size(123, 73);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "centric";
+            this.groupBox1.Text = "中心点計算方式";
             // 
             // centric_herio
             // 
@@ -117,6 +155,84 @@
             this.tabPage2.Text = "その他";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.googleBtn);
+            this.groupBox2.Controls.Add(this.searchBtn);
+            this.groupBox2.Controls.Add(this.lngBox);
+            this.groupBox2.Controls.Add(this.latBox);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.placeBox);
+            this.groupBox2.Location = new System.Drawing.Point(14, 15);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 162);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "デフォルトの場所";
+            // 
+            // googleBtn
+            // 
+            this.googleBtn.Location = new System.Drawing.Point(9, 72);
+            this.googleBtn.Name = "googleBtn";
+            this.googleBtn.Size = new System.Drawing.Size(185, 23);
+            this.googleBtn.TabIndex = 6;
+            this.googleBtn.Text = "Google Mapから緯度・経度取得";
+            this.googleBtn.UseVisualStyleBackColor = true;
+            this.googleBtn.Click += new System.EventHandler(this.googleBtn_Click);
+            // 
+            // searchBtn
+            // 
+            this.searchBtn.Location = new System.Drawing.Point(119, 43);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(75, 23);
+            this.searchBtn.TabIndex = 5;
+            this.searchBtn.Text = "検索";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // lngBox
+            // 
+            this.lngBox.Location = new System.Drawing.Point(42, 137);
+            this.lngBox.Name = "lngBox";
+            this.lngBox.Size = new System.Drawing.Size(152, 19);
+            this.lngBox.TabIndex = 4;
+            this.lngBox.Text = "139.697035";
+            // 
+            // latBox
+            // 
+            this.latBox.Location = new System.Drawing.Point(42, 111);
+            this.latBox.Name = "latBox";
+            this.latBox.Size = new System.Drawing.Size(152, 19);
+            this.latBox.TabIndex = 3;
+            this.latBox.Text = "35.53137";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 140);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "経度";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 114);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "緯度";
+            // 
+            // placeBox
+            // 
+            this.placeBox.Location = new System.Drawing.Point(6, 18);
+            this.placeBox.Name = "placeBox";
+            this.placeBox.Size = new System.Drawing.Size(188, 19);
+            this.placeBox.TabIndex = 0;
+            this.placeBox.Text = "東京都中央区";
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(233, 270);
@@ -137,81 +253,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.googleBtn);
-            this.groupBox2.Controls.Add(this.searchBtn);
-            this.groupBox2.Controls.Add(this.lngBox);
-            this.groupBox2.Controls.Add(this.latBox);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.placeBox);
-            this.groupBox2.Location = new System.Drawing.Point(14, 15);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 162);
-            this.groupBox2.TabIndex = 0;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "デフォルトの場所";
-            // 
-            // placeBox
-            // 
-            this.placeBox.Location = new System.Drawing.Point(6, 18);
-            this.placeBox.Name = "placeBox";
-            this.placeBox.Size = new System.Drawing.Size(188, 19);
-            this.placeBox.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 114);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "緯度";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 140);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "経度";
-            // 
-            // latBox
-            // 
-            this.latBox.Location = new System.Drawing.Point(42, 111);
-            this.latBox.Name = "latBox";
-            this.latBox.Size = new System.Drawing.Size(152, 19);
-            this.latBox.TabIndex = 3;
-            // 
-            // lngBox
-            // 
-            this.lngBox.Location = new System.Drawing.Point(42, 137);
-            this.lngBox.Name = "lngBox";
-            this.lngBox.Size = new System.Drawing.Size(152, 19);
-            this.lngBox.TabIndex = 4;
-            // 
-            // searchBtn
-            // 
-            this.searchBtn.Location = new System.Drawing.Point(119, 43);
-            this.searchBtn.Name = "searchBtn";
-            this.searchBtn.Size = new System.Drawing.Size(75, 23);
-            this.searchBtn.TabIndex = 5;
-            this.searchBtn.Text = "検索";
-            this.searchBtn.UseVisualStyleBackColor = true;
-            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
-            // 
-            // googleBtn
-            // 
-            this.googleBtn.Location = new System.Drawing.Point(9, 72);
-            this.googleBtn.Name = "googleBtn";
-            this.googleBtn.Size = new System.Drawing.Size(185, 23);
-            this.googleBtn.TabIndex = 6;
-            this.googleBtn.Text = "Google Mapから緯度・経度取得";
-            this.googleBtn.UseVisualStyleBackColor = true;
-            this.googleBtn.Click += new System.EventHandler(this.googleBtn_Click);
-            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -222,10 +263,12 @@
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ConfigForm";
-            this.Text = "ConfigForm";
+            this.Text = "設定";
             this.Load += new System.EventHandler(this.ConfigForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -252,5 +295,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox placeBox;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }
