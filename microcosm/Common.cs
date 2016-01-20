@@ -8,21 +8,6 @@ namespace microcosm
 {
     public static class Common
     {
-        // チャートウィンドウのパディング
-        static public int chart_padding = 20;
-        // 外側の長さ
-        static public int chart_radius = 210;
-        // 外周リング内側の長さ
-        static public int chart_ring_radius = 180;
-        // 二重円内側の長さ
-        static public int chart_middle_ring_radius = 150;
-        // 三重円内側の長さ
-        static public int chart_tripple_ring_radius = 120;
-        // 中央円の長さ
-        static public int chart_center_radius = 90;
-        // 
-        static public int chart_signring_pos = 195;
-
         const double TIMEZONE_JST = 9.0;
         const double TIMEZONE_GMT = 0.0;
 
@@ -40,6 +25,21 @@ namespace microcosm
         public const int ZODIAC_ASC = 10000;
         public const int ZODIAC_MC = 10001;
         public const int ZODIAC_DH = 10002;
+
+        public const int SIGN_ARIES = 0;
+        public const int SIGN_TAURUS = 1;
+        public const int SIGN_GEMINI = 2;
+        public const int SIGN_CANCER = 3;
+        public const int SIGN_LEO = 4;
+        public const int SIGN_VIRGO = 5;
+        public const int SIGN_LIBRA = 6;
+        public const int SIGN_SCORPIO = 7;
+        public const int SIGN_SAGITTARIUS = 8;
+        public const int SIGN_CAPRICORN = 9;
+        public const int SIGN_AQUARIUS = 10;
+        public const int SIGN_PISCES = 11;
+
+
 
         public static double getTimezone(string timezone)
         {
@@ -75,45 +75,47 @@ namespace microcosm
             return Properties.Resources.TIMEZONE_GMT_STR_SHORT;
         }
 
+        // 番号を引数に天体のシンボルを返す
         public static string getPlanetSymbol(int number)
         {
             switch (number)
             {
                 case ZODIAC_SUN:
-                    // "\u2609";
-                    return "A";
+                    return "\u2609";
+                    // return "A";
                 case ZODIAC_MOON:
-                    // "\u260d";
-                    return "B";
+                    return "\u263d";
+                    // return "B";
                 case ZODIAC_MERCURY:
-                    // "\u263f";
-                    return "C";
+                    return "\u263f";
+                    // return "C";
                 case ZODIAC_VENUS:
-                    // "\u2640";
-                    return "D";
+                    return "\u2640";
+                    // return "D";
                 case ZODIAC_MARS:
-                    // "\u2641";
-                    return "E";
+                    return "\u2642";
+                    // return "E";
                 case ZODIAC_JUPITER:
-                    // "\u2642";
-                    return "F";
+                    return "\u2643";
+                    // return "F";
                 case ZODIAC_SATURN:
-                    // "\u2643";
-                    return "G";
+                    return "\u2644";
+                    // return "G";
                 case ZODIAC_URANUS:
-                    // "\u2644";
-                    return "H";
+                    return "\u2645";
+                    // return "H";
                 case ZODIAC_NEPTUNE:
-                    // "\u2645";
-                    return "I";
+                    return "\u2646";
+                    // return "I";
                 case ZODIAC_PLUTO:
-                    // "\u2646";
+                    return "\u2647";
                     // 外部フォントだと天文学用のPLUTOになっているのが困りどころ
-                    return "J";
+                    // return "J";
             }
             return "";
         }
 
+        // 番号を引数に天体の文字列を返す
         public static string getPlanetText(int number)
         {
             switch (number)
@@ -142,23 +144,61 @@ namespace microcosm
             return "";
         }
 
+        // 番号を引数にサインのシンボルを返す
+        public static string getSignSymbol(int number)
+        {
+            switch (number)
+            {
+                case SIGN_ARIES:
+                    return "\u2648";
+                case SIGN_TAURUS:
+                    return "\u2649";
+                case SIGN_GEMINI:
+                    return "\u264a";
+                case SIGN_CANCER:
+                    return "\u264b";
+                case SIGN_LEO:
+                    return "\u264c";
+                case SIGN_VIRGO:
+                    return "\u264d";
+                case SIGN_LIBRA:
+                    return "\u264e";
+                case SIGN_SCORPIO:
+                    return "\u264f";
+                case SIGN_SAGITTARIUS:
+                    return "\u2650";
+                case SIGN_CAPRICORN:
+                    return "\u2651";
+                case SIGN_AQUARIUS:
+                    return "\u2652";
+                case SIGN_PISCES:
+                    return "\u2653";
+            }
+            return "";
+        }
+
+        // 番号を引数に感受点のシンボルを返す
         public static string getSensitiveSymbol(int number)
         {
             switch (number)
             {
                 // UNICODEが無い！
                 case ZODIAC_ASC:
-                    return "K";
+                    return "Ac";
+                    // return "K";
                 // UNICODEが無い！
                 case ZODIAC_MC:
-                    return "L";
+                    return "Mc";
+                    // return "L";
                 // "\u260a"
                 case ZODIAC_DH:
-                    return "M";
+                    return "Dh";
+                    // return "M";
             }
             return "";
         }
 
+        // 番号を引数に感受点の文字列を返す
         public static string getSensitiveText(int number)
         {
             switch (number)
@@ -173,5 +213,22 @@ namespace microcosm
             return "";
         }
 
+        // サイン番号を返す(0:牡羊座、11:魚座)
+        public static int getSign(double absolute_position)
+        {
+            return (int)absolute_position / 30;
+        }
+
+        // サインテキストを返す(0:♈、11:♓)
+        public static string getSignText(double absolute_position)
+        {
+            return getSignSymbol((int)absolute_position / 30);
+        }
+
+        // サイン度数を返す(0～29.9)
+        public static double getDeg(double absolute_position)
+        {
+            return absolute_position % 30;
+        }
     }
 }

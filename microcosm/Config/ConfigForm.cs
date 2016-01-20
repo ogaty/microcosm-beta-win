@@ -37,6 +37,23 @@ namespace microcosm.Config
                 centric_geo.Checked = false;
                 centric_herio.Checked = true;
             }
+
+            if (this.mainform.config.progression == 1)
+            {
+                primaryProgression.Checked = true;
+                secondaryProgression.Checked = false;
+                compositProgression.Checked = false;
+            } else if (this.mainform.config.progression == 2)
+            {
+                primaryProgression.Checked = false;
+                secondaryProgression.Checked = true;
+                compositProgression.Checked = false;
+            } else
+            {
+                primaryProgression.Checked = false;
+                secondaryProgression.Checked = false;
+                compositProgression.Checked = true;
+            }
         }
 
         private void centric_geo_CheckedChanged(object sender, EventArgs e)
@@ -56,6 +73,16 @@ namespace microcosm.Config
             this.mainform.config.defaultPlace = placeBox.Text;
             this.mainform.config.lat = double.Parse(latBox.Text);
             this.mainform.config.lng = double.Parse(lngBox.Text);
+            if (primaryProgression.Checked)
+            {
+                this.mainform.config.progression = 1;
+            } else if (secondaryProgression.Checked)
+            {
+                this.mainform.config.progression = 2;
+            } else
+            {
+                this.mainform.config.progression = 3;
+            }
 
             if (File.Exists(mainform.filename))
             {
@@ -68,7 +95,7 @@ namespace microcosm.Config
             sw.Close();
             fs.Close();
 
-
+            mainform.chartRefresh();
             this.Close();
         }
 
@@ -103,6 +130,7 @@ namespace microcosm.Config
             placeBox.Text = place;
         }
 
+        // google
         private async void googleBtn_Click(object sender, EventArgs e)
         {
             HttpClient http = new HttpClient();

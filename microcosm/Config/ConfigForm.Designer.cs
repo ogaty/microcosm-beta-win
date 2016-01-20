@@ -47,12 +47,17 @@
             this.placeBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.primaryProgression = new System.Windows.Forms.RadioButton();
+            this.secondaryProgression = new System.Windows.Forms.RadioButton();
+            this.compositProgression = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -68,6 +73,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -253,6 +259,50 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.compositProgression);
+            this.groupBox4.Controls.Add(this.secondaryProgression);
+            this.groupBox4.Controls.Add(this.primaryProgression);
+            this.groupBox4.Location = new System.Drawing.Point(154, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(231, 100);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "進行図計算方法";
+            // 
+            // primaryProgression
+            // 
+            this.primaryProgression.AutoSize = true;
+            this.primaryProgression.Checked = true;
+            this.primaryProgression.Location = new System.Drawing.Point(6, 19);
+            this.primaryProgression.Name = "primaryProgression";
+            this.primaryProgression.Size = new System.Drawing.Size(194, 16);
+            this.primaryProgression.TabIndex = 0;
+            this.primaryProgression.TabStop = true;
+            this.primaryProgression.Text = "一度一年法(Primary Progression)";
+            this.primaryProgression.UseVisualStyleBackColor = true;
+            // 
+            // secondaryProgression
+            // 
+            this.secondaryProgression.AutoSize = true;
+            this.secondaryProgression.Location = new System.Drawing.Point(7, 42);
+            this.secondaryProgression.Name = "secondaryProgression";
+            this.secondaryProgression.Size = new System.Drawing.Size(208, 16);
+            this.secondaryProgression.TabIndex = 1;
+            this.secondaryProgression.Text = "一日一年法(Secondary Progression)";
+            this.secondaryProgression.UseVisualStyleBackColor = true;
+            // 
+            // compositProgression
+            // 
+            this.compositProgression.AutoSize = true;
+            this.compositProgression.Location = new System.Drawing.Point(7, 65);
+            this.compositProgression.Name = "compositProgression";
+            this.compositProgression.Size = new System.Drawing.Size(165, 16);
+            this.compositProgression.TabIndex = 2;
+            this.compositProgression.Text = "CPS(Composit Progression)";
+            this.compositProgression.UseVisualStyleBackColor = true;
+            // 
             // ConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -274,6 +324,8 @@
             this.tabPage2.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -298,5 +350,9 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton compositProgression;
+        private System.Windows.Forms.RadioButton secondaryProgression;
+        private System.Windows.Forms.RadioButton primaryProgression;
     }
 }

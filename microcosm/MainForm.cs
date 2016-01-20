@@ -20,14 +20,24 @@ namespace microcosm
     public partial class MainForm : Form
     {
         public ConfigData config;
+        public Settings setting;
+        public AspectSetting aspectSetting;
         public string filename = @"system\system.xml";
+
+        public List<PlanetData> natallist;
+        public List<PlanetData> progresslist;
+        public List<PlanetData> transitlist;
+
+        public double[] natalcusp;
+        public double[] progresscusp;
+        public double[] transitcusp;
+
+        public AstroCalc calc;
+        public bool flag;
 
         public MainForm()
         {
             InitializeComponent();
-
-            SwissEph s = new SwissEph();
-            singleChartRender();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -37,6 +47,8 @@ namespace microcosm
             {
                 this.config = new ConfigData();
             }
+            this.setting = new Settings();
+            this.aspectSetting = new AspectSetting();
 
             string name = "現在";
             int year = DateTime.Now.Year;
@@ -90,10 +102,13 @@ namespace microcosm
                 config.ephepath = System.Windows.Forms.Application.StartupPath + @"\ephe"; ;
             }
 
+            setNatalData(year, month, day, hour, minute, second, lat, lng);
+            setTransitData(year, month, day, hour, minute, second, lat, lng);
             // 計算
-            AstroCalc calc = new AstroCalc(config);
-            calc.PositionCalc(year, month, day, hour, minute, second, lat, lng);
+            calc = new AstroCalc(config);
 
+            // 表示
+            chartRefresh();
         }
 
         // 左上枠設定
@@ -122,6 +137,32 @@ namespace microcosm
             lngLabel.Text = lng.ToString();
         }
 
+        // Natalセット
+        public void setNatalData(int year, int month, int day, int hour, int minute, int second, double lat, double lng)
+        {
+            setting.natal_year = year;
+            setting.natal_month = month;
+            setting.natal_day = day;
+            setting.natal_hour = hour;
+            setting.natal_minute = minute;
+            setting.natal_second = second;
+            setting.natal_lat = lat;
+            setting.natal_lng = lng;
+        }
+
+        // Natalセット
+        public void setTransitData(int year, int month, int day, int hour, int minute, int second, double lat, double lng)
+        {
+            setting.transit_year = year;
+            setting.transit_month = month;
+            setting.transit_day = day;
+            setting.transit_hour = hour;
+            setting.transit_minute = minute;
+            setting.transit_second = second;
+            setting.transit_lat = lat;
+            setting.transit_lng = lng;
+        }
+
         // DB開く
         private void OpenDatabaseOToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -130,7 +171,7 @@ namespace microcosm
         }
 
         // DBから取得したデータを反映
-        public void ReflactUserData(User u)
+        public void ReflectUserData(User u, User userdata)
         {
             if (u.udata == null)
             {
@@ -140,7 +181,9 @@ namespace microcosm
                     uevent.event_year, uevent.event_month, uevent.event_day,
                     uevent.event_hour, uevent.event_minute, uevent.event_second);
                 this.placeLabel.Text = uevent.event_place;
-
+                UserData udata = userdata.udata;
+                setNatalData(udata.birth_year, udata.birth_month, udata.birth_day, udata.birth_hour, udata.birth_minute, udata.birth_second, udata.lat, udata.lng);
+                setTransitData(uevent.event_year, uevent.event_month, uevent.event_day, uevent.event_hour, uevent.event_minute, uevent.event_second, uevent.event_lat, uevent.event_lng);
             }
             else
             {
@@ -150,8 +193,10 @@ namespace microcosm
                     udata.birth_year, udata.birth_month, udata.birth_day,
                     udata.birth_hour, udata.birth_minute, udata.birth_second);
                 this.placeLabel.Text = udata.birth_place;
+                setNatalData(udata.birth_year, udata.birth_month, udata.birth_day, udata.birth_hour, udata.birth_minute, udata.birth_second, udata.lat, udata.lng);
             }
 
+            chartRefresh();
         }
 
         // オプション→設定
@@ -168,7 +213,6 @@ namespace microcosm
 
         private void centerSlider_Scroll(object sender, EventArgs e)
         {
-            singleChartRender(centerSlider.Value);
         }
 
         private void ovalShape1_MouseHover(object sender, EventArgs e)
@@ -189,6 +233,65 @@ namespace microcosm
                 ConfigForm configform = new ConfigForm(this);
                 configform.Show();
             }
+        }
+
+        // メニュー一重円
+        private void singleChartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setting.bands = 1;
+            ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+            menuitem.Checked = true;
+            tripleChartToolStripMenuItem.Checked = false;
+            chartRefresh();
+        }
+
+        // メニュー三重円
+        private void tripleChartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            setting.bands = 3;
+            ToolStripMenuItem menuitem = (ToolStripMenuItem)sender;
+            menuitem.Checked = true;
+            singleChartToolStripMenuItem.Checked = false;
+            chartRefresh();
+        }
+
+        // チャート再描画
+        public void chartRefresh()
+        {
+            natallist = calc.PositionCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
+            natalcusp = calc.CuspCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
+
+            progresscusp = null;
+            transitcusp = null;
+            if (setting.bands > 1)
+            {
+                if (config.progression == 1)
+                {
+                    progresslist = calc.PrimaryProgressionCalc(natallist, new DateTime(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second), new DateTime(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second));
+                } else if (config.progression == 2)
+                {
+                    progresslist = calc.SecondaryProgressionCalc(natallist, new DateTime(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second), new DateTime(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second));
+                }
+                else
+                {
+                    progresslist = calc.CompositProgressionCalc(natallist, new DateTime(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second), new DateTime(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second));
+                }
+                progresscusp = calc.CuspCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
+                if (setting.bands > 2)
+                {
+                    transitlist = calc.PositionCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
+                    transitcusp = calc.CuspCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
+                }
+            }
+
+            tableRender(natallist, progresslist, transitlist, natalcusp, progresscusp, transitcusp);
+            refreshRender();
+            ringRender();
+            zodiacRender(natalcusp[1]);
+            houseCuspRender(natalcusp);
+            signCuspRender(natalcusp[1]);
+            planetRender(natalcusp[1], natallist, progresslist, transitlist);
+
         }
     }
 }

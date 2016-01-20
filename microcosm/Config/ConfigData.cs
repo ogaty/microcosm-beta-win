@@ -19,22 +19,42 @@ namespace microcosm.Config
     }
     public class ConfigData
     {
+        // 天文データパス
         [XmlElement("ephepath")]
         public string ephepath;
+
+        // GEO or HERIO
         [XmlElement("centric")]
         public ECentric centric { get; set; }
+
+        // TROPICAL or SIDEREAL
         [XmlElement("sidereal")]
         public Esidereal sidereal { get; set; }
+
+        // 現在地
         [XmlElement("defaultPlace")]
         public string defaultPlace { get; set; }
+
+        // 緯度
         [XmlElement("lat")]
         public double lat { get; set; }
+
+        // 経度
         [XmlElement("lng")]
         public double lng { get; set; }
+
+        // プログレス計算方法
+        [XmlElement("progression")]
+        public int progression { get; set; }
+
+        // SolarFireっぽく表示orAMATERUっぽく表示
+        [XmlElement("dispPattern")]
+        public int dispPattern { get; set; }
 
         public ConfigData()
         {
             centric = ECentric.GEO_CENTRIC;
+            sidereal = Esidereal.TROPICAL;
         }
 
     }

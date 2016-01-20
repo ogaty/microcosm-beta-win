@@ -151,7 +151,8 @@ namespace microcosm.DB
                 return;
             }
             User u = (User)this.eventListView.FocusedItem.Tag;
-            this.mainform.ReflactUserData(u);
+            User udata = (User)this.eventListView.Items[0].Tag;
+            this.mainform.ReflectUserData(u, udata);
 
             this.Close();
         }
@@ -303,7 +304,8 @@ namespace microcosm.DB
                 return;
             }
             User u = (User)this.eventListView.FocusedItem.Tag;
-            this.mainform.ReflactUserData(u);
+            User udata = (User)eventListView.Items[0].Tag;
+            this.mainform.ReflectUserData(u, udata);
 
             this.Close();
 

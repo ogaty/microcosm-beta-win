@@ -39,27 +39,60 @@
             this.latLabel = new System.Windows.Forms.Label();
             this.lngLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.leftPanel = new System.Windows.Forms.Panel();
+            this.cusp12 = new System.Windows.Forms.Label();
+            this.cusp11 = new System.Windows.Forms.Label();
+            this.cusp10 = new System.Windows.Forms.Label();
+            this.cusp9 = new System.Windows.Forms.Label();
+            this.cusp8 = new System.Windows.Forms.Label();
+            this.cusp7 = new System.Windows.Forms.Label();
+            this.cusp6 = new System.Windows.Forms.Label();
+            this.cusp5 = new System.Windows.Forms.Label();
+            this.cusp4 = new System.Windows.Forms.Label();
+            this.cusp3 = new System.Windows.Forms.Label();
+            this.cusp2 = new System.Windows.Forms.Label();
+            this.cusp1 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.ovalShape1 = new Microsoft.VisualBasic.PowerPacks.OvalShape();
+            this.placidusLabel = new System.Windows.Forms.Label();
+            this.centricLabel = new System.Windows.Forms.Label();
+            this.tropicalLabel = new System.Windows.Forms.Label();
+            this.planetList = new System.Windows.Forms.ListView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.centerSlider = new System.Windows.Forms.TrackBar();
-            this.astroWindow = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chartPanel = new System.Windows.Forms.PictureBox();
+            this.表示DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.チャートToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.singleChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tripleChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.progressionLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.leftPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileFToolStripMenuItem,
+            this.表示DToolStripMenuItem,
             this.オプションOToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -78,7 +111,7 @@
             // OpenDatabaseOToolStripMenuItem
             // 
             this.OpenDatabaseOToolStripMenuItem.Name = "OpenDatabaseOToolStripMenuItem";
-            this.OpenDatabaseOToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.OpenDatabaseOToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.OpenDatabaseOToolStripMenuItem.Text = "データベースを開く(&N)";
             this.OpenDatabaseOToolStripMenuItem.Click += new System.EventHandler(this.OpenDatabaseOToolStripMenuItem_Click);
             // 
@@ -93,7 +126,7 @@
             // ConfigToolStripMenuItem
             // 
             this.ConfigToolStripMenuItem.Name = "ConfigToolStripMenuItem";
-            this.ConfigToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.ConfigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.ConfigToolStripMenuItem.Text = "設定(&C)";
             this.ConfigToolStripMenuItem.Click += new System.EventHandler(this.ConfigToolStripMenuItem_Click);
             // 
@@ -145,13 +178,267 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.leftPanel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 464);
+            this.panel1.Size = new System.Drawing.Size(262, 614);
             this.panel1.TabIndex = 6;
+            // 
+            // leftPanel
+            // 
+            this.leftPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.leftPanel.Controls.Add(this.progressionLabel);
+            this.leftPanel.Controls.Add(this.cusp12);
+            this.leftPanel.Controls.Add(this.cusp11);
+            this.leftPanel.Controls.Add(this.cusp10);
+            this.leftPanel.Controls.Add(this.cusp9);
+            this.leftPanel.Controls.Add(this.cusp8);
+            this.leftPanel.Controls.Add(this.cusp7);
+            this.leftPanel.Controls.Add(this.cusp6);
+            this.leftPanel.Controls.Add(this.cusp5);
+            this.leftPanel.Controls.Add(this.cusp4);
+            this.leftPanel.Controls.Add(this.cusp3);
+            this.leftPanel.Controls.Add(this.cusp2);
+            this.leftPanel.Controls.Add(this.cusp1);
+            this.leftPanel.Controls.Add(this.label14);
+            this.leftPanel.Controls.Add(this.label13);
+            this.leftPanel.Controls.Add(this.label12);
+            this.leftPanel.Controls.Add(this.label11);
+            this.leftPanel.Controls.Add(this.label10);
+            this.leftPanel.Controls.Add(this.label9);
+            this.leftPanel.Controls.Add(this.label8);
+            this.leftPanel.Controls.Add(this.label7);
+            this.leftPanel.Controls.Add(this.label6);
+            this.leftPanel.Controls.Add(this.label5);
+            this.leftPanel.Controls.Add(this.label4);
+            this.leftPanel.Controls.Add(this.label3);
+            this.leftPanel.Controls.Add(this.groupBox1);
+            this.leftPanel.Controls.Add(this.placidusLabel);
+            this.leftPanel.Controls.Add(this.centricLabel);
+            this.leftPanel.Controls.Add(this.tropicalLabel);
+            this.leftPanel.Controls.Add(this.planetList);
+            this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftPanel.Location = new System.Drawing.Point(0, 0);
+            this.leftPanel.Name = "leftPanel";
+            this.leftPanel.Size = new System.Drawing.Size(259, 614);
+            this.leftPanel.TabIndex = 1;
+            // 
+            // cusp12
+            // 
+            this.cusp12.AutoSize = true;
+            this.cusp12.Location = new System.Drawing.Point(80, 545);
+            this.cusp12.Name = "cusp12";
+            this.cusp12.Size = new System.Drawing.Size(37, 12);
+            this.cusp12.TabIndex = 33;
+            this.cusp12.Text = "00.000";
+            // 
+            // cusp11
+            // 
+            this.cusp11.AutoSize = true;
+            this.cusp11.Location = new System.Drawing.Point(80, 530);
+            this.cusp11.Name = "cusp11";
+            this.cusp11.Size = new System.Drawing.Size(37, 12);
+            this.cusp11.TabIndex = 32;
+            this.cusp11.Text = "00.000";
+            // 
+            // cusp10
+            // 
+            this.cusp10.AutoSize = true;
+            this.cusp10.Location = new System.Drawing.Point(80, 513);
+            this.cusp10.Name = "cusp10";
+            this.cusp10.Size = new System.Drawing.Size(37, 12);
+            this.cusp10.TabIndex = 31;
+            this.cusp10.Text = "00.000";
+            // 
+            // cusp9
+            // 
+            this.cusp9.AutoSize = true;
+            this.cusp9.Location = new System.Drawing.Point(80, 496);
+            this.cusp9.Name = "cusp9";
+            this.cusp9.Size = new System.Drawing.Size(37, 12);
+            this.cusp9.TabIndex = 30;
+            this.cusp9.Text = "00.000";
+            // 
+            // cusp8
+            // 
+            this.cusp8.AutoSize = true;
+            this.cusp8.Location = new System.Drawing.Point(80, 478);
+            this.cusp8.Name = "cusp8";
+            this.cusp8.Size = new System.Drawing.Size(37, 12);
+            this.cusp8.TabIndex = 29;
+            this.cusp8.Text = "00.000";
+            // 
+            // cusp7
+            // 
+            this.cusp7.AutoSize = true;
+            this.cusp7.Location = new System.Drawing.Point(80, 461);
+            this.cusp7.Name = "cusp7";
+            this.cusp7.Size = new System.Drawing.Size(37, 12);
+            this.cusp7.TabIndex = 28;
+            this.cusp7.Text = "00.000";
+            // 
+            // cusp6
+            // 
+            this.cusp6.AutoSize = true;
+            this.cusp6.Location = new System.Drawing.Point(80, 443);
+            this.cusp6.Name = "cusp6";
+            this.cusp6.Size = new System.Drawing.Size(37, 12);
+            this.cusp6.TabIndex = 27;
+            this.cusp6.Text = "00.000";
+            // 
+            // cusp5
+            // 
+            this.cusp5.AutoSize = true;
+            this.cusp5.Location = new System.Drawing.Point(80, 428);
+            this.cusp5.Name = "cusp5";
+            this.cusp5.Size = new System.Drawing.Size(37, 12);
+            this.cusp5.TabIndex = 26;
+            this.cusp5.Text = "00.000";
+            // 
+            // cusp4
+            // 
+            this.cusp4.AutoSize = true;
+            this.cusp4.Location = new System.Drawing.Point(80, 410);
+            this.cusp4.Name = "cusp4";
+            this.cusp4.Size = new System.Drawing.Size(37, 12);
+            this.cusp4.TabIndex = 25;
+            this.cusp4.Text = "00.000";
+            // 
+            // cusp3
+            // 
+            this.cusp3.AutoSize = true;
+            this.cusp3.Location = new System.Drawing.Point(80, 391);
+            this.cusp3.Name = "cusp3";
+            this.cusp3.Size = new System.Drawing.Size(37, 12);
+            this.cusp3.TabIndex = 24;
+            this.cusp3.Text = "00.000";
+            // 
+            // cusp2
+            // 
+            this.cusp2.AutoSize = true;
+            this.cusp2.Location = new System.Drawing.Point(80, 372);
+            this.cusp2.Name = "cusp2";
+            this.cusp2.Size = new System.Drawing.Size(37, 12);
+            this.cusp2.TabIndex = 23;
+            this.cusp2.Text = "00.000";
+            // 
+            // cusp1
+            // 
+            this.cusp1.AutoSize = true;
+            this.cusp1.Location = new System.Drawing.Point(80, 353);
+            this.cusp1.Name = "cusp1";
+            this.cusp1.Size = new System.Drawing.Size(37, 12);
+            this.cusp1.TabIndex = 22;
+            this.cusp1.Text = "00.000";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(14, 545);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(17, 12);
+            this.label14.TabIndex = 21;
+            this.label14.Text = "Ⅻ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(14, 530);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(17, 12);
+            this.label13.TabIndex = 20;
+            this.label13.Text = "Ⅺ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(14, 513);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(42, 12);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Ⅹ(MC)";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(14, 496);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(17, 12);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "Ⅸ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(14, 478);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(17, 12);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Ⅷ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(14, 461);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 12);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Ⅶ(DSC)";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(14, 443);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(17, 12);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Ⅵ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 428);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(17, 12);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Ⅴ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 410);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 12);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "Ⅳ(IC)";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(13, 391);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(17, 12);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Ⅲ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 372);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(17, 12);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Ⅱ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 353);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 12);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Ⅰ(ASC)";
             // 
             // groupBox1
             // 
@@ -160,47 +447,53 @@
             this.groupBox1.Controls.Add(this.birthLabel);
             this.groupBox1.Controls.Add(this.latLabel);
             this.groupBox1.Controls.Add(this.placeLabel);
-            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Location = new System.Drawing.Point(13, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(168, 100);
+            this.groupBox1.Size = new System.Drawing.Size(227, 100);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // panel3
+            // placidusLabel
             // 
-            this.panel3.BackColor = System.Drawing.SystemColors.Window;
-            this.panel3.Controls.Add(this.shapeContainer1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 464);
-            this.panel3.TabIndex = 1;
+            this.placidusLabel.AutoSize = true;
+            this.placidusLabel.Location = new System.Drawing.Point(19, 572);
+            this.placidusLabel.Name = "placidusLabel";
+            this.placidusLabel.Size = new System.Drawing.Size(47, 12);
+            this.placidusLabel.TabIndex = 3;
+            this.placidusLabel.Text = "placidus";
             // 
-            // shapeContainer1
+            // centricLabel
             // 
-            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
-            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
-            this.shapeContainer1.Name = "shapeContainer1";
-            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.ovalShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(200, 464);
-            this.shapeContainer1.TabIndex = 0;
-            this.shapeContainer1.TabStop = false;
+            this.centricLabel.AutoSize = true;
+            this.centricLabel.Location = new System.Drawing.Point(93, 572);
+            this.centricLabel.Name = "centricLabel";
+            this.centricLabel.Size = new System.Drawing.Size(58, 12);
+            this.centricLabel.TabIndex = 2;
+            this.centricLabel.Text = "geocentric";
             // 
-            // ovalShape1
+            // tropicalLabel
             // 
-            this.ovalShape1.BorderWidth = 2;
-            this.ovalShape1.Location = new System.Drawing.Point(55, 183);
-            this.ovalShape1.Name = "ovalShape1";
-            this.ovalShape1.Size = new System.Drawing.Size(75, 81);
-            this.ovalShape1.MouseHover += new System.EventHandler(this.ovalShape1_MouseHover);
-            this.ovalShape1.MouseLeave += new System.EventHandler(this.ovalShape1_MouseLeave);
+            this.tropicalLabel.AutoSize = true;
+            this.tropicalLabel.Location = new System.Drawing.Point(177, 572);
+            this.tropicalLabel.Name = "tropicalLabel";
+            this.tropicalLabel.Size = new System.Drawing.Size(43, 12);
+            this.tropicalLabel.TabIndex = 1;
+            this.tropicalLabel.Text = "tropical";
+            // 
+            // planetList
+            // 
+            this.planetList.Location = new System.Drawing.Point(13, 109);
+            this.planetList.Name = "planetList";
+            this.planetList.Size = new System.Drawing.Size(227, 221);
+            this.planetList.TabIndex = 0;
+            this.planetList.UseCompatibleStateImageBehavior = false;
+            this.planetList.View = System.Windows.Forms.View.Details;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.centerSlider);
-            this.groupBox2.Location = new System.Drawing.Point(692, 376);
+            this.groupBox2.Location = new System.Drawing.Point(692, 508);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(200, 100);
             this.groupBox2.TabIndex = 8;
@@ -227,24 +520,76 @@
             this.centerSlider.Value = 90;
             this.centerSlider.Scroll += new System.EventHandler(this.centerSlider_Scroll);
             // 
-            // astroWindow
+            // label2
             // 
-            this.astroWindow.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.astroWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.astroWindow.Location = new System.Drawing.Point(200, 24);
-            this.astroWindow.Name = "astroWindow";
-            this.astroWindow.Size = new System.Drawing.Size(704, 464);
-            this.astroWindow.TabIndex = 7;
-            this.astroWindow.TabStop = false;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(353, 464);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 12);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "label2";
+            // 
+            // chartPanel
+            // 
+            this.chartPanel.BackColor = System.Drawing.Color.LightCyan;
+            this.chartPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartPanel.Location = new System.Drawing.Point(262, 24);
+            this.chartPanel.Name = "chartPanel";
+            this.chartPanel.Size = new System.Drawing.Size(642, 614);
+            this.chartPanel.TabIndex = 10;
+            this.chartPanel.TabStop = false;
+            // 
+            // 表示DToolStripMenuItem
+            // 
+            this.表示DToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.チャートToolStripMenuItem});
+            this.表示DToolStripMenuItem.Name = "表示DToolStripMenuItem";
+            this.表示DToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.表示DToolStripMenuItem.Text = "表示(&D)";
+            // 
+            // チャートToolStripMenuItem
+            // 
+            this.チャートToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.singleChartToolStripMenuItem,
+            this.tripleChartToolStripMenuItem});
+            this.チャートToolStripMenuItem.Name = "チャートToolStripMenuItem";
+            this.チャートToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.チャートToolStripMenuItem.Text = "チャート";
+            // 
+            // singleChartToolStripMenuItem
+            // 
+            this.singleChartToolStripMenuItem.Checked = true;
+            this.singleChartToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.singleChartToolStripMenuItem.Name = "singleChartToolStripMenuItem";
+            this.singleChartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.singleChartToolStripMenuItem.Text = "一重円";
+            this.singleChartToolStripMenuItem.Click += new System.EventHandler(this.singleChartToolStripMenuItem_Click);
+            // 
+            // tripleChartToolStripMenuItem
+            // 
+            this.tripleChartToolStripMenuItem.Name = "tripleChartToolStripMenuItem";
+            this.tripleChartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tripleChartToolStripMenuItem.Text = "三重円";
+            this.tripleChartToolStripMenuItem.Click += new System.EventHandler(this.tripleChartToolStripMenuItem_Click);
+            // 
+            // progressionLabel
+            // 
+            this.progressionLabel.AutoSize = true;
+            this.progressionLabel.Location = new System.Drawing.Point(19, 593);
+            this.progressionLabel.Name = "progressionLabel";
+            this.progressionLabel.Size = new System.Drawing.Size(65, 12);
+            this.progressionLabel.TabIndex = 34;
+            this.progressionLabel.Text = "一日一年法";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(904, 488);
+            this.ClientSize = new System.Drawing.Size(904, 638);
+            this.Controls.Add(this.chartPanel);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.astroWindow);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -255,13 +600,14 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.leftPanel.ResumeLayout(false);
+            this.leftPanel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.astroWindow)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,15 +625,47 @@
         private System.Windows.Forms.Label lngLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel leftPanel;
         private System.Windows.Forms.ToolStripMenuItem オプションOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConfigToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TrackBar centerSlider;
-        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape1;
-        private System.Windows.Forms.PictureBox astroWindow;
+        private System.Windows.Forms.ListView planetList;
+        private System.Windows.Forms.Label centricLabel;
+        private System.Windows.Forms.Label tropicalLabel;
+        private System.Windows.Forms.Label placidusLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label cusp12;
+        private System.Windows.Forms.Label cusp11;
+        private System.Windows.Forms.Label cusp10;
+        private System.Windows.Forms.Label cusp9;
+        private System.Windows.Forms.Label cusp8;
+        private System.Windows.Forms.Label cusp7;
+        private System.Windows.Forms.Label cusp6;
+        private System.Windows.Forms.Label cusp5;
+        private System.Windows.Forms.Label cusp4;
+        private System.Windows.Forms.Label cusp3;
+        private System.Windows.Forms.Label cusp2;
+        private System.Windows.Forms.Label cusp1;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox chartPanel;
+        private System.Windows.Forms.ToolStripMenuItem 表示DToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem チャートToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem singleChartToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tripleChartToolStripMenuItem;
+        private System.Windows.Forms.Label progressionLabel;
     }
 }
 
