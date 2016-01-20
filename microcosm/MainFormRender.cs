@@ -54,7 +54,7 @@ namespace microcosm
 
             // リスト
             // 天体10
-            for (int i = 0; i < 10; i++)
+            Enumerable.Range(1, 10).ToList().ForEach(i =>
             {
                 ListViewItem item = new ListViewItem(Common.getPlanetSymbol(i)) { Font = new Font("Segoe UI Symbol", 11) };
                 //                item.Font = new Font("Zodiac S", 12);
@@ -80,28 +80,31 @@ namespace microcosm
 
                 planetList.Items.Add(item);
 
-            }
+            });
 
             // カスプ12
             Label[] labels = { cusp1, cusp2, cusp3, cusp4, cusp5, cusp6, cusp7, cusp8, cusp9, cusp10, cusp11, cusp12 };
 
-            for (int i = 1; i < 13; i++)
+            Enumerable.Range(1, 13).ToList().ForEach(i =>
             {
                 string s;
                 if (i == 1)
                 {
                     s = i.ToString() + "(ASC)";
-                } else if (i == 4)
+                }
+                else if (i == 4)
                 {
                     s = i.ToString() + "(IC)";
-                } else if (i == 7)
+                }
+                else if (i == 7)
                 {
                     s = i.ToString() + "(DSC)";
                 }
                 else if (i == 10)
                 {
                     s = i.ToString() + "(MC)";
-                } else
+                }
+                else
                 {
                     s = i.ToString();
                 }
@@ -125,7 +128,7 @@ namespace microcosm
                 //                cuspListA.Items.Add(s + Common.getSignText(natalcusp[i]) + "  " +
                 //                    Common.getDeg(natalcusp[i]).ToString("00.000"));
                 labels[i - 1].Text = Common.getSignText(natalcusp[i]) + "  " + Common.getDeg(natalcusp[i]).ToString("00.000");
-            }
+            });
 
             if (config.centric == ECentric.HELIO_CENTRIC)
             {
@@ -192,46 +195,9 @@ namespace microcosm
 
             double startY = 0;
             double endY = 0;
-            for (int i = 1; i < 13; i++)
+            Enumerable.Range(1, 13).ToList().ForEach(i =>
             {
                 double degree = natalcusp[i] - natalcusp[1];
-
-                PointF newStart = rotate(startX, startY, degree);
-                newStart.X += setting.zodiacRingOuterPadding.X;
-                newStart.X += setting.zodiacRadius / 2; 
-                // Formの座標は下がプラス、数学では上がマイナス
-                newStart.Y = newStart.Y * -1;
-                newStart.Y += setting.zodiacRingOuterPadding.Y;
-                newStart.Y += setting.zodiacRadius / 2;
-
-                PointF newEnd = rotate(endX, endY, degree);
-                newEnd.X += setting.zodiacRingOuterPadding.X;
-                newEnd.X += setting.zodiacRadius / 2;
-                // Formの座標は下がプラス、数学では上がマイナス
-                newEnd.Y = newEnd.Y * -1;
-                newEnd.Y += setting.zodiacRingOuterPadding.Y;
-                newEnd.Y += setting.zodiacRadius / 2;
-
-                g.DrawLine(blk, (int)newStart.X, (int)newStart.Y, (int)newEnd.X, (int)newEnd.Y);
-
-            }
-            blk.Dispose();
-            g.Dispose();
-        }
-
-        // サインカスプレンダリング
-        private void signCuspRender(double startdegree)
-        {
-            Pen blk = new Pen(Color.Navy, 1);
-            Graphics g = Graphics.FromImage(canvas);
-            double startX =setting.zodiacRadius / 2 - setting.zodiacRingWidth;
-            double endX = setting.zodiacRadius / 2;
-
-            double startY = 0;
-            double endY = 0;
-            for (int i = 1; i < 13; i++)
-            {
-                double degree = (30.0 * i) - startdegree;
 
                 PointF newStart = rotate(startX, startY, degree);
                 newStart.X += setting.zodiacRingOuterPadding.X;
@@ -250,7 +216,44 @@ namespace microcosm
                 newEnd.Y += setting.zodiacRadius / 2;
 
                 g.DrawLine(blk, (int)newStart.X, (int)newStart.Y, (int)newEnd.X, (int)newEnd.Y);
-            }
+
+            });
+            blk.Dispose();
+            g.Dispose();
+        }
+
+        // サインカスプレンダリング
+        private void signCuspRender(double startdegree)
+        {
+            Pen blk = new Pen(Color.Navy, 1);
+            Graphics g = Graphics.FromImage(canvas);
+            double startX =setting.zodiacRadius / 2 - setting.zodiacRingWidth;
+            double endX = setting.zodiacRadius / 2;
+
+            double startY = 0;
+            double endY = 0;
+            Enumerable.Range(1, 13).ToList().ForEach(i =>
+           {
+               double degree = (30.0 * i) - startdegree;
+
+               PointF newStart = rotate(startX, startY, degree);
+               newStart.X += setting.zodiacRingOuterPadding.X;
+               newStart.X += setting.zodiacRadius / 2;
+                // Formの座標は下がプラス、数学では上がマイナス
+                newStart.Y = newStart.Y * -1;
+               newStart.Y += setting.zodiacRingOuterPadding.Y;
+               newStart.Y += setting.zodiacRadius / 2;
+
+               PointF newEnd = rotate(endX, endY, degree);
+               newEnd.X += setting.zodiacRingOuterPadding.X;
+               newEnd.X += setting.zodiacRadius / 2;
+                // Formの座標は下がプラス、数学では上がマイナス
+                newEnd.Y = newEnd.Y * -1;
+               newEnd.Y += setting.zodiacRingOuterPadding.Y;
+               newEnd.Y += setting.zodiacRadius / 2;
+
+               g.DrawLine(blk, (int)newStart.X, (int)newStart.Y, (int)newEnd.X, (int)newEnd.Y);
+           });
             blk.Dispose();
             g.Dispose();
         }
@@ -261,7 +264,7 @@ namespace microcosm
             Font fnt = new Font("Segoe UI Symbol", 14);
             SolidBrush brush = new SolidBrush(Color.Red);
             Graphics g = Graphics.FromImage(canvas);
-            for (int i = 0; i < 12; i++)
+            Enumerable.Range(0, 12).ToList().ForEach(i =>
             {
                 PointF point = rotate(setting.zodiacRadius / 2 - 20, 0, (30 * (i + 1)) - startdegree - 15.0);
                 point.X += setting.zodiacRingOuterPadding.X;
@@ -271,8 +274,8 @@ namespace microcosm
                 point.Y += setting.zodiacRingOuterPadding.Y;
                 point.Y += setting.zodiacRadius / 2;
                 point.Y -= 13;
-                    g.DrawString(Common.getSignSymbol(i), fnt, brush, point.X, point.Y);
-            }
+                g.DrawString(Common.getSignSymbol(i), fnt, brush, point.X, point.Y);
+            });
         }
 
         // 天体の表示
@@ -285,16 +288,18 @@ namespace microcosm
             Font fnt = new Font("Segoe UI Symbol", 14);
             SolidBrush brush = new SolidBrush(Color.Red);
             Graphics g = Graphics.FromImage(canvas);
-            foreach (PlanetData planet in natallist)
+            natallist.ForEach(planet =>
             {
                 PointF point;
                 if (setting.bands == 1)
                 {
                     point = rotate(170, 0, planet.absolute_position - startdegree);
-                } else if (setting.bands == 2)
+                }
+                else if (setting.bands == 2)
                 {
                     point = rotate(152, 0, planet.absolute_position - startdegree);
-                } else
+                }
+                else
                 {
                     point = rotate(136, 0, planet.absolute_position - startdegree);
                 }
@@ -306,11 +311,11 @@ namespace microcosm
                 point.Y += setting.zodiacRadius / 2;
                 point.Y -= 15;
                 g.DrawString(Common.getPlanetSymbol(planet.no), fnt, brush, point.X, point.Y);
-            }
+            });
 
             if (setting.bands == 2)
             {
-                foreach (PlanetData planet in progresslist)
+                progresslist.ForEach(planet =>
                 {
                     PointF point = rotate(167, 0, planet.absolute_position - startdegree);
                     point.X += setting.zodiacRingOuterPadding.X;
@@ -321,13 +326,13 @@ namespace microcosm
                     point.Y += setting.zodiacRadius / 2;
                     point.Y -= 15;
                     g.DrawString(Common.getPlanetSymbol(planet.no), fnt, brush, point.X, point.Y);
-                }
+                });
 
             }
 
             if (setting.bands == 3)
             {
-                foreach (PlanetData planet in progresslist)
+                progresslist.ForEach(planet =>
                 {
                     PointF point = rotate(167, 0, planet.absolute_position - startdegree);
                     point.X += setting.zodiacRingOuterPadding.X;
@@ -338,9 +343,9 @@ namespace microcosm
                     point.Y += setting.zodiacRadius / 2;
                     point.Y -= 15;
                     g.DrawString(Common.getPlanetSymbol(planet.no), fnt, brush, point.X, point.Y);
-                }
+                });
 
-                foreach (PlanetData planet in transitlist)
+                transitlist.ForEach(planet =>
                 {
                     PointF point = rotate(195, 0, planet.absolute_position - startdegree);
                     point.X += setting.zodiacRingOuterPadding.X;
@@ -351,7 +356,7 @@ namespace microcosm
                     point.Y += setting.zodiacRadius / 2;
                     point.Y -= 15;
                     g.DrawString(Common.getPlanetSymbol(planet.no), fnt, brush, point.X, point.Y);
-                }
+                });
             }
 
             g.Dispose();

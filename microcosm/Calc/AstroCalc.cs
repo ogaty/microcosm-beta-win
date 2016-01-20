@@ -53,7 +53,7 @@ namespace microcosm.Calc
             s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
 
             // 10天体ループ
-            for (int i = 0; i < 10; i++)
+            Enumerable.Range(0, 10).ToList().ForEach(i =>
             {
                 int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
                 if (config.centric == ECentric.HELIO_CENTRIC)
@@ -67,14 +67,15 @@ namespace microcosm.Calc
                     // ayanamsa計算
                     double daya = 0.0;
                     double ut = s.swe_get_ayanamsa_ex_ut(dret[1], SwissEph.SEFLG_SWIEPH, out daya, ref serr);
-                    
+
                     // Ephemeris Timeで計算, 結果はxに入る
                     s.swe_calc_ut(dret[1], i, flag, x, ref serr);
                     // tropicalからayanamsaをマイナス
                     if (x[0] > daya)
                     {
                         x[0] -= daya;
-                    } else
+                    }
+                    else
                     {
                         x[0] = x[0] - daya + 360;
                     }
@@ -88,7 +89,7 @@ namespace microcosm.Calc
 
                 PlanetData p = new PlanetData() { no = i, absolute_position = x[0], speed = x[3] };
                 planetdata.Add(p);
-            }
+            });
 
             s.swe_close();
             return planetdata;
@@ -307,13 +308,13 @@ namespace microcosm.Calc
         public void AspectCalc(List<PlanetData> natallist, DateTime natalTime, DateTime transitTime)
         {
             // if (natal-natal)
-            for (int i = 0; i < natallist.Count - 1; i++)
-            {
-                if (natallist[i].absolute_position - natallist[i + 1].absolute_position < 6.0)
-                {
+            Enumerable.Range(0, natallist.Count - 1).ToList().ForEach(i =>
+           {
+               if (natallist[i].absolute_position - natallist[i + 1].absolute_position < 6.0)
+               {
 
-                }
-            }
+               }
+           });
 
         }
     }

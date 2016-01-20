@@ -46,13 +46,13 @@ namespace microcosm.DB
         private void SearchForm_Load(object sender, EventArgs e)
         {
             searchBox.Text = searchplace;
-            foreach (var item in items)
-            {
-                ListViewItem litem = new ListViewItem(item.addr);
-                string[] lsubitems = { item.lat.ToString(), item.lng.ToString() };
-                litem.SubItems.AddRange(lsubitems);
-                searchList.Items.Add(litem);
-            }
+            items.ForEach(item =>
+           {
+               ListViewItem litem = new ListViewItem(item.addr);
+               string[] lsubitems = { item.lat.ToString(), item.lng.ToString() };
+               litem.SubItems.AddRange(lsubitems);
+               searchList.Items.Add(litem);
+           });
         }
 
         // 決定ボタン
