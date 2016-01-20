@@ -115,11 +115,11 @@ namespace microcosm.DB
             }
 
             int i = 0;
-            foreach (UserEvent ev in data.userevent)
+            data.userevent.ForEach(ev =>
             {
                 setEventData(ev, datadir + @"\" + filename, i);
                 i++;
-            }
+            });
         }
 
         // 右クリック削除

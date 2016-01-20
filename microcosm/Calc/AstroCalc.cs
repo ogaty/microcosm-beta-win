@@ -130,13 +130,13 @@ namespace microcosm.Calc
             List<PlanetData> progresslist = new List<PlanetData>();
             TimeSpan ts = transitTime - natalTime;
             double years = ts.TotalDays / year_days;
-            foreach (PlanetData data in natallist)
+            natallist.ForEach(data =>
             {
                 PlanetData progressdata = new PlanetData() { absolute_position = data.absolute_position, no = data.no, sensitive = data.sensitive, speed = data.speed };
                 progressdata.absolute_position += years;
                 progressdata.absolute_position %= 365;
                 progresslist.Add(progressdata);
-            }
+            });
 
             return progresslist;
         }
@@ -175,7 +175,7 @@ namespace microcosm.Calc
             s.swe_utc_time_zone(newTime.Year, newTime.Month, newTime.Day, newTime.Hour, newTime.Minute, newTime.Second, 9.0, ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
             s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
 
-            foreach (PlanetData data in natallist)
+            natallist.ForEach(data =>
             {
                 int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
                 if (config.centric == ECentric.HELIO_CENTRIC)
@@ -211,7 +211,7 @@ namespace microcosm.Calc
                 PlanetData progressdata = new PlanetData() { absolute_position = x[0], no = data.no, sensitive = data.sensitive, speed = data.speed };
                 progresslist.Add(progressdata);
 
-            }
+            });
 
             return progresslist;
         }
@@ -252,7 +252,7 @@ namespace microcosm.Calc
             s.swe_utc_time_zone(newTime.Year, newTime.Month, newTime.Day, newTime.Hour, newTime.Minute, newTime.Second, 9.0, ref utc_year, ref utc_month, ref utc_day, ref utc_hour, ref utc_minute, ref utc_second);
             s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
 
-            foreach (PlanetData data in natallist)
+            natallist.ForEach( data => 
             {
                 PlanetData progressdata;
                 if ((data.no != Common.ZODIAC_MOON) && (data.no != Common.ZODIAC_MERCURY) && (data.no != Common.ZODIAC_VENUS) && (data.no != Common.ZODIAC_SUN))
@@ -261,7 +261,7 @@ namespace microcosm.Calc
                     progressdata.absolute_position += years;
                     progressdata.absolute_position %= 365;
                     progresslist.Add(progressdata);
-                    continue;
+                    return;
                 }
                 int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
                 if (config.centric == ECentric.HELIO_CENTRIC)
@@ -297,7 +297,7 @@ namespace microcosm.Calc
                 progressdata = new PlanetData() { absolute_position = x[0], no = data.no, sensitive = data.sensitive, speed = data.speed };
                 progresslist.Add(progressdata);
 
-            }
+            });
 
 
             return progresslist;
