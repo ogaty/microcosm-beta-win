@@ -23,9 +23,7 @@ namespace microcosm.Calc
             s.swe_set_ephe_path(config.ephepath);
             s.OnLoadFile += (sender, ev) => {
                 if (File.Exists(ev.FileName))
-                {
                     ev.File = new FileStream(ev.FileName, FileMode.Open);
-                }
             };
         }
 
@@ -57,9 +55,7 @@ namespace microcosm.Calc
             {
                 int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
                 if (config.centric == ECentric.HELIO_CENTRIC)
-                {
                     flag |= SwissEph.SEFLG_HELCTR;
-                }
                 if (config.sidereal == Esidereal.SIDEREAL)
                 {
                     flag |= SwissEph.SEFLG_SIDEREAL;
@@ -87,7 +83,7 @@ namespace microcosm.Calc
                 }
 
 
-                PlanetData p = new PlanetData() { no = i, absolute_position = x[0], speed = x[3] };
+                PlanetData p = new PlanetData() { no = i, absolute_position = x[0], speed = x[3], aspects = new List<Aspect>() };
                 planetdata.Add(p);
             });
 
@@ -179,10 +175,7 @@ namespace microcosm.Calc
             natallist.ForEach(data =>
             {
                 int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
-                if (config.centric == ECentric.HELIO_CENTRIC)
-                {
-                    flag |= SwissEph.SEFLG_HELCTR;
-                }
+                if (config.centric == ECentric.HELIO_CENTRIC) flag |= SwissEph.SEFLG_HELCTR;
                 if (config.sidereal == Esidereal.SIDEREAL)
                 {
                     flag |= SwissEph.SEFLG_SIDEREAL;
@@ -194,14 +187,7 @@ namespace microcosm.Calc
                     // Ephemeris Timeで計算, 結果はxに入る
                     s.swe_calc_ut(dret[1], data.no, flag, x, ref serr);
                     // tropicalからayanamsaをマイナス
-                    if (x[0] > daya)
-                    {
-                        x[0] -= daya;
-                    }
-                    else
-                    {
-                        x[0] = x[0] - daya + 360;
-                    }
+                    x[0] = x[0] > daya ? x[0] - daya : x[0] - daya + 360;
                 }
                 else
                 {
@@ -266,9 +252,7 @@ namespace microcosm.Calc
                 }
                 int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
                 if (config.centric == ECentric.HELIO_CENTRIC)
-                {
                     flag |= SwissEph.SEFLG_HELCTR;
-                }
                 if (config.sidereal == Esidereal.SIDEREAL)
                 {
                     flag |= SwissEph.SEFLG_SIDEREAL;
@@ -280,14 +264,7 @@ namespace microcosm.Calc
                     // Ephemeris Timeで計算, 結果はxに入る
                     s.swe_calc_ut(dret[1], data.no, flag, x, ref serr);
                     // tropicalからayanamsaをマイナス
-                    if (x[0] > daya)
-                    {
-                        x[0] -= daya;
-                    }
-                    else
-                    {
-                        x[0] = x[0] - daya + 360;
-                    }
+                    x[0] = x[0] > daya ? x[0] - daya : x[0] - daya + 360;
                 }
                 else
                 {
@@ -305,17 +282,60 @@ namespace microcosm.Calc
         }
 
         // アスペクトを計算する
-        public void AspectCalc(List<PlanetData> natallist, DateTime natalTime, DateTime transitTime)
+        public List<PlanetData> AspectCalc(AspectSetting a_setting, List<PlanetData> natallist)
         {
             // if (natal-natal)
-            Enumerable.Range(0, natallist.Count - 1).ToList().ForEach(i =>
-           {
-               if (natallist[i].absolute_position - natallist[i + 1].absolute_position < 6.0)
-               {
+            for (int i = 0; i < natallist.Count - 2; i++)
+            {
+                for (int j = i + 1; j < natallist.Count - 1; j++)
+                {
+                    // 90.0 と　300.0では210度ではなく150度にならなければいけない
+                    double aspect_degree = natallist[i].absolute_position - natallist[j].absolute_position;
+                    if (aspect_degree > 180)
+                    {
+                        aspect_degree = natallist[j].absolute_position + 360 - natallist[i].absolute_position;
+                    }
+                    if (aspect_degree < 0)
+                    {
+                        aspect_degree = Math.Abs(aspect_degree);
+                    }
+                    // conjunction
+                    if (aspect_degree < a_setting.orb_natal_sun)
+                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.CONJUNCTION });
 
-               }
-           });
+                    // square
+                    if (aspect_degree < 90.0 + a_setting.orb_natal_sun &&
+                        aspect_degree > 90.0 - a_setting.orb_natal_sun)
+                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.SQUARE });
 
+                    // trine
+                    if (aspect_degree < 120.0 + a_setting.orb_natal_sun &&
+                        aspect_degree > 120.0 - a_setting.orb_natal_sun)
+                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.TRINE });
+
+                    // opposition
+                    if (aspect_degree < 180.0 + a_setting.orb_natal_sun &&
+                        aspect_degree > 180.0 - a_setting.orb_natal_sun)
+                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.OPPOSITION });
+
+                    // sextile
+                    if (aspect_degree < 60.0 + a_setting.orb_natal_sun &&
+                        aspect_degree > 60.0 - a_setting.orb_natal_sun)
+                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.SEXTILE });
+
+                    // inconjunct / quincunx
+                    if (aspect_degree < 150.0 + a_setting.orb_natal_sun &&
+                        aspect_degree > 150.0 - a_setting.orb_natal_sun)
+                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.INCONJUNCT });
+
+                    // sesquiquadrate
+                    if (aspect_degree < 135.0 + a_setting.orb_natal_sun &&
+                        aspect_degree > 135.0 - a_setting.orb_natal_sun)
+                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.SESQUIQUADRATE });
+                }
+            }
+
+            return natallist;
         }
     }
 }

@@ -203,9 +203,7 @@ namespace microcosm
         private void ConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (this.config == null)
-            {
                 this.config = new ConfigData();
-            }
 
             ConfigForm config = new ConfigForm(this);
             config.Show();
@@ -260,6 +258,7 @@ namespace microcosm
         {
             natallist = calc.PositionCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
             natalcusp = calc.CuspCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
+            natallist = calc.AspectCalc(aspectSetting, natallist);
 
             progresscusp = null;
             transitcusp = null;

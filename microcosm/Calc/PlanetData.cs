@@ -17,6 +17,9 @@ namespace microcosm.Calc
         public double speed;
         // 感受点はtrue
         public bool sensitive;
+        // アスペクト対象リスト
+        // リスト番号が設定される
+        public List<Aspect> aspects;
 
         public PlanetData()
         {

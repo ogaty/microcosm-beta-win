@@ -10,8 +10,8 @@ namespace microcosm.Config
     {
         public bool disp_natal_natal;
 
-        public double orb_natal_sun;
-        public double orb_natal_moon;
-        public double orb_natal_other;
+        public double orb_natal_sun = 6.0;
+        public double orb_natal_moon = 6.0;
+        public double orb_natal_other = 6.0;
     }
 }

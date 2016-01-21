@@ -54,7 +54,7 @@ namespace microcosm
 
             // リスト
             // 天体10
-            Enumerable.Range(1, 10).ToList().ForEach(i =>
+            Enumerable.Range(0, 10).ToList().ForEach(i =>
             {
                 ListViewItem item = new ListViewItem(Common.getPlanetSymbol(i)) { Font = new Font("Segoe UI Symbol", 11) };
                 //                item.Font = new Font("Zodiac S", 12);
@@ -85,7 +85,7 @@ namespace microcosm
             // カスプ12
             Label[] labels = { cusp1, cusp2, cusp3, cusp4, cusp5, cusp6, cusp7, cusp8, cusp9, cusp10, cusp11, cusp12 };
 
-            Enumerable.Range(1, 13).ToList().ForEach(i =>
+            Enumerable.Range(1, 12).ToList().ForEach(i =>
             {
                 string s;
                 if (i == 1)
@@ -195,7 +195,7 @@ namespace microcosm
 
             double startY = 0;
             double endY = 0;
-            Enumerable.Range(1, 13).ToList().ForEach(i =>
+            Enumerable.Range(1, 12).ToList().ForEach(i =>
             {
                 double degree = natalcusp[i] - natalcusp[1];
 
