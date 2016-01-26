@@ -290,6 +290,11 @@ namespace microcosm
             Graphics g = Graphics.FromImage(canvas);
             natallist.ForEach(planet =>
             {
+                if (!planet.isDisp)
+                {
+                    return;
+                }
+
                 PointF point;
                 if (setting.bands == 1)
                 {
@@ -317,6 +322,11 @@ namespace microcosm
             {
                 progresslist.ForEach(planet =>
                 {
+                    if (!planet.isDisp)
+                    {
+                        return;
+                    }
+
                     PointF point = rotate(167, 0, planet.absolute_position - startdegree);
                     point.X += setting.zodiacRingOuterPadding.X;
                     point.X += setting.zodiacRadius / 2;
@@ -334,6 +344,11 @@ namespace microcosm
             {
                 progresslist.ForEach(planet =>
                 {
+                    if (!planet.isDisp)
+                    {
+                        return;
+                    }
+
                     PointF point = rotate(167, 0, planet.absolute_position - startdegree);
                     point.X += setting.zodiacRingOuterPadding.X;
                     point.X += setting.zodiacRadius / 2;
@@ -347,6 +362,11 @@ namespace microcosm
 
                 transitlist.ForEach(planet =>
                 {
+                    if (!planet.isDisp)
+                    {
+                        return;
+                    }
+
                     PointF point = rotate(195, 0, planet.absolute_position - startdegree);
                     point.X += setting.zodiacRingOuterPadding.X;
                     point.X += setting.zodiacRadius / 2;
@@ -361,6 +381,182 @@ namespace microcosm
 
             g.Dispose();
             fnt.Dispose();
+        }
+
+        // アスペクト表示
+        public void aspectsRendering(double startDegree, List<PlanetData> natallist, List<PlanetData> progresslist, List<PlanetData> transitlist)
+        {
+            if (aspectSetting.n_n)
+            {
+                aspectRender(startDegree, natallist, 1, 1, 1);
+            }
+            if (aspectSetting.p_p && setting.bands > 1)
+            {
+                aspectRender(startDegree, progresslist, 2, 2, 1);
+            }
+            if (aspectSetting.t_t && setting.bands > 2)
+            {
+                aspectRender(startDegree, transitlist, 3, 3, 1);
+            }
+            if (aspectSetting.n_p && setting.bands > 1)
+            {
+                aspectRender(startDegree, natallist, 1, 2, 2);
+            }
+            if (aspectSetting.n_t && setting.bands > 2)
+            {
+                aspectRender(startDegree, natallist, 1, 3, 3);
+            }
+            if (aspectSetting.p_t && setting.bands > 2)
+            {
+                aspectRender(startDegree, progresslist, 2, 3, 3);
+            }
+
+        }
+
+        private void aspectRender(double startDegree, List<PlanetData> list, int startPosition, int endPosition, int aspectKind)
+        {
+            if (list == null)
+            {
+                return;
+            }
+            Graphics g = Graphics.FromImage(canvas);
+            for (int i = 0; i < list.Count; i++)
+            {
+                PointF startPoint;
+                PointF endPoint;
+                Pen pen;
+                if (startPosition == 1)
+                {
+                    startPoint = rotate(setting.calcInnerRadius() / 2, 0, list[i].absolute_position - startDegree);
+                } else if (startPosition == 2)
+                {
+                    startPoint = rotate(setting.calcThirdInnerRadius() / 2, 0, list[i].absolute_position - startDegree);
+                } else
+                {
+                    startPoint = rotate(setting.calcSecondInnerRadius() / 2, 0, list[i].absolute_position - startDegree);
+                }
+                startPoint.X += setting.zodiacRingOuterPadding.X;
+                startPoint.X += setting.zodiacRadius / 2;
+                startPoint.Y *= -1;
+                startPoint.Y += setting.zodiacRingOuterPadding.Y;
+                startPoint.Y += setting.zodiacRadius / 2;
+                if (aspectKind == 1)
+                {
+                    for (int j = 0; j < list[i].aspects.Count; j++)
+                    {
+                        if (endPosition == 1)
+                        {
+                            endPoint = rotate(setting.calcInnerRadius() / 2, 0, list[i].aspects[j].target_position - startDegree);
+                        }
+                        else if (endPosition == 2)
+                        {
+                            endPoint = rotate(setting.calcThirdInnerRadius() / 2, 0, list[i].aspects[j].target_position - startDegree);
+                        }
+                        else
+                        {
+                            endPoint = rotate(setting.calcSecondInnerRadius() / 2, 0, list[i].aspects[j].target_position - startDegree);
+                        }
+                        endPoint.X += setting.zodiacRingOuterPadding.X;
+                        endPoint.X += setting.zodiacRadius / 2;
+                        endPoint.Y *= -1;
+                        endPoint.Y += setting.zodiacRingOuterPadding.Y;
+                        endPoint.Y += setting.zodiacRadius / 2;
+                        if (list[i].aspects[j].aspect_kind == AspectKind.OPPOSITION)
+                        {
+                            pen = new Pen(Color.Red);
+                        }
+                        else if (list[i].aspects[j].aspect_kind == AspectKind.SQUARE)
+                        {
+                            pen = new Pen(Color.Cyan);
+                        }
+                        else if (list[i].aspects[j].aspect_kind == AspectKind.TRINE)
+                        {
+                            pen = new Pen(Color.Orange);
+                        }
+                        else if (list[i].aspects[j].aspect_kind == AspectKind.SEXTILE)
+                        {
+                            pen = new Pen(Color.Green);
+                        }
+                        else
+                        {
+                            pen = new Pen(Color.Yellow);
+                        }
+                        g.DrawLine(pen, startPoint, endPoint);
+                        pen.Dispose();
+                    }
+
+                } else if (aspectKind == 2)
+                {
+                    for (int j = 0; j < list[i].progressAspects.Count; j++)
+                    {
+                        endPoint = rotate(setting.calcThirdInnerRadius() / 2, 0, list[i].progressAspects[j].target_position - startDegree);
+                        endPoint.X += setting.zodiacRingOuterPadding.X;
+                        endPoint.X += setting.zodiacRadius / 2;
+                        endPoint.Y *= -1;
+                        endPoint.Y += setting.zodiacRingOuterPadding.Y;
+                        endPoint.Y += setting.zodiacRadius / 2;
+                        if (list[i].progressAspects[j].aspect_kind == AspectKind.OPPOSITION)
+                        {
+                            pen = new Pen(Color.Red);
+                        }
+                        else if (list[i].progressAspects[j].aspect_kind == AspectKind.SQUARE)
+                        {
+                            pen = new Pen(Color.Cyan);
+                        }
+                        else if (list[i].progressAspects[j].aspect_kind == AspectKind.TRINE)
+                        {
+                            pen = new Pen(Color.Orange);
+                        }
+                        else if (list[i].progressAspects[j].aspect_kind == AspectKind.SEXTILE)
+                        {
+                            pen = new Pen(Color.Green);
+                        }
+                        else
+                        {
+                            pen = new Pen(Color.Yellow);
+                        }
+                        g.DrawLine(pen, startPoint, endPoint);
+                        pen.Dispose();
+                    }
+
+                }
+                else if (aspectKind == 3)
+                {
+                    for (int j = 0; j < list[i].transitAspects.Count; j++)
+                    {
+                        endPoint = rotate(setting.calcSecondInnerRadius() / 2, 0, list[i].transitAspects[j].target_position - startDegree);
+                        endPoint.X += setting.zodiacRingOuterPadding.X;
+                        endPoint.X += setting.zodiacRadius / 2;
+                        endPoint.Y *= -1;
+                        endPoint.Y += setting.zodiacRingOuterPadding.Y;
+                        endPoint.Y += setting.zodiacRadius / 2;
+                        if (list[i].transitAspects[j].aspect_kind == AspectKind.OPPOSITION)
+                        {
+                            pen = new Pen(Color.Red);
+                        }
+                        else if (list[i].transitAspects[j].aspect_kind == AspectKind.SQUARE)
+                        {
+                            pen = new Pen(Color.Cyan);
+                        }
+                        else if (list[i].transitAspects[j].aspect_kind == AspectKind.TRINE)
+                        {
+                            pen = new Pen(Color.Orange);
+                        }
+                        else if (list[i].transitAspects[j].aspect_kind == AspectKind.SEXTILE)
+                        {
+                            pen = new Pen(Color.Green);
+                        }
+                        else
+                        {
+                            pen = new Pen(Color.Yellow);
+                        }
+                        g.DrawLine(pen, startPoint, endPoint);
+                        pen.Dispose();
+                    }
+
+                }
+            }
+            g.Dispose();
         }
 
         private void refreshRender()

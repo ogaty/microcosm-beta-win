@@ -30,3 +30,4 @@ C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DB.Data
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DB.UserDataEditForm.resources
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DB.UserEventEditForm.resources
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.DB.SearchForm.resources
+C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Config.DisplayForm.resources

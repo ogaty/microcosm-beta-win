@@ -149,5 +149,19 @@ namespace microcosm.DB
 
         }
 
+        private void eventListView_DoubleClick(object sender, EventArgs e)
+        {
+            if (eventListView.FocusedItem == null)
+            {
+                return;
+            }
+            User u = (User)this.eventListView.FocusedItem.Tag;
+            User udata = (User)this.eventListView.Items[0].Tag;
+            this.mainform.ReflectUserData(u, udata);
+
+            this.Close();
+
+        }
+
     }
 }

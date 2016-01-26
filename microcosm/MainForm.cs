@@ -21,8 +21,10 @@ namespace microcosm
     {
         public ConfigData config;
         public Settings setting;
+        public AspectSetting[] aspectSettingList;
         public AspectSetting aspectSetting;
         public string filename = @"system\system.xml";
+        public string aspect_filename = @"system\aspect";
 
         public List<PlanetData> natallist;
         public List<PlanetData> progresslist;
@@ -43,12 +45,35 @@ namespace microcosm
         private void MainForm_Load(object sender, EventArgs e)
         {
             // コンフィグ読み込み
-            if (this.config == null)
+            config = new ConfigData();
+            setting = new Settings();
+            aspectSettingList = new AspectSetting[10];
+            for (int i = 0; i< 9; i++)
             {
-                this.config = new ConfigData();
+                aspectSettingList[i] = new AspectSetting();
             }
-            this.setting = new Settings();
-            this.aspectSetting = new AspectSetting();
+
+            // 表示設定
+            for (int i = 0; i < 10; i++)
+            {
+                if (File.Exists(aspect_filename + i.ToString() + ".xml"))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(AspectSetting));
+                    FileStream fs = new FileStream(aspect_filename + i.ToString() + ".xml", FileMode.Open);
+                    aspectSettingList[i] = (AspectSetting)serializer.Deserialize(fs);
+                    fs.Close();
+                    if (aspectSettingList[i].dispname == null)
+                    {
+                        aspectSelect.Items.Add("表示設定" + i.ToString());
+                    } else
+                    {
+                        aspectSelect.Items.Add(aspectSettingList[i].dispname);
+                    }
+                } else
+                {
+                    aspectSelect.Items.Add("表示設定" + i.ToString());
+                }
+            }
 
             string name = "現在";
             int year = DateTime.Now.Year;
@@ -102,13 +127,16 @@ namespace microcosm
                 config.ephepath = System.Windows.Forms.Application.StartupPath + @"\ephe"; ;
             }
 
+            // デフォルトデータ
             setNatalData(year, month, day, hour, minute, second, lat, lng);
             setTransitData(year, month, day, hour, minute, second, lat, lng);
             // 計算
             calc = new AstroCalc(config);
 
-            // 表示
-            chartRefresh();
+            // 表示(comboBoxのindexChangeで再描画)
+            aspectSelect.SelectedIndex = 0;
+            aspectSetting = aspectSettingList[0];
+
         }
 
         // 左上枠設定
@@ -135,6 +163,15 @@ namespace microcosm
             placeLabel.Text = place;
             latLabel.Text = lat.ToString();
             lngLabel.Text = lng.ToString();
+            setMainEventData(name, birth, place, lat, lng);
+        }
+        public void setMainEventData(string name, string birth, string place, double lat, double lng)
+        {
+            eventNameLabel.Text = name;
+            eventDateLabel.Text = birth;
+            eventPlaceLabel.Text = place;
+            eventLatLabel.Text = lat.ToString();
+            eventLngLabel.Text = lng.ToString();
         }
 
         // Natalセット
@@ -176,14 +213,25 @@ namespace microcosm
             if (u.udata == null)
             {
                 UserEvent uevent = u.uevent;
-                this.usernameLabel.Text = uevent.event_name;
-                this.birthLabel.Text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
-                    uevent.event_year, uevent.event_month, uevent.event_day,
-                    uevent.event_hour, uevent.event_minute, uevent.event_second);
-                this.placeLabel.Text = uevent.event_place;
                 UserData udata = userdata.udata;
+                this.usernameLabel.Text = udata.name;
+                this.birthLabel.Text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                    udata.birth_year, udata.birth_month, udata.birth_day,
+                    udata.birth_hour, udata.birth_minute, udata.birth_second);
+                this.placeLabel.Text = udata.birth_place;
+                this.latLabel.Text = udata.lat.ToString();
+                this.lngLabel.Text = udata.lng.ToString();
                 setNatalData(udata.birth_year, udata.birth_month, udata.birth_day, udata.birth_hour, udata.birth_minute, udata.birth_second, udata.lat, udata.lng);
                 setTransitData(uevent.event_year, uevent.event_month, uevent.event_day, uevent.event_hour, uevent.event_minute, uevent.event_second, uevent.event_lat, uevent.event_lng);
+
+                eventNameLabel.Text = uevent.event_name;
+                eventDateLabel.Text = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                    uevent.event_year, uevent.event_month, uevent.event_day,
+                    uevent.event_hour, uevent.event_minute, uevent.event_second);
+                eventPlaceLabel.Text = uevent.event_place;
+                eventLatLabel.Text = uevent.event_lat.ToString();
+                eventLngLabel.Text = uevent.event_lng.ToString();
+
             }
             else
             {
@@ -194,6 +242,7 @@ namespace microcosm
                     udata.birth_hour, udata.birth_minute, udata.birth_second);
                 this.placeLabel.Text = udata.birth_place;
                 setNatalData(udata.birth_year, udata.birth_month, udata.birth_day, udata.birth_hour, udata.birth_minute, udata.birth_second, udata.lat, udata.lng);
+
             }
 
             chartRefresh();
@@ -258,7 +307,7 @@ namespace microcosm
         {
             natallist = calc.PositionCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
             natalcusp = calc.CuspCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
-            natallist = calc.AspectCalc(aspectSetting, natallist);
+            natallist = calc.AspectCalcSame(aspectSetting, natallist);
 
             progresscusp = null;
             transitcusp = null;
@@ -276,10 +325,16 @@ namespace microcosm
                     progresslist = calc.CompositProgressionCalc(natallist, new DateTime(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second), new DateTime(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second));
                 }
                 progresscusp = calc.CuspCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
+                progresslist = calc.AspectCalcSame(aspectSetting, progresslist);
+                natallist = calc.AspectCalcOther(aspectSetting, natallist, progresslist, 1);
+
                 if (setting.bands > 2)
                 {
                     transitlist = calc.PositionCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
                     transitcusp = calc.CuspCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
+                    transitlist = calc.AspectCalcSame(aspectSetting, transitlist);
+                    natallist = calc.AspectCalcOther(aspectSetting, natallist, transitlist, 2);
+                    progresslist = calc.AspectCalcOther(aspectSetting, progresslist, transitlist, 2);
                 }
             }
 
@@ -290,7 +345,26 @@ namespace microcosm
             houseCuspRender(natalcusp);
             signCuspRender(natalcusp[1]);
             planetRender(natalcusp[1], natallist, progresslist, transitlist);
+            aspectsRendering(natalcusp[1], natallist, progresslist, transitlist);
 
+        }
+
+        public void ChangeSettingCombo(AspectSetting[] setList)
+        {
+            aspectSettingList = setList;
+            Enumerable.Range(0, 10).ToList().ForEach(index => { aspectSelect.Items[index] = aspectSettingList[index].dispname; });
+        }
+
+        private void DisplayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayForm disp = new DisplayForm(this, aspectSettingList);
+            disp.Show();
+        }
+
+        private void aspectSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            aspectSetting = aspectSettingList[((ComboBox)sender).SelectedIndex];
+            chartRefresh();
         }
     }
 }

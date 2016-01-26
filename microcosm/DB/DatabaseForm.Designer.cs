@@ -155,6 +155,7 @@
             this.eventListView.UseCompatibleStateImageBehavior = false;
             this.eventListView.View = System.Windows.Forms.View.Details;
             this.eventListView.SelectedIndexChanged += new System.EventHandler(this.eventListView_SelectedIndexChanged);
+            this.eventListView.DoubleClick += new System.EventHandler(this.eventListView_DoubleClick);
             this.eventListView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.eventListView_MouseDown);
             // 
             // name
@@ -263,7 +264,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(119, 22);
             this.toolStripMenuItem2.Text = "閉じる(&X)";
             // 
             // DatabaseForm

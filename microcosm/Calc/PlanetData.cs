@@ -18,8 +18,13 @@ namespace microcosm.Calc
         // 感受点はtrue
         public bool sensitive;
         // アスペクト対象リスト
-        // リスト番号が設定される
         public List<Aspect> aspects;
+        // Pとのアスペクトはここ
+        public List<Aspect> progressAspects;
+        // Tとのアスペクトはここ
+        public List<Aspect> transitAspects;
+        // 表示周り
+        public bool isDisp;
 
         public PlanetData()
         {
@@ -83,7 +88,7 @@ namespace microcosm.Calc
                     no = 1;
                     sensitive = true;
                     break;
-                case Common.ZODIAC_DH:
+                case Common.ZODIAC_TRUENODE:
                     no = 1;
                     sensitive = true;
                     break;

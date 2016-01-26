@@ -54,6 +54,31 @@ namespace microcosm.Config
                 secondaryProgression.Checked = false;
                 compositProgression.Checked = true;
             }
+
+            if (this.mainform.aspectSetting.n_n)
+            {
+                nnDisp.Checked = true;
+            }
+            if (this.mainform.aspectSetting.n_p)
+            {
+                npDisp.Checked = true;
+            }
+            if (this.mainform.aspectSetting.n_t)
+            {
+                ntDisp.Checked = true;
+            }
+            if (this.mainform.aspectSetting.p_p)
+            {
+                ppDisp.Checked = true;
+            }
+            if (this.mainform.aspectSetting.p_t)
+            {
+                ptDisp.Checked = true;
+            }
+            if (this.mainform.aspectSetting.t_t)
+            {
+                ptDisp.Checked = true;
+            }
         }
 
         private void centric_geo_CheckedChanged(object sender, EventArgs e)
@@ -94,6 +119,7 @@ namespace microcosm.Config
             serializer.Serialize(sw, mainform.config);
             sw.Close();
             fs.Close();
+
 
             mainform.chartRefresh();
             this.Close();

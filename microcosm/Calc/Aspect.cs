@@ -17,7 +17,8 @@ namespace microcosm.Calc
     };
     public class Aspect
     {
-        public int target_no;
+        public double target_position;
         public AspectKind aspect_kind;
+        public int soft_hard;
     }
 }

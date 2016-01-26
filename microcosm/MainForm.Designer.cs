@@ -31,6 +31,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.FileFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenDatabaseOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.表示DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.チャートToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.singleChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tripleChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.オプションOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usernameLabel = new System.Windows.Forms.Label();
@@ -40,6 +44,7 @@
             this.lngLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.leftPanel = new System.Windows.Forms.Panel();
+            this.progressionLabel = new System.Windows.Forms.Label();
             this.cusp12 = new System.Windows.Forms.Label();
             this.cusp11 = new System.Windows.Forms.Label();
             this.cusp10 = new System.Windows.Forms.Label();
@@ -74,11 +79,15 @@
             this.centerSlider = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.chartPanel = new System.Windows.Forms.PictureBox();
-            this.表示DToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.チャートToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.singleChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tripleChartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.progressionLabel = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.eventNameLabel = new System.Windows.Forms.Label();
+            this.eventLngLabel = new System.Windows.Forms.Label();
+            this.eventDateLabel = new System.Windows.Forms.Label();
+            this.eventLatLabel = new System.Windows.Forms.Label();
+            this.eventPlaceLabel = new System.Windows.Forms.Label();
+            this.aspectSelect = new System.Windows.Forms.ComboBox();
+            this.DisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.leftPanel.SuspendLayout();
@@ -86,6 +95,8 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -96,7 +107,7 @@
             this.オプションOToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(904, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1014, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -115,10 +126,44 @@
             this.OpenDatabaseOToolStripMenuItem.Text = "データベースを開く(&N)";
             this.OpenDatabaseOToolStripMenuItem.Click += new System.EventHandler(this.OpenDatabaseOToolStripMenuItem_Click);
             // 
+            // 表示DToolStripMenuItem
+            // 
+            this.表示DToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.チャートToolStripMenuItem});
+            this.表示DToolStripMenuItem.Name = "表示DToolStripMenuItem";
+            this.表示DToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.表示DToolStripMenuItem.Text = "表示(&D)";
+            // 
+            // チャートToolStripMenuItem
+            // 
+            this.チャートToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.singleChartToolStripMenuItem,
+            this.tripleChartToolStripMenuItem});
+            this.チャートToolStripMenuItem.Name = "チャートToolStripMenuItem";
+            this.チャートToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.チャートToolStripMenuItem.Text = "チャート";
+            // 
+            // singleChartToolStripMenuItem
+            // 
+            this.singleChartToolStripMenuItem.Checked = true;
+            this.singleChartToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.singleChartToolStripMenuItem.Name = "singleChartToolStripMenuItem";
+            this.singleChartToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.singleChartToolStripMenuItem.Text = "一重円";
+            this.singleChartToolStripMenuItem.Click += new System.EventHandler(this.singleChartToolStripMenuItem_Click);
+            // 
+            // tripleChartToolStripMenuItem
+            // 
+            this.tripleChartToolStripMenuItem.Name = "tripleChartToolStripMenuItem";
+            this.tripleChartToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.tripleChartToolStripMenuItem.Text = "三重円";
+            this.tripleChartToolStripMenuItem.Click += new System.EventHandler(this.tripleChartToolStripMenuItem_Click);
+            // 
             // オプションOToolStripMenuItem
             // 
             this.オプションOToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ConfigToolStripMenuItem});
+            this.ConfigToolStripMenuItem,
+            this.DisplayToolStripMenuItem});
             this.オプションOToolStripMenuItem.Name = "オプションOToolStripMenuItem";
             this.オプションOToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.オプションOToolStripMenuItem.Text = "オプション(&O)";
@@ -127,7 +172,7 @@
             // 
             this.ConfigToolStripMenuItem.Name = "ConfigToolStripMenuItem";
             this.ConfigToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.ConfigToolStripMenuItem.Text = "設定(&C)";
+            this.ConfigToolStripMenuItem.Text = "共通設定(&C)";
             this.ConfigToolStripMenuItem.Click += new System.EventHandler(this.ConfigToolStripMenuItem_Click);
             // 
             // usernameLabel
@@ -223,6 +268,15 @@
             this.leftPanel.Name = "leftPanel";
             this.leftPanel.Size = new System.Drawing.Size(259, 614);
             this.leftPanel.TabIndex = 1;
+            // 
+            // progressionLabel
+            // 
+            this.progressionLabel.AutoSize = true;
+            this.progressionLabel.Location = new System.Drawing.Point(19, 593);
+            this.progressionLabel.Name = "progressionLabel";
+            this.progressionLabel.Size = new System.Drawing.Size(65, 12);
+            this.progressionLabel.TabIndex = 34;
+            this.progressionLabel.Text = "一日一年法";
             // 
             // cusp12
             // 
@@ -535,58 +589,103 @@
             this.chartPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartPanel.Location = new System.Drawing.Point(262, 24);
             this.chartPanel.Name = "chartPanel";
-            this.chartPanel.Size = new System.Drawing.Size(642, 614);
+            this.chartPanel.Size = new System.Drawing.Size(752, 614);
             this.chartPanel.TabIndex = 10;
             this.chartPanel.TabStop = false;
             // 
-            // 表示DToolStripMenuItem
+            // panel2
             // 
-            this.表示DToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.チャートToolStripMenuItem});
-            this.表示DToolStripMenuItem.Name = "表示DToolStripMenuItem";
-            this.表示DToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.表示DToolStripMenuItem.Text = "表示(&D)";
+            this.panel2.BackColor = System.Drawing.SystemColors.Window;
+            this.panel2.Controls.Add(this.aspectSelect);
+            this.panel2.Controls.Add(this.groupBox3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(854, 24);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(160, 614);
+            this.panel2.TabIndex = 11;
             // 
-            // チャートToolStripMenuItem
+            // groupBox3
             // 
-            this.チャートToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.singleChartToolStripMenuItem,
-            this.tripleChartToolStripMenuItem});
-            this.チャートToolStripMenuItem.Name = "チャートToolStripMenuItem";
-            this.チャートToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.チャートToolStripMenuItem.Text = "チャート";
+            this.groupBox3.Controls.Add(this.eventNameLabel);
+            this.groupBox3.Controls.Add(this.eventLngLabel);
+            this.groupBox3.Controls.Add(this.eventDateLabel);
+            this.groupBox3.Controls.Add(this.eventLatLabel);
+            this.groupBox3.Controls.Add(this.eventPlaceLabel);
+            this.groupBox3.Location = new System.Drawing.Point(12, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(136, 100);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
             // 
-            // singleChartToolStripMenuItem
+            // eventNameLabel
             // 
-            this.singleChartToolStripMenuItem.Checked = true;
-            this.singleChartToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.singleChartToolStripMenuItem.Name = "singleChartToolStripMenuItem";
-            this.singleChartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.singleChartToolStripMenuItem.Text = "一重円";
-            this.singleChartToolStripMenuItem.Click += new System.EventHandler(this.singleChartToolStripMenuItem_Click);
+            this.eventNameLabel.AutoSize = true;
+            this.eventNameLabel.Location = new System.Drawing.Point(6, 15);
+            this.eventNameLabel.Name = "eventNameLabel";
+            this.eventNameLabel.Size = new System.Drawing.Size(29, 12);
+            this.eventNameLabel.TabIndex = 1;
+            this.eventNameLabel.Text = "現在";
             // 
-            // tripleChartToolStripMenuItem
+            // eventLngLabel
             // 
-            this.tripleChartToolStripMenuItem.Name = "tripleChartToolStripMenuItem";
-            this.tripleChartToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.tripleChartToolStripMenuItem.Text = "三重円";
-            this.tripleChartToolStripMenuItem.Click += new System.EventHandler(this.tripleChartToolStripMenuItem_Click);
+            this.eventLngLabel.AutoSize = true;
+            this.eventLngLabel.Location = new System.Drawing.Point(67, 66);
+            this.eventLngLabel.Name = "eventLngLabel";
+            this.eventLngLabel.Size = new System.Drawing.Size(61, 12);
+            this.eventLngLabel.TabIndex = 5;
+            this.eventLngLabel.Text = "137.000000";
             // 
-            // progressionLabel
+            // eventDateLabel
             // 
-            this.progressionLabel.AutoSize = true;
-            this.progressionLabel.Location = new System.Drawing.Point(19, 593);
-            this.progressionLabel.Name = "progressionLabel";
-            this.progressionLabel.Size = new System.Drawing.Size(65, 12);
-            this.progressionLabel.TabIndex = 34;
-            this.progressionLabel.Text = "一日一年法";
+            this.eventDateLabel.AutoSize = true;
+            this.eventDateLabel.Location = new System.Drawing.Point(6, 33);
+            this.eventDateLabel.Name = "eventDateLabel";
+            this.eventDateLabel.Size = new System.Drawing.Size(121, 12);
+            this.eventDateLabel.TabIndex = 2;
+            this.eventDateLabel.Text = "1970年1月1日 12:00:00";
+            // 
+            // eventLatLabel
+            // 
+            this.eventLatLabel.AutoSize = true;
+            this.eventLatLabel.Location = new System.Drawing.Point(6, 66);
+            this.eventLatLabel.Name = "eventLatLabel";
+            this.eventLatLabel.Size = new System.Drawing.Size(55, 12);
+            this.eventLatLabel.TabIndex = 4;
+            this.eventLatLabel.Text = "37.000000";
+            // 
+            // eventPlaceLabel
+            // 
+            this.eventPlaceLabel.AutoSize = true;
+            this.eventPlaceLabel.Location = new System.Drawing.Point(6, 49);
+            this.eventPlaceLabel.Name = "eventPlaceLabel";
+            this.eventPlaceLabel.Size = new System.Drawing.Size(81, 12);
+            this.eventPlaceLabel.TabIndex = 3;
+            this.eventPlaceLabel.Text = "東京都 中央区";
+            // 
+            // aspectSelect
+            // 
+            this.aspectSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.aspectSelect.FormattingEnabled = true;
+            this.aspectSelect.Location = new System.Drawing.Point(12, 110);
+            this.aspectSelect.Name = "aspectSelect";
+            this.aspectSelect.Size = new System.Drawing.Size(136, 20);
+            this.aspectSelect.TabIndex = 2;
+            this.aspectSelect.SelectedIndexChanged += new System.EventHandler(this.aspectSelect_SelectedIndexChanged);
+            // 
+            // DisplayToolStripMenuItem
+            // 
+            this.DisplayToolStripMenuItem.Name = "DisplayToolStripMenuItem";
+            this.DisplayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DisplayToolStripMenuItem.Text = "表示設定(&D)";
+            this.DisplayToolStripMenuItem.Click += new System.EventHandler(this.DisplayToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(904, 638);
+            this.ClientSize = new System.Drawing.Size(1014, 638);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.chartPanel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBox2);
@@ -608,6 +707,9 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -666,6 +768,15 @@
         private System.Windows.Forms.ToolStripMenuItem singleChartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tripleChartToolStripMenuItem;
         private System.Windows.Forms.Label progressionLabel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label eventNameLabel;
+        private System.Windows.Forms.Label eventLngLabel;
+        private System.Windows.Forms.Label eventDateLabel;
+        private System.Windows.Forms.Label eventLatLabel;
+        private System.Windows.Forms.Label eventPlaceLabel;
+        private System.Windows.Forms.ComboBox aspectSelect;
+        private System.Windows.Forms.ToolStripMenuItem DisplayToolStripMenuItem;
     }
 }
 

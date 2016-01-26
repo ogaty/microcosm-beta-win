@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using SwissEphNet;
 using microcosm.Config;
+using System.Windows.Forms;
 
 namespace microcosm.Calc
 {
@@ -51,7 +52,8 @@ namespace microcosm.Calc
             s.swe_utc_to_jd(utc_year, utc_month, utc_day, utc_hour, utc_minute, utc_second, 1, dret, ref serr);
 
             // 10天体ループ
-            Enumerable.Range(0, 10).ToList().ForEach(i =>
+            // 11(DH/TrueNode)、14(Earth)、15(Chiron)もついでに計算
+            Enumerable.Range(0, 16).ToList().ForEach(i =>
             {
                 int flag = SwissEph.SEFLG_SWIEPH | SwissEph.SEFLG_SPEED;
                 if (config.centric == ECentric.HELIO_CENTRIC)
@@ -83,7 +85,26 @@ namespace microcosm.Calc
                 }
 
 
-                PlanetData p = new PlanetData() { no = i, absolute_position = x[0], speed = x[3], aspects = new List<Aspect>() };
+                PlanetData p = new PlanetData() { no = i, absolute_position = x[0], speed = x[3], aspects = new List<Aspect>(), progressAspects = new List<Aspect>(), transitAspects = new List<Aspect>(), sensitive = false, isDisp = true };
+                if (config.centric == ECentric.HELIO_CENTRIC && i == 0)
+                {
+                    // ヘリオセントリック太陽
+                    p.isDisp = false;
+                }
+                if (i >= 10)
+                {
+                    p.isDisp = false;
+                }
+                if (i == 11)
+                {
+                    // ヘッド
+                    p.isDisp = true;
+                }
+                if (config.centric == ECentric.HELIO_CENTRIC && i == 14)
+                {
+                    // ヘリオセントリック地球
+                    p.isDisp = true;
+                }
                 planetdata.Add(p);
             });
 
@@ -129,7 +150,7 @@ namespace microcosm.Calc
             double years = ts.TotalDays / year_days;
             natallist.ForEach(data =>
             {
-                PlanetData progressdata = new PlanetData() { absolute_position = data.absolute_position, no = data.no, sensitive = data.sensitive, speed = data.speed };
+                PlanetData progressdata = new PlanetData() { absolute_position = data.absolute_position, no = data.no, sensitive = data.sensitive, speed = data.speed, aspects = new List<Aspect>(), progressAspects = new List<Aspect>(), transitAspects = new List<Aspect>() };
                 progressdata.absolute_position += years;
                 progressdata.absolute_position %= 365;
                 progresslist.Add(progressdata);
@@ -195,7 +216,7 @@ namespace microcosm.Calc
                     s.swe_calc_ut(dret[1], data.no, flag, x, ref serr);
                 }
 
-                PlanetData progressdata = new PlanetData() { absolute_position = x[0], no = data.no, sensitive = data.sensitive, speed = data.speed };
+                PlanetData progressdata = new PlanetData() { absolute_position = x[0], no = data.no, sensitive = data.sensitive, speed = data.speed, aspects = new List<Aspect>(), progressAspects = new List<Aspect>(), transitAspects = new List<Aspect>() };
                 progresslist.Add(progressdata);
 
             });
@@ -244,7 +265,7 @@ namespace microcosm.Calc
                 PlanetData progressdata;
                 if ((data.no != Common.ZODIAC_MOON) && (data.no != Common.ZODIAC_MERCURY) && (data.no != Common.ZODIAC_VENUS) && (data.no != Common.ZODIAC_SUN))
                 {
-                    progressdata = new PlanetData() { absolute_position = data.absolute_position, no = data.no, sensitive = data.sensitive, speed = data.speed };
+                    progressdata = new PlanetData() { absolute_position = data.absolute_position, no = data.no, sensitive = data.sensitive, speed = data.speed, aspects = new List<Aspect>(), progressAspects = new List<Aspect>(), transitAspects = new List<Aspect>() };
                     progressdata.absolute_position += years;
                     progressdata.absolute_position %= 365;
                     progresslist.Add(progressdata);
@@ -272,7 +293,7 @@ namespace microcosm.Calc
                     s.swe_calc_ut(dret[1], data.no, flag, x, ref serr);
                 }
 
-                progressdata = new PlanetData() { absolute_position = x[0], no = data.no, sensitive = data.sensitive, speed = data.speed };
+                progressdata = new PlanetData() { absolute_position = x[0], no = data.no, sensitive = data.sensitive, speed = data.speed, aspects = new List<Aspect>(), progressAspects = new List<Aspect>(), transitAspects = new List<Aspect>() };
                 progresslist.Add(progressdata);
 
             });
@@ -281,61 +302,342 @@ namespace microcosm.Calc
             return progresslist;
         }
 
-        // アスペクトを計算する
-        public List<PlanetData> AspectCalc(AspectSetting a_setting, List<PlanetData> natallist)
+        // 同じリストのアスペクトを計算する
+        public List<PlanetData> AspectCalcSame(AspectSetting a_setting, List<PlanetData> list)
         {
             // if (natal-natal)
-            for (int i = 0; i < natallist.Count - 2; i++)
+            for (int i = 0; i < list.Count - 2; i++)
             {
-                for (int j = i + 1; j < natallist.Count - 1; j++)
+                for (int j = i + 1; j < list.Count - 1; j++)
                 {
                     // 90.0 と　300.0では210度ではなく150度にならなければいけない
-                    double aspect_degree = natallist[i].absolute_position - natallist[j].absolute_position;
+                    double aspect_degree = list[i].absolute_position - list[j].absolute_position;
+
                     if (aspect_degree > 180)
                     {
-                        aspect_degree = natallist[j].absolute_position + 360 - natallist[i].absolute_position;
+                        aspect_degree = list[j].absolute_position + 360 - list[i].absolute_position;
                     }
                     if (aspect_degree < 0)
                     {
                         aspect_degree = Math.Abs(aspect_degree);
                     }
-                    // conjunction
-                    if (aspect_degree < a_setting.orb_natal_sun)
-                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.CONJUNCTION });
 
-                    // square
-                    if (aspect_degree < 90.0 + a_setting.orb_natal_sun &&
-                        aspect_degree > 90.0 - a_setting.orb_natal_sun)
-                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.SQUARE });
 
-                    // trine
-                    if (aspect_degree < 120.0 + a_setting.orb_natal_sun &&
-                        aspect_degree > 120.0 - a_setting.orb_natal_sun)
-                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.TRINE });
+                    foreach (AspectKind kind in Enum.GetValues(typeof(AspectKind)))
+                    {
+                        if (i == Common.ZODIAC_SUN)
+                        {
+                            if (kind == AspectKind.CONJUNCTION ||
+                                kind == AspectKind.OPPOSITION ||
+                                kind == AspectKind.TRINE ||
+                                kind == AspectKind.SQUARE ||
+                                kind == AspectKind.SESQUIQUADRATE)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_1st)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_1st &&
+                                  aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_1st)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            } else if (kind == AspectKind.INCONJUNCT)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_150 &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_150)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_150 &&
+                                  aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_150)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            } else
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_2nd &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_2nd)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_2nd &&
+                                  aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_2nd)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            }
 
-                    // opposition
-                    if (aspect_degree < 180.0 + a_setting.orb_natal_sun &&
-                        aspect_degree > 180.0 - a_setting.orb_natal_sun)
-                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.OPPOSITION });
+                        }
+                        else if (i == Common.ZODIAC_MOON)
+                        {
+                            if (kind == AspectKind.CONJUNCTION ||
+                                kind == AspectKind.OPPOSITION ||
+                                kind == AspectKind.TRINE ||
+                                kind == AspectKind.SQUARE ||
+                                kind == AspectKind.SESQUIQUADRATE)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_1st)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_1st)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            } else if (kind == AspectKind.INCONJUNCT)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_150 &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_150)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_150 &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_150)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            } else
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_2nd &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_2nd)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_2nd &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_2nd)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            }
 
-                    // sextile
-                    if (aspect_degree < 60.0 + a_setting.orb_natal_sun &&
-                        aspect_degree > 60.0 - a_setting.orb_natal_sun)
-                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.SEXTILE });
+                        }
+                        else
+                        {
+                            if (kind == AspectKind.CONJUNCTION ||
+                                kind == AspectKind.OPPOSITION ||
+                                kind == AspectKind.TRINE ||
+                                kind == AspectKind.SQUARE ||
+                                kind == AspectKind.SESQUIQUADRATE)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_1st)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_1st)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            } else if (kind == AspectKind.INCONJUNCT)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_150 &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_150)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_150 &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_150)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            } else
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_2nd &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_2nd)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_2nd &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_2nd)
+                                {
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            }
+                        }
+                    }
 
-                    // inconjunct / quincunx
-                    if (aspect_degree < 150.0 + a_setting.orb_natal_sun &&
-                        aspect_degree > 150.0 - a_setting.orb_natal_sun)
-                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.INCONJUNCT });
-
-                    // sesquiquadrate
-                    if (aspect_degree < 135.0 + a_setting.orb_natal_sun &&
-                        aspect_degree > 135.0 - a_setting.orb_natal_sun)
-                        natallist[i].aspects.Add(new Aspect() { target_no = j, aspect_kind = AspectKind.SESQUIQUADRATE });
                 }
             }
 
-            return natallist;
+            return list;
+        }
+
+        // 違うリストのアスペクトを計算する
+        public List<PlanetData> AspectCalcOther(AspectSetting a_setting, List<PlanetData> fromList, List<PlanetData> toList, int listKind)
+        {
+            // if (natal-natal)
+            for (int i = 0; i < fromList.Count - 1; i++)
+            {
+                for (int j = 0; j < toList.Count - 1; j++)
+                {
+                    // 90.0 と　300.0では210度ではなく150度にならなければいけない
+                    double aspect_degree = fromList[i].absolute_position - toList[j].absolute_position;
+
+                    if (aspect_degree > 180)
+                    {
+                        aspect_degree = fromList[j].absolute_position + 360 - toList[i].absolute_position;
+                    }
+                    if (aspect_degree < 0)
+                    {
+                        aspect_degree = Math.Abs(aspect_degree);
+                    }
+
+
+                    foreach (AspectKind kind in Enum.GetValues(typeof(AspectKind)))
+                    {
+                        if (listKind == 1)
+                        {
+                            // progress
+                            if (i == Common.ZODIAC_SUN)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_1st)
+                                {
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                } else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_1st)
+                                {
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            } else if (i == Common.ZODIAC_MOON)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_soft_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_soft_1st)
+                                {
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_1st &&
+                                  aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_1st)
+                                {
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+
+                            }
+                            else
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_1st)
+                                {
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_1st &&
+                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_1st)
+                                {
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+
+                            }
+                        } else
+                        {
+                            // transit
+                            if (i == Common.ZODIAC_SUN)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_1st)
+                                {
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_1st)
+                                {
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+                            }
+                            else if (i == Common.ZODIAC_MOON)
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_soft_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_soft_1st)
+                                {
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind ,soft_hard  = 2});
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_1st)
+                                {
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+
+                            }
+                            else
+                            {
+                                if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_1st)
+                                {
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    break;
+                                }
+                                else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_1st &&
+                                    aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_1st)
+                                {
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    break;
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            return fromList;
+        }
+
+        private double getDegree(AspectKind kind)
+        {
+            switch (kind)
+            {
+                case AspectKind.CONJUNCTION:
+                    return 0.0;
+                case AspectKind.OPPOSITION:
+                    return 180.0;
+                case AspectKind.TRINE:
+                    return 120.0;
+                case AspectKind.SQUARE:
+                    return 90.0;
+                case AspectKind.SEXTILE:
+                    return 60.0;
+                case AspectKind.INCONJUNCT:
+                    return 150.0;
+                case AspectKind.SESQUIQUADRATE:
+                    return 135.0;
+                default:
+                    break;
+            }
+
+            return 0.0;
         }
     }
 }
