@@ -26,5 +26,10 @@ namespace microcosm.Help
         {
             System.Diagnostics.Process.Start("http://www.astro.com/");
         }
+
+        private void EphNetLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/ygrenier/SwissEphNet");
+        }
     }
 }

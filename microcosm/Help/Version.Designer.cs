@@ -30,40 +30,35 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.ogatismLabel = new System.Windows.Forms.LinkLabel();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.swissLabel = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.EphNetLabel = new System.Windows.Forms.LinkLabel();
+            this.Libraries = new System.Windows.Forms.GroupBox();
+            this.Libraries.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label1.Location = new System.Drawing.Point(13, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 12);
+            this.label1.Size = new System.Drawing.Size(184, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "microcosm for windows";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(160, 13);
+            this.label2.Location = new System.Drawing.Point(215, 17);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 12);
+            this.label2.Size = new System.Drawing.Size(62, 12);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Version";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(210, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 12);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "0.1";
+            this.label2.Text = "Version 0.1";
             // 
             // ogatismLabel
             // 
@@ -88,16 +83,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 63);
+            this.label5.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.Location = new System.Drawing.Point(6, 18);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 12);
+            this.label5.Size = new System.Drawing.Size(134, 16);
             this.label5.TabIndex = 5;
             this.label5.Text = "Swiss Ephemeris";
             // 
             // swissLabel
             // 
             this.swissLabel.AutoSize = true;
-            this.swissLabel.Location = new System.Drawing.Point(177, 87);
+            this.swissLabel.Location = new System.Drawing.Point(165, 45);
             this.swissLabel.Name = "swissLabel";
             this.swissLabel.Size = new System.Drawing.Size(120, 12);
             this.swissLabel.TabIndex = 6;
@@ -108,27 +104,61 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(50, 87);
+            this.label6.Location = new System.Drawing.Point(38, 45);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 12);
             this.label6.TabIndex = 7;
             this.label6.Text = "(C) Astrodienst AG";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label7.Location = new System.Drawing.Point(6, 67);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(105, 16);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "SwissEphNet";
+            // 
+            // EphNetLabel
+            // 
+            this.EphNetLabel.AutoSize = true;
+            this.EphNetLabel.Location = new System.Drawing.Point(165, 89);
+            this.EphNetLabel.Name = "EphNetLabel";
+            this.EphNetLabel.Size = new System.Drawing.Size(219, 12);
+            this.EphNetLabel.TabIndex = 9;
+            this.EphNetLabel.TabStop = true;
+            this.EphNetLabel.Text = "https://github.com/ygrenier/SwissEphNet";
+            this.EphNetLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EphNetLabel_LinkClicked);
+            // 
+            // Libraries
+            // 
+            this.Libraries.Controls.Add(this.EphNetLabel);
+            this.Libraries.Controls.Add(this.label7);
+            this.Libraries.Controls.Add(this.label5);
+            this.Libraries.Controls.Add(this.label6);
+            this.Libraries.Controls.Add(this.swissLabel);
+            this.Libraries.Location = new System.Drawing.Point(12, 65);
+            this.Libraries.Name = "Libraries";
+            this.Libraries.Size = new System.Drawing.Size(398, 113);
+            this.Libraries.TabIndex = 10;
+            this.Libraries.TabStop = false;
+            this.Libraries.Text = "Libraries";
+            // 
             // Version
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 117);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.swissLabel);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(422, 190);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ogatismLabel);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.Libraries);
             this.Name = "Version";
             this.Text = "Version";
+            this.Libraries.ResumeLayout(false);
+            this.Libraries.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,11 +168,13 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel ogatismLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.LinkLabel swissLabel;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.LinkLabel EphNetLabel;
+        private System.Windows.Forms.GroupBox Libraries;
     }
 }
