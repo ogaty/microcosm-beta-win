@@ -89,6 +89,8 @@
             this.aspectSelect = new System.Windows.Forms.ComboBox();
             this.DisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NowDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.VersionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.leftPanel.SuspendLayout();
@@ -105,7 +107,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileFToolStripMenuItem,
             this.表示DToolStripMenuItem,
-            this.オプションOToolStripMenuItem});
+            this.オプションOToolStripMenuItem,
+            this.ヘルプHToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1014, 24);
@@ -688,6 +691,21 @@
             this.NowDataToolStripMenuItem.Text = "現在のチャートを表示(&N)";
             this.NowDataToolStripMenuItem.Click += new System.EventHandler(this.NowDataToolStripMenuItem_Click);
             // 
+            // ヘルプHToolStripMenuItem
+            // 
+            this.ヘルプHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.VersionToolStripMenuItem});
+            this.ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
+            this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
+            // 
+            // VersionToolStripMenuItem
+            // 
+            this.VersionToolStripMenuItem.Name = "VersionToolStripMenuItem";
+            this.VersionToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.VersionToolStripMenuItem.Text = "バージョン情報(&V)";
+            this.VersionToolStripMenuItem.Click += new System.EventHandler(this.VersionToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -787,6 +805,8 @@
         private System.Windows.Forms.ComboBox aspectSelect;
         private System.Windows.Forms.ToolStripMenuItem DisplayToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NowDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem VersionToolStripMenuItem;
     }
 }
 

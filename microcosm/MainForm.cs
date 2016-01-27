@@ -399,5 +399,11 @@ namespace microcosm
             chartRefresh();
 
         }
+
+        private void VersionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Help.Version v = new Help.Version();
+            v.Show();
+        }
     }
 }
