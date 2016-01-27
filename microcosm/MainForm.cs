@@ -97,6 +97,7 @@ namespace microcosm
             {
                 // 初期データ
                 setMainData(name, birth, place, lat, lng);
+                setMainEventData(name, birth, place, lat, lng);
             }
             else
             {
@@ -120,6 +121,7 @@ namespace microcosm
                         lat,
                         lng);
                 }
+                setMainEventData(name, birth, place, lat, lng);
 
             }
             if (config.ephepath == null)
@@ -163,7 +165,6 @@ namespace microcosm
             placeLabel.Text = place;
             latLabel.Text = lat.ToString();
             lngLabel.Text = lng.ToString();
-            setMainEventData(name, birth, place, lat, lng);
         }
         public void setMainEventData(string name, string birth, string place, double lat, double lng)
         {
@@ -365,6 +366,38 @@ namespace microcosm
         {
             aspectSetting = aspectSettingList[((ComboBox)sender).SelectedIndex];
             chartRefresh();
+        }
+
+        private void NowDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string name = "現在";
+            int year = DateTime.Now.Year;
+            int month = DateTime.Now.Month;
+            int day = DateTime.Now.Day;
+            int hour = DateTime.Now.Hour;
+            int minute = DateTime.Now.Minute;
+            int second = DateTime.Now.Second;
+            string birth = String.Format("{0}年{1}月{2}日 {3:00}:{4:00}:{5:00}",
+                        year.ToString(),
+                        month.ToString(),
+                        day.ToString(),
+                        hour.ToString(),
+                        minute.ToString(),
+                        second.ToString()
+                    );
+            double lat = config.lat;
+            double lng = config.lng;
+            string place = config.defaultPlace;
+            setMainData(name, birth, place, lat, lng);
+
+            // デフォルトデータ
+            setNatalData(year, month, day, hour, minute, second, lat, lng);
+            // 計算
+            calc = new AstroCalc(config);
+
+            // 表示(comboBoxのindexChangeで再描画)
+            chartRefresh();
+
         }
     }
 }

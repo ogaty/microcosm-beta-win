@@ -88,6 +88,7 @@
             this.eventPlaceLabel = new System.Windows.Forms.Label();
             this.aspectSelect = new System.Windows.Forms.ComboBox();
             this.DisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.NowDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.leftPanel.SuspendLayout();
@@ -114,7 +115,8 @@
             // FileFToolStripMenuItem
             // 
             this.FileFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenDatabaseOToolStripMenuItem});
+            this.OpenDatabaseOToolStripMenuItem,
+            this.NowDataToolStripMenuItem});
             this.FileFToolStripMenuItem.Name = "FileFToolStripMenuItem";
             this.FileFToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.FileFToolStripMenuItem.Text = "ファイル(&F)";
@@ -122,8 +124,8 @@
             // OpenDatabaseOToolStripMenuItem
             // 
             this.OpenDatabaseOToolStripMenuItem.Name = "OpenDatabaseOToolStripMenuItem";
-            this.OpenDatabaseOToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
-            this.OpenDatabaseOToolStripMenuItem.Text = "データベースを開く(&N)";
+            this.OpenDatabaseOToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.OpenDatabaseOToolStripMenuItem.Text = "データベースを開く(&O)";
             this.OpenDatabaseOToolStripMenuItem.Click += new System.EventHandler(this.OpenDatabaseOToolStripMenuItem_Click);
             // 
             // 表示DToolStripMenuItem
@@ -679,6 +681,13 @@
             this.DisplayToolStripMenuItem.Text = "表示設定(&D)";
             this.DisplayToolStripMenuItem.Click += new System.EventHandler(this.DisplayToolStripMenuItem_Click);
             // 
+            // NowDataToolStripMenuItem
+            // 
+            this.NowDataToolStripMenuItem.Name = "NowDataToolStripMenuItem";
+            this.NowDataToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.NowDataToolStripMenuItem.Text = "現在のチャートを表示(&N)";
+            this.NowDataToolStripMenuItem.Click += new System.EventHandler(this.NowDataToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -777,6 +786,7 @@
         private System.Windows.Forms.Label eventPlaceLabel;
         private System.Windows.Forms.ComboBox aspectSelect;
         private System.Windows.Forms.ToolStripMenuItem DisplayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem NowDataToolStripMenuItem;
     }
 }
 

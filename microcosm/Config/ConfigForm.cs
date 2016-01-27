@@ -55,30 +55,11 @@ namespace microcosm.Config
                 compositProgression.Checked = true;
             }
 
-            if (this.mainform.aspectSetting.n_n)
-            {
-                nnDisp.Checked = true;
-            }
-            if (this.mainform.aspectSetting.n_p)
-            {
-                npDisp.Checked = true;
-            }
-            if (this.mainform.aspectSetting.n_t)
-            {
-                ntDisp.Checked = true;
-            }
-            if (this.mainform.aspectSetting.p_p)
-            {
-                ppDisp.Checked = true;
-            }
-            if (this.mainform.aspectSetting.p_t)
-            {
-                ptDisp.Checked = true;
-            }
-            if (this.mainform.aspectSetting.t_t)
-            {
-                ptDisp.Checked = true;
-            }
+            placeBox.Text = mainform.config.defaultPlace;
+            latBox.Text = mainform.config.lat.ToString();
+            lngBox.Text = mainform.config.lng.ToString();
+            
+
         }
 
         private void centric_geo_CheckedChanged(object sender, EventArgs e)
