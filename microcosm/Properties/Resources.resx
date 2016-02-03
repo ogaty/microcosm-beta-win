@@ -123,6 +123,13 @@
   <data name="ERROR_FILE_EXIST" xml:space="preserve">
     <value>対象のファイルが存在します。</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="sun_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\sun_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sun_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\sun_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="TIMEZONE_GMT_STR_LONG" xml:space="preserve">
     <value>GMT(世界標準)</value>
   </data>
@@ -134,5 +141,59 @@
   </data>
   <data name="TIMEZONE_JST_STR_SHORT" xml:space="preserve">
     <value>JST</value>
+  </data>
+  <data name="jupiter_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\jupiter_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="jupiter_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\jupiter_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mars_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\mars_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mars_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\mars_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mercury_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\mercury_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mercury_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\mercury_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="moon_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\moon_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="moon_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\moon_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="neptune_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\neptune_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="neptune_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\neptune_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pluto_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\pluto_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pluto_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\pluto_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="saturn_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\saturn_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="saturn_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\saturn_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uranus_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\uranus_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uranus_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\uranus_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="venus_off" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\venus_off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="venus_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resource\venus_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

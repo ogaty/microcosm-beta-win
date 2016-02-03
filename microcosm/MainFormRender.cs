@@ -288,6 +288,7 @@ namespace microcosm
             Font fnt = new Font("Segoe UI Symbol", 14);
             SolidBrush brush = new SolidBrush(Color.Red);
             Graphics g = Graphics.FromImage(canvas);
+            List<double> degreeList = new List<double>();
             natallist.ForEach(planet =>
             {
                 if (!planet.isDisp)
@@ -295,19 +296,25 @@ namespace microcosm
                     return;
                 }
 
+                int offset = 0;
+                if (0 < degreeList.Find(p => p < planet.absolute_position + 4 && p > planet.absolute_position - 4))
+                {
+                    offset = 15;
+                }
                 PointF point;
                 if (setting.bands == 1)
                 {
-                    point = rotate(170, 0, planet.absolute_position - startdegree);
+                    point = rotate(160 + offset, 0, planet.absolute_position - startdegree);
                 }
                 else if (setting.bands == 2)
                 {
-                    point = rotate(152, 0, planet.absolute_position - startdegree);
+                    point = rotate(152 + offset, 0, planet.absolute_position - startdegree);
                 }
                 else
                 {
-                    point = rotate(136, 0, planet.absolute_position - startdegree);
+                    point = rotate(136 + offset, 0, planet.absolute_position - startdegree);
                 }
+                degreeList.Add(planet.absolute_position);
                 point.X += setting.zodiacRingOuterPadding.X;
                 point.X += setting.zodiacRadius / 2;
                 point.X -= 8;

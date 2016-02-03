@@ -356,6 +356,7 @@ namespace microcosm
             Enumerable.Range(0, 10).ToList().ForEach(index => { aspectSelect.Items[index] = aspectSettingList[index].dispname; });
         }
 
+        // 表示設定をクリック
         private void DisplayToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayForm disp = new DisplayForm(this, aspectSettingList);
@@ -404,6 +405,26 @@ namespace microcosm
         {
             Help.Version v = new Help.Version();
             v.Show();
+        }
+
+        public void UpdateAspectSettingList(AspectSetting[] list)
+        {
+            aspectSettingList = list;
+
+
+            // todo これじゃだめ
+            natallist[0].isDisp = list[0].disp_n_sun;
+            natallist[1].isDisp = list[0].disp_n_moon;
+            natallist[2].isDisp = list[0].disp_n_mercury;
+            natallist[3].isDisp = list[0].disp_n_venus;
+            natallist[4].isDisp = list[0].disp_n_mars;
+            natallist[5].isDisp = list[0].disp_n_jupiter;
+            natallist[6].isDisp = list[0].disp_n_saturn;
+            natallist[7].isDisp = list[0].disp_n_uranus;
+            natallist[8].isDisp = list[0].disp_n_neptune;
+            natallist[9].isDisp = list[0].disp_n_pluto;
+
+            chartRefresh();
         }
     }
 }

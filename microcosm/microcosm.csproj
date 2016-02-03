@@ -80,7 +80,6 @@
   <ItemGroup>
     <Compile Include="Calc\Aspect.cs" />
     <Compile Include="Calc\AstroCalc.cs" />
-    <Compile Include="Calc\ChartData.cs" />
     <Compile Include="Calc\PlanetData.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="Config\AspectSetting.cs" />
@@ -211,9 +210,73 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SUN_ON.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\sun_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\sun_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\moon_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\moon_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\mercury_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\mercury_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\venus_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\venus_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\mars_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\mars_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\jupiter_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\jupiter_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\saturn_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\saturn_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\uranus_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\uranus_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\neptune_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\neptune_on.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\pluto_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\pluto_on.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy "$(ProjectDir)default.csm" "$(TargetDir)"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

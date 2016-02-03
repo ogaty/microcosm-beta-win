@@ -150,5 +150,72 @@ namespace microcosm.Config
         public bool n_t = false;
         public bool p_t = false;
 
+        public bool disp_n_sun = true;
+        public bool disp_n_moon = true;
+        public bool disp_n_mercury = true;
+        public bool disp_n_venus = true;
+        public bool disp_n_mars = true;
+        public bool disp_n_jupiter = true;
+        public bool disp_n_saturn = true;
+        public bool disp_n_uranus = true;
+        public bool disp_n_neptune = true;
+        public bool disp_n_pluto = true;
+
+        public bool disp_p_sun = true;
+        public bool disp_p_moon = true;
+        public bool disp_p_mercury = true;
+        public bool disp_p_venus = true;
+        public bool disp_p_mars = true;
+        public bool disp_p_jupiter = true;
+        public bool disp_p_saturn = true;
+        public bool disp_p_uranus = true;
+        public bool disp_p_neptune = true;
+        public bool disp_p_pluto = true;
+
+        public bool disp_t_sun = true;
+        public bool disp_t_moon = true;
+        public bool disp_t_mercury = true;
+        public bool disp_t_venus = true;
+        public bool disp_t_mars = true;
+        public bool disp_t_jupiter = true;
+        public bool disp_t_saturn = true;
+        public bool disp_t_uranus = true;
+        public bool disp_t_neptune = true;
+        public bool disp_t_pluto = true;
+
+        public bool aspect_n_sun = true;
+        public bool aspect_n_moon = true;
+        public bool aspect_n_mercury = true;
+        public bool aspect_n_venus = true;
+        public bool aspect_n_mars = true;
+        public bool aspect_n_jupiter = true;
+        public bool aspect_n_saturn = true;
+        public bool aspect_n_uranus = true;
+        public bool aspect_n_neptune = true;
+        public bool aspect_n_pluto = true;
+
+        public bool aspect_p_sun = true;
+        public bool aspect_p_moon = true;
+        public bool aspect_p_mercury = true;
+        public bool aspect_p_venus = true;
+        public bool aspect_p_mars = true;
+        public bool aspect_p_jupiter = true;
+        public bool aspect_p_saturn = true;
+        public bool aspect_p_uranus = true;
+        public bool aspect_p_neptune = true;
+        public bool aspect_p_pluto = true;
+
+        public bool aspect_t_sun = true;
+        public bool aspect_t_moon = true;
+        public bool aspect_t_mercury = true;
+        public bool aspect_t_venus = true;
+        public bool aspect_t_mars = true;
+        public bool aspect_t_jupiter = true;
+        public bool aspect_t_saturn = true;
+        public bool aspect_t_uranus = true;
+        public bool aspect_t_neptune = true;
+        public bool aspect_t_pluto = true;
+
+
     }
 }

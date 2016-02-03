@@ -334,5 +334,324 @@ namespace microcosm.Config
         {
             settingList.Items[index] = ((TextBox)sender).Text;
         }
+
+        private void natalPlanetSun_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_sun == true)
+            {
+                aspectSettingList[index].disp_n_sun = false;
+                ((PictureBox)sender).Image = Properties.Resources.sun_off;
+            } else
+            {
+                aspectSettingList[index].disp_n_sun = true;
+                ((PictureBox)sender).Image = Properties.Resources.sun_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetMoon_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_moon == true)
+            {
+                aspectSettingList[index].disp_n_moon = false;
+                ((PictureBox)sender).Image = Properties.Resources.moon_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_moon = true;
+                ((PictureBox)sender).Image = Properties.Resources.moon_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetMercury_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_mercury == true)
+            {
+                aspectSettingList[index].disp_n_mercury = false;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_mercury = true;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetVenus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_venus == true)
+            {
+                aspectSettingList[index].disp_n_venus = false;
+                ((PictureBox)sender).Image = Properties.Resources.venus_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_venus = true;
+                ((PictureBox)sender).Image = Properties.Resources.venus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetMars_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_mars == true)
+            {
+                aspectSettingList[index].disp_n_mars = false;
+                ((PictureBox)sender).Image = Properties.Resources.mars_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_mars = true;
+                ((PictureBox)sender).Image = Properties.Resources.mars_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetJupiter_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_jupiter == true)
+            {
+                aspectSettingList[index].disp_n_jupiter = false;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_jupiter = true;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetSaturn_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_saturn == true)
+            {
+                aspectSettingList[index].disp_n_saturn = false;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_saturn = true;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetUranus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_uranus == true)
+            {
+                aspectSettingList[index].disp_n_uranus = false;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_uranus = true;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetNeptune_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_neptune == true)
+            {
+                aspectSettingList[index].disp_n_neptune = false;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_neptune = true;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalPlanetPluto_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_n_pluto == true)
+            {
+                aspectSettingList[index].disp_n_pluto = false;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_n_pluto = true;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectSun_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_sun == true)
+            {
+                aspectSettingList[index].aspect_n_sun = false;
+                ((PictureBox)sender).Image = Properties.Resources.sun_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_sun = true;
+                ((PictureBox)sender).Image = Properties.Resources.sun_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectMoon_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_moon == true)
+            {
+                aspectSettingList[index].aspect_n_moon = false;
+                ((PictureBox)sender).Image = Properties.Resources.moon_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_moon = true;
+                ((PictureBox)sender).Image = Properties.Resources.moon_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectMercury_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_mercury == true)
+            {
+                aspectSettingList[index].aspect_n_mercury = false;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_mercury = true;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectVenus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_venus == true)
+            {
+                aspectSettingList[index].aspect_n_venus = false;
+                ((PictureBox)sender).Image = Properties.Resources.venus_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_venus = true;
+                ((PictureBox)sender).Image = Properties.Resources.venus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectMars_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_mars == true)
+            {
+                aspectSettingList[index].aspect_n_mars = false;
+                ((PictureBox)sender).Image = Properties.Resources.mars_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_mars = true;
+                ((PictureBox)sender).Image = Properties.Resources.mars_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectJupiter_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_jupiter == true)
+            {
+                aspectSettingList[index].aspect_n_jupiter = false;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_jupiter = true;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectSaturn_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_saturn == true)
+            {
+                aspectSettingList[index].aspect_n_saturn = false;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_saturn = true;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectUranus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_uranus == true)
+            {
+                aspectSettingList[index].aspect_n_uranus = false;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_uranus = true;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectNeptune_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_neptune == true)
+            {
+                aspectSettingList[index].aspect_n_neptune = false;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_neptune = true;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void natalAspectPluto_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_n_pluto == true)
+            {
+                aspectSettingList[index].aspect_n_pluto = false;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_n_pluto = true;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
     }
 }

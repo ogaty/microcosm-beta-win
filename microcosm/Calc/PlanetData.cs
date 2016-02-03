@@ -7,6 +7,7 @@ using microcosm;
 
 namespace microcosm.Calc
 {
+    // ChartDataにList<>で結びつく
     public class PlanetData
     {
         // swiss_epheと対応した惑星番号
