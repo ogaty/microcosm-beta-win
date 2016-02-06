@@ -32,3 +32,4 @@ C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.Propert
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.csproj.GenerateResource.Cache
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.exe
 C:\Users\tryto_000\Documents\microcosm-win\microcosm\obj\Debug\microcosm.pdb
+C:\Users\tryto\Source\Repos\microcosm-beta-win\microcosm\bin\Debug\microcosm.exe.config
