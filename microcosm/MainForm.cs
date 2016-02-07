@@ -71,6 +71,18 @@ namespace microcosm
                     }
                 } else
                 {
+                    aspectSettingList[i] = new AspectSetting() { dispname = "表示設定" + i.ToString() };
+                    if (!Directory.Exists(Path.GetDirectoryName(aspect_filename + i.ToString() + ".xml")))
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(aspect_filename));
+                    }
+                    XmlSerializer serializer = new XmlSerializer(typeof(AspectSetting));
+                    FileStream fs = new FileStream(aspect_filename + i.ToString() + ".xml", FileMode.Create);
+                    StreamWriter sw = new StreamWriter(fs);
+                    serializer.Serialize(sw, aspectSettingList[i]);
+                    sw.Close();
+                    fs.Close();
+
                     aspectSelect.Items.Add("表示設定" + i.ToString());
                 }
             }
@@ -310,6 +322,13 @@ namespace microcosm
             natalcusp = calc.CuspCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
             natallist = calc.AspectCalcSame(aspectSetting, natallist);
 
+            chartRefreshNoCalc();
+
+        }
+
+        // チャート再描画(再計算しない
+        public void chartRefreshNoCalc()
+        {
             progresscusp = null;
             transitcusp = null;
             if (setting.bands > 1)
@@ -317,7 +336,8 @@ namespace microcosm
                 if (config.progression == 1)
                 {
                     progresslist = calc.PrimaryProgressionCalc(natallist, new DateTime(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second), new DateTime(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second));
-                } else if (config.progression == 2)
+                }
+                else if (config.progression == 2)
                 {
                     progresslist = calc.SecondaryProgressionCalc(natallist, new DateTime(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second), new DateTime(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second));
                 }
@@ -410,21 +430,81 @@ namespace microcosm
         public void UpdateAspectSettingList(AspectSetting[] list)
         {
             aspectSettingList = list;
+            int index = aspectSelect.SelectedIndex;
 
 
-            // todo これじゃだめ
-            natallist[0].isDisp = list[0].disp_n_sun;
-            natallist[1].isDisp = list[0].disp_n_moon;
-            natallist[2].isDisp = list[0].disp_n_mercury;
-            natallist[3].isDisp = list[0].disp_n_venus;
-            natallist[4].isDisp = list[0].disp_n_mars;
-            natallist[5].isDisp = list[0].disp_n_jupiter;
-            natallist[6].isDisp = list[0].disp_n_saturn;
-            natallist[7].isDisp = list[0].disp_n_uranus;
-            natallist[8].isDisp = list[0].disp_n_neptune;
-            natallist[9].isDisp = list[0].disp_n_pluto;
+            natallist[0].isDisp = list[index].disp_n_sun;
+            natallist[1].isDisp = list[index].disp_n_moon;
+            natallist[2].isDisp = list[index].disp_n_mercury;
+            natallist[3].isDisp = list[index].disp_n_venus;
+            natallist[4].isDisp = list[index].disp_n_mars;
+            natallist[5].isDisp = list[index].disp_n_jupiter;
+            natallist[6].isDisp = list[index].disp_n_saturn;
+            natallist[7].isDisp = list[index].disp_n_uranus;
+            natallist[8].isDisp = list[index].disp_n_neptune;
+            natallist[9].isDisp = list[index].disp_n_pluto;
+            natallist[0].isAspectDisp = list[index].aspect_n_sun;
+            natallist[1].isAspectDisp = list[index].aspect_n_moon;
+            natallist[2].isAspectDisp = list[index].aspect_n_mercury;
+            natallist[3].isAspectDisp = list[index].aspect_n_venus;
+            natallist[4].isAspectDisp = list[index].aspect_n_mars;
+            natallist[5].isAspectDisp = list[index].aspect_n_jupiter;
+            natallist[6].isAspectDisp = list[index].aspect_n_saturn;
+            natallist[7].isAspectDisp = list[index].aspect_n_uranus;
+            natallist[8].isAspectDisp = list[index].aspect_n_neptune;
+            natallist[9].isAspectDisp = list[index].aspect_n_pluto;
 
-            chartRefresh();
+            if (progresslist != null)
+            {
+                progresslist[0].isDisp = list[index].disp_p_sun;
+                progresslist[1].isDisp = list[index].disp_p_moon;
+                progresslist[2].isDisp = list[index].disp_p_mercury;
+                progresslist[3].isDisp = list[index].disp_p_venus;
+                progresslist[4].isDisp = list[index].disp_p_mars;
+                progresslist[5].isDisp = list[index].disp_p_jupiter;
+                progresslist[6].isDisp = list[index].disp_p_saturn;
+                progresslist[7].isDisp = list[index].disp_p_uranus;
+                progresslist[8].isDisp = list[index].disp_p_neptune;
+                progresslist[9].isDisp = list[index].disp_p_pluto;
+                progresslist[0].isAspectDisp = list[index].aspect_p_sun;
+                progresslist[1].isAspectDisp = list[index].aspect_p_moon;
+                progresslist[2].isAspectDisp = list[index].aspect_p_mercury;
+                progresslist[3].isAspectDisp = list[index].aspect_p_venus;
+                progresslist[4].isAspectDisp = list[index].aspect_p_mars;
+                progresslist[5].isAspectDisp = list[index].aspect_p_jupiter;
+                progresslist[6].isAspectDisp = list[index].aspect_p_saturn;
+                progresslist[7].isAspectDisp = list[index].aspect_p_uranus;
+                progresslist[8].isAspectDisp = list[index].aspect_p_neptune;
+                progresslist[9].isAspectDisp = list[index].aspect_p_pluto;
+            }
+
+            if (transitlist != null)
+            {
+                transitlist[0].isDisp = list[index].disp_t_sun;
+                transitlist[1].isDisp = list[index].disp_t_moon;
+                transitlist[2].isDisp = list[index].disp_t_mercury;
+                transitlist[3].isDisp = list[index].disp_t_venus;
+                transitlist[4].isDisp = list[index].disp_t_mars;
+                transitlist[5].isDisp = list[index].disp_t_jupiter;
+                transitlist[6].isDisp = list[index].disp_t_saturn;
+                transitlist[7].isDisp = list[index].disp_t_uranus;
+                transitlist[8].isDisp = list[index].disp_t_neptune;
+                transitlist[9].isDisp = list[index].disp_t_pluto;
+                transitlist[0].isAspectDisp = list[index].aspect_t_sun;
+                transitlist[1].isAspectDisp = list[index].aspect_t_moon;
+                transitlist[2].isAspectDisp = list[index].aspect_t_mercury;
+                transitlist[3].isAspectDisp = list[index].aspect_t_venus;
+                transitlist[4].isAspectDisp = list[index].aspect_t_mars;
+                transitlist[5].isAspectDisp = list[index].aspect_t_jupiter;
+                transitlist[6].isAspectDisp = list[index].aspect_t_saturn;
+                transitlist[7].isAspectDisp = list[index].aspect_t_uranus;
+                transitlist[8].isAspectDisp = list[index].aspect_t_neptune;
+                transitlist[9].isAspectDisp = list[index].aspect_t_pluto;
+            }
+
+
+
+            chartRefreshNoCalc();
         }
     }
 }

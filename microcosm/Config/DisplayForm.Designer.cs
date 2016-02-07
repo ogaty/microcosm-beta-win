@@ -808,6 +808,7 @@
             this.progresAspectPluto.Size = new System.Drawing.Size(24, 24);
             this.progresAspectPluto.TabIndex = 34;
             this.progresAspectPluto.TabStop = false;
+            this.progresAspectPluto.Click += new System.EventHandler(this.progresAspectPluto_Click);
             // 
             // progresAspectNeptune
             // 
@@ -817,6 +818,7 @@
             this.progresAspectNeptune.Size = new System.Drawing.Size(24, 24);
             this.progresAspectNeptune.TabIndex = 33;
             this.progresAspectNeptune.TabStop = false;
+            this.progresAspectNeptune.Click += new System.EventHandler(this.progresAspectNeptune_Click);
             // 
             // progresAspectUranus
             // 
@@ -826,6 +828,7 @@
             this.progresAspectUranus.Size = new System.Drawing.Size(24, 24);
             this.progresAspectUranus.TabIndex = 32;
             this.progresAspectUranus.TabStop = false;
+            this.progresAspectUranus.Click += new System.EventHandler(this.progresAspectUranus_Click);
             // 
             // progresAspectSaturn
             // 
@@ -835,6 +838,7 @@
             this.progresAspectSaturn.Size = new System.Drawing.Size(24, 24);
             this.progresAspectSaturn.TabIndex = 31;
             this.progresAspectSaturn.TabStop = false;
+            this.progresAspectSaturn.Click += new System.EventHandler(this.progresAspectSaturn_Click);
             // 
             // progresAspectJupiter
             // 
@@ -844,6 +848,7 @@
             this.progresAspectJupiter.Size = new System.Drawing.Size(24, 24);
             this.progresAspectJupiter.TabIndex = 30;
             this.progresAspectJupiter.TabStop = false;
+            this.progresAspectJupiter.Click += new System.EventHandler(this.progresAspectJupiter_Click);
             // 
             // progresAspectMars
             // 
@@ -853,6 +858,7 @@
             this.progresAspectMars.Size = new System.Drawing.Size(24, 24);
             this.progresAspectMars.TabIndex = 29;
             this.progresAspectMars.TabStop = false;
+            this.progresAspectMars.Click += new System.EventHandler(this.progresAspectMars_Click);
             // 
             // progresAspetVenus
             // 
@@ -862,6 +868,7 @@
             this.progresAspetVenus.Size = new System.Drawing.Size(24, 24);
             this.progresAspetVenus.TabIndex = 28;
             this.progresAspetVenus.TabStop = false;
+            this.progresAspetVenus.Click += new System.EventHandler(this.progresAspetVenus_Click);
             // 
             // progresAspectMercury
             // 
@@ -871,6 +878,7 @@
             this.progresAspectMercury.Size = new System.Drawing.Size(24, 24);
             this.progresAspectMercury.TabIndex = 27;
             this.progresAspectMercury.TabStop = false;
+            this.progresAspectMercury.Click += new System.EventHandler(this.progresAspectMercury_Click);
             // 
             // progresAspectMoon
             // 
@@ -880,6 +888,7 @@
             this.progresAspectMoon.Size = new System.Drawing.Size(24, 24);
             this.progresAspectMoon.TabIndex = 26;
             this.progresAspectMoon.TabStop = false;
+            this.progresAspectMoon.Click += new System.EventHandler(this.progresAspectMoon_Click);
             // 
             // progresAspectSun
             // 
@@ -889,6 +898,7 @@
             this.progresAspectSun.Size = new System.Drawing.Size(24, 24);
             this.progresAspectSun.TabIndex = 25;
             this.progresAspectSun.TabStop = false;
+            this.progresAspectSun.Click += new System.EventHandler(this.progresAspectSun_Click);
             // 
             // groupBox23
             // 
@@ -917,6 +927,7 @@
             this.progresPlanetPluto.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetPluto.TabIndex = 24;
             this.progresPlanetPluto.TabStop = false;
+            this.progresPlanetPluto.Click += new System.EventHandler(this.progresPlanetPluto_Click);
             // 
             // progresPlanetNeptune
             // 
@@ -926,6 +937,7 @@
             this.progresPlanetNeptune.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetNeptune.TabIndex = 23;
             this.progresPlanetNeptune.TabStop = false;
+            this.progresPlanetNeptune.Click += new System.EventHandler(this.progresPlanetNeptune_Click);
             // 
             // progresPlanetUranus
             // 
@@ -935,6 +947,7 @@
             this.progresPlanetUranus.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetUranus.TabIndex = 22;
             this.progresPlanetUranus.TabStop = false;
+            this.progresPlanetUranus.Click += new System.EventHandler(this.progresPlanetUranus_Click);
             // 
             // progresPlanetSaturn
             // 
@@ -944,6 +957,7 @@
             this.progresPlanetSaturn.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetSaturn.TabIndex = 21;
             this.progresPlanetSaturn.TabStop = false;
+            this.progresPlanetSaturn.Click += new System.EventHandler(this.progresPlanetSaturn_Click);
             // 
             // progresPlanetJupiter
             // 
@@ -953,6 +967,7 @@
             this.progresPlanetJupiter.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetJupiter.TabIndex = 20;
             this.progresPlanetJupiter.TabStop = false;
+            this.progresPlanetJupiter.Click += new System.EventHandler(this.progresPlanetJupiter_Click);
             // 
             // progresPlanetMars
             // 
@@ -962,6 +977,7 @@
             this.progresPlanetMars.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetMars.TabIndex = 19;
             this.progresPlanetMars.TabStop = false;
+            this.progresPlanetMars.Click += new System.EventHandler(this.progresPlanetMars_Click);
             // 
             // progresPlanetVenus
             // 
@@ -971,6 +987,7 @@
             this.progresPlanetVenus.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetVenus.TabIndex = 18;
             this.progresPlanetVenus.TabStop = false;
+            this.progresPlanetVenus.Click += new System.EventHandler(this.progresPlanetVenus_Click);
             // 
             // progresPlanetMercury
             // 
@@ -980,6 +997,7 @@
             this.progresPlanetMercury.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetMercury.TabIndex = 17;
             this.progresPlanetMercury.TabStop = false;
+            this.progresPlanetMercury.Click += new System.EventHandler(this.progresPlanetMercury_Click);
             // 
             // progresPlanetMoon
             // 
@@ -989,6 +1007,7 @@
             this.progresPlanetMoon.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetMoon.TabIndex = 16;
             this.progresPlanetMoon.TabStop = false;
+            this.progresPlanetMoon.Click += new System.EventHandler(this.progresPlanetMoon_Click);
             // 
             // progresPlanetSun
             // 
@@ -998,6 +1017,7 @@
             this.progresPlanetSun.Size = new System.Drawing.Size(24, 24);
             this.progresPlanetSun.TabIndex = 15;
             this.progresPlanetSun.TabStop = false;
+            this.progresPlanetSun.Click += new System.EventHandler(this.progresPlanetSun_Click);
             // 
             // tabPage10
             // 
@@ -1037,6 +1057,7 @@
             this.transitAspectPluto.Size = new System.Drawing.Size(24, 24);
             this.transitAspectPluto.TabIndex = 44;
             this.transitAspectPluto.TabStop = false;
+            this.transitAspectPluto.Click += new System.EventHandler(this.transitAspectPluto_Click);
             // 
             // transitAspectNeptune
             // 
@@ -1046,6 +1067,7 @@
             this.transitAspectNeptune.Size = new System.Drawing.Size(24, 24);
             this.transitAspectNeptune.TabIndex = 43;
             this.transitAspectNeptune.TabStop = false;
+            this.transitAspectNeptune.Click += new System.EventHandler(this.transitAspectNeptune_Click);
             // 
             // transitAspectUranus
             // 
@@ -1055,6 +1077,7 @@
             this.transitAspectUranus.Size = new System.Drawing.Size(24, 24);
             this.transitAspectUranus.TabIndex = 42;
             this.transitAspectUranus.TabStop = false;
+            this.transitAspectUranus.Click += new System.EventHandler(this.transitAspectUranus_Click);
             // 
             // transitAspectSaturn
             // 
@@ -1064,6 +1087,7 @@
             this.transitAspectSaturn.Size = new System.Drawing.Size(24, 24);
             this.transitAspectSaturn.TabIndex = 41;
             this.transitAspectSaturn.TabStop = false;
+            this.transitAspectSaturn.Click += new System.EventHandler(this.transitAspectSaturn_Click);
             // 
             // transitAspectJupiter
             // 
@@ -1073,6 +1097,7 @@
             this.transitAspectJupiter.Size = new System.Drawing.Size(24, 24);
             this.transitAspectJupiter.TabIndex = 40;
             this.transitAspectJupiter.TabStop = false;
+            this.transitAspectJupiter.Click += new System.EventHandler(this.transitAspectJupiter_Click);
             // 
             // transitAspectMars
             // 
@@ -1082,6 +1107,7 @@
             this.transitAspectMars.Size = new System.Drawing.Size(24, 24);
             this.transitAspectMars.TabIndex = 39;
             this.transitAspectMars.TabStop = false;
+            this.transitAspectMars.Click += new System.EventHandler(this.transitAspectMars_Click);
             // 
             // transitAspectVenus
             // 
@@ -1091,6 +1117,7 @@
             this.transitAspectVenus.Size = new System.Drawing.Size(24, 24);
             this.transitAspectVenus.TabIndex = 38;
             this.transitAspectVenus.TabStop = false;
+            this.transitAspectVenus.Click += new System.EventHandler(this.transitAspectVenus_Click);
             // 
             // transitAspectMercury
             // 
@@ -1100,6 +1127,7 @@
             this.transitAspectMercury.Size = new System.Drawing.Size(24, 24);
             this.transitAspectMercury.TabIndex = 37;
             this.transitAspectMercury.TabStop = false;
+            this.transitAspectMercury.Click += new System.EventHandler(this.transitAspectMercury_Click);
             // 
             // transitAspectMoon
             // 
@@ -1109,6 +1137,7 @@
             this.transitAspectMoon.Size = new System.Drawing.Size(24, 24);
             this.transitAspectMoon.TabIndex = 36;
             this.transitAspectMoon.TabStop = false;
+            this.transitAspectMoon.Click += new System.EventHandler(this.transitAspectMoon_Click);
             // 
             // transitAspectSun
             // 
@@ -1118,6 +1147,7 @@
             this.transitAspectSun.Size = new System.Drawing.Size(24, 24);
             this.transitAspectSun.TabIndex = 35;
             this.transitAspectSun.TabStop = false;
+            this.transitAspectSun.Click += new System.EventHandler(this.transitAspectSun_Click);
             // 
             // groupBox25
             // 
@@ -1146,6 +1176,7 @@
             this.transitPlanetPluto.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetPluto.TabIndex = 34;
             this.transitPlanetPluto.TabStop = false;
+            this.transitPlanetPluto.Click += new System.EventHandler(this.transitPlanetPluto_Click);
             // 
             // transitPlanetNeptune
             // 
@@ -1155,6 +1186,7 @@
             this.transitPlanetNeptune.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetNeptune.TabIndex = 33;
             this.transitPlanetNeptune.TabStop = false;
+            this.transitPlanetNeptune.Click += new System.EventHandler(this.transitPlanetNeptune_Click);
             // 
             // transitPlanetUranus
             // 
@@ -1164,6 +1196,7 @@
             this.transitPlanetUranus.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetUranus.TabIndex = 32;
             this.transitPlanetUranus.TabStop = false;
+            this.transitPlanetUranus.Click += new System.EventHandler(this.transitPlanetUranus_Click);
             // 
             // transitPlanetSaturn
             // 
@@ -1173,6 +1206,7 @@
             this.transitPlanetSaturn.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetSaturn.TabIndex = 31;
             this.transitPlanetSaturn.TabStop = false;
+            this.transitPlanetSaturn.Click += new System.EventHandler(this.transitPlanetSaturn_Click);
             // 
             // transitPlanetJupiter
             // 
@@ -1182,6 +1216,7 @@
             this.transitPlanetJupiter.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetJupiter.TabIndex = 30;
             this.transitPlanetJupiter.TabStop = false;
+            this.transitPlanetJupiter.Click += new System.EventHandler(this.transitPlanetJupiter_Click);
             // 
             // transitPlanetMars
             // 
@@ -1191,6 +1226,7 @@
             this.transitPlanetMars.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetMars.TabIndex = 29;
             this.transitPlanetMars.TabStop = false;
+            this.transitPlanetMars.Click += new System.EventHandler(this.transitPlanetMars_Click);
             // 
             // transitPlanetVenus
             // 
@@ -1200,6 +1236,7 @@
             this.transitPlanetVenus.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetVenus.TabIndex = 28;
             this.transitPlanetVenus.TabStop = false;
+            this.transitPlanetVenus.Click += new System.EventHandler(this.transitPlanetVenus_Click);
             // 
             // transitPlanetMercury
             // 
@@ -1209,6 +1246,7 @@
             this.transitPlanetMercury.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetMercury.TabIndex = 27;
             this.transitPlanetMercury.TabStop = false;
+            this.transitPlanetMercury.Click += new System.EventHandler(this.transitPlanetMercury_Click);
             // 
             // transitPlanetMoon
             // 
@@ -1218,6 +1256,7 @@
             this.transitPlanetMoon.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetMoon.TabIndex = 26;
             this.transitPlanetMoon.TabStop = false;
+            this.transitPlanetMoon.Click += new System.EventHandler(this.transitPlanetMoon_Click);
             // 
             // transitPlanetSun
             // 
@@ -1227,6 +1266,7 @@
             this.transitPlanetSun.Size = new System.Drawing.Size(24, 24);
             this.transitPlanetSun.TabIndex = 25;
             this.transitPlanetSun.TabStop = false;
+            this.transitPlanetSun.Click += new System.EventHandler(this.transitPlanetSun_Click);
             // 
             // tabPage2
             // 

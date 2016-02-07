@@ -24,8 +24,10 @@ namespace microcosm.Calc
         public List<Aspect> progressAspects;
         // Tとのアスペクトはここ
         public List<Aspect> transitAspects;
-        // 表示周り
+        // 天体の表示周り
         public bool isDisp;
+        // アスペクトの表示周り
+        public bool isAspectDisp;
 
         public PlanetData()
         {

@@ -39,6 +39,7 @@ namespace microcosm.Config
             settingList.SetSelected(0, true);
         }
 
+        // 左側メニュー
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             int newIndex = settingList.SelectedIndex;
@@ -316,6 +317,10 @@ namespace microcosm.Config
             // 書き出し
             Enumerable.Range(0, 10).ToList().ForEach(newIndex => {
                 string filename = mainform.aspect_filename + newIndex.ToString() + ".xml";
+                if (!Directory.Exists(Path.GetDirectoryName(filename)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(filename));
+                }
                 if (File.Exists(filename))
                 {
                     File.Delete(filename);
@@ -648,6 +653,634 @@ namespace microcosm.Config
             else
             {
                 aspectSettingList[index].aspect_n_pluto = true;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void progresPlanetSun_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_sun == true)
+            {
+                aspectSettingList[index].disp_p_sun = false;
+                ((PictureBox)sender).Image = Properties.Resources.sun_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_sun = true;
+                ((PictureBox)sender).Image = Properties.Resources.sun_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void progresPlanetMoon_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_moon == true)
+            {
+                aspectSettingList[index].disp_p_moon = false;
+                ((PictureBox)sender).Image = Properties.Resources.moon_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_moon = true;
+                ((PictureBox)sender).Image = Properties.Resources.moon_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+
+        }
+
+        private void progresPlanetMercury_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_mercury == true)
+            {
+                aspectSettingList[index].disp_p_mercury = false;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_mercury = true;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void progresPlanetVenus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_venus == true)
+            {
+                aspectSettingList[index].disp_p_venus = false;
+                ((PictureBox)sender).Image = Properties.Resources.venus_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_venus = true;
+                ((PictureBox)sender).Image = Properties.Resources.venus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void progresPlanetMars_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_mars == true)
+            {
+                aspectSettingList[index].disp_p_mars = false;
+                ((PictureBox)sender).Image = Properties.Resources.mars_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_mars = true;
+                ((PictureBox)sender).Image = Properties.Resources.mars_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+
+        }
+
+        private void progresPlanetJupiter_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_jupiter == true)
+            {
+                aspectSettingList[index].disp_p_jupiter = false;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_jupiter = true;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+
+        }
+
+        private void progresPlanetSaturn_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_saturn == true)
+            {
+                aspectSettingList[index].disp_p_saturn = false;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_saturn = true;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+
+        }
+
+        private void progresPlanetUranus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_uranus == true)
+            {
+                aspectSettingList[index].disp_p_uranus = false;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_uranus = true;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+
+        }
+
+        private void progresPlanetNeptune_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_neptune == true)
+            {
+                aspectSettingList[index].disp_p_neptune = false;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_neptune = true;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+
+        }
+
+        private void progresPlanetPluto_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_p_pluto == true)
+            {
+                aspectSettingList[index].disp_p_pluto = false;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_p_pluto = true;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void progresAspectSun_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_sun == true)
+            {
+                aspectSettingList[index].aspect_p_sun = false;
+                ((PictureBox)sender).Image = Properties.Resources.sun_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_sun = true;
+                ((PictureBox)sender).Image = Properties.Resources.sun_on;
+            }
+        }
+
+        private void progresAspectMoon_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_moon == true)
+            {
+                aspectSettingList[index].aspect_p_moon = false;
+                ((PictureBox)sender).Image = Properties.Resources.moon_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_moon = true;
+                ((PictureBox)sender).Image = Properties.Resources.moon_on;
+            }
+
+        }
+
+        private void progresAspectMercury_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_mercury == true)
+            {
+                aspectSettingList[index].aspect_p_mercury = false;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_mercury = true;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_on;
+            }
+
+        }
+
+        private void progresAspetVenus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_venus == true)
+            {
+                aspectSettingList[index].aspect_p_venus = false;
+                ((PictureBox)sender).Image = Properties.Resources.venus_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_venus = true;
+                ((PictureBox)sender).Image = Properties.Resources.venus_on;
+            }
+        }
+
+        private void progresAspectMars_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_mars == true)
+            {
+                aspectSettingList[index].aspect_p_mars = false;
+                ((PictureBox)sender).Image = Properties.Resources.mars_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_mars = true;
+                ((PictureBox)sender).Image = Properties.Resources.mars_on;
+            }
+        }
+
+        private void progresAspectJupiter_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_jupiter == true)
+            {
+                aspectSettingList[index].aspect_p_jupiter = false;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_jupiter = true;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_on;
+            }
+        }
+
+        private void progresAspectSaturn_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_saturn == true)
+            {
+                aspectSettingList[index].aspect_p_saturn = false;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_saturn = true;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_on;
+            }
+        }
+
+        private void progresAspectUranus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_uranus == true)
+            {
+                aspectSettingList[index].aspect_p_uranus = false;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_uranus = true;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_on;
+            }
+        }
+
+        private void progresAspectNeptune_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_neptune == true)
+            {
+                aspectSettingList[index].aspect_p_neptune = false;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_neptune = true;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_on;
+            }
+        }
+
+        private void progresAspectPluto_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_p_pluto == true)
+            {
+                aspectSettingList[index].aspect_p_pluto = false;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_p_pluto = true;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_on;
+            }
+        }
+
+        private void transitPlanetSun_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_sun == true)
+            {
+                aspectSettingList[index].disp_t_sun = false;
+                ((PictureBox)sender).Image = Properties.Resources.sun_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_sun = true;
+                ((PictureBox)sender).Image = Properties.Resources.sun_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetMoon_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_moon == true)
+            {
+                aspectSettingList[index].disp_t_moon = false;
+                ((PictureBox)sender).Image = Properties.Resources.moon_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_moon = true;
+                ((PictureBox)sender).Image = Properties.Resources.moon_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetMercury_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_mercury == true)
+            {
+                aspectSettingList[index].disp_t_mercury = false;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_mercury = true;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetVenus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_venus == true)
+            {
+                aspectSettingList[index].disp_t_venus = false;
+                ((PictureBox)sender).Image = Properties.Resources.venus_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_venus = true;
+                ((PictureBox)sender).Image = Properties.Resources.venus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetMars_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_mars == true)
+            {
+                aspectSettingList[index].disp_t_mars = false;
+                ((PictureBox)sender).Image = Properties.Resources.mars_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_mars = true;
+                ((PictureBox)sender).Image = Properties.Resources.mars_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetJupiter_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_jupiter == true)
+            {
+                aspectSettingList[index].disp_t_jupiter = false;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_jupiter = true;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetSaturn_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_saturn == true)
+            {
+                aspectSettingList[index].disp_t_saturn = false;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_saturn = true;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetUranus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_uranus == true)
+            {
+                aspectSettingList[index].disp_t_uranus = false;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_uranus = true;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetNeptune_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_neptune == true)
+            {
+                aspectSettingList[index].disp_t_neptune = false;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_neptune = true;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitPlanetPluto_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].disp_t_pluto == true)
+            {
+                aspectSettingList[index].disp_t_pluto = false;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_off;
+            }
+            else
+            {
+                aspectSettingList[index].disp_t_pluto = true;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectSun_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_sun == true)
+            {
+                aspectSettingList[index].aspect_t_sun = false;
+                ((PictureBox)sender).Image = Properties.Resources.sun_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_sun = true;
+                ((PictureBox)sender).Image = Properties.Resources.sun_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectMoon_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_moon == true)
+            {
+                aspectSettingList[index].aspect_t_moon = false;
+                ((PictureBox)sender).Image = Properties.Resources.moon_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_moon = true;
+                ((PictureBox)sender).Image = Properties.Resources.moon_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectMercury_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_mercury == true)
+            {
+                aspectSettingList[index].aspect_t_mercury = false;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_mercury = true;
+                ((PictureBox)sender).Image = Properties.Resources.mercury_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectVenus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_venus == true)
+            {
+                aspectSettingList[index].aspect_t_venus = false;
+                ((PictureBox)sender).Image = Properties.Resources.venus_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_venus = true;
+                ((PictureBox)sender).Image = Properties.Resources.venus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectMars_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_mars == true)
+            {
+                aspectSettingList[index].aspect_t_mars = false;
+                ((PictureBox)sender).Image = Properties.Resources.mars_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_mars = true;
+                ((PictureBox)sender).Image = Properties.Resources.mars_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectJupiter_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_jupiter == true)
+            {
+                aspectSettingList[index].aspect_t_jupiter = false;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_jupiter = true;
+                ((PictureBox)sender).Image = Properties.Resources.jupiter_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectSaturn_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_saturn == true)
+            {
+                aspectSettingList[index].aspect_t_saturn = false;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_saturn = true;
+                ((PictureBox)sender).Image = Properties.Resources.saturn_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectUranus_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_uranus == true)
+            {
+                aspectSettingList[index].aspect_t_uranus = false;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_uranus = true;
+                ((PictureBox)sender).Image = Properties.Resources.uranus_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectNeptune_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_neptune == true)
+            {
+                aspectSettingList[index].aspect_t_neptune = false;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_neptune = true;
+                ((PictureBox)sender).Image = Properties.Resources.neptune_on;
+            }
+
+            mainform.UpdateAspectSettingList(aspectSettingList);
+        }
+
+        private void transitAspectPluto_Click(object sender, EventArgs e)
+        {
+            if (aspectSettingList[index].aspect_t_pluto == true)
+            {
+                aspectSettingList[index].aspect_t_pluto = false;
+                ((PictureBox)sender).Image = Properties.Resources.pluto_off;
+            }
+            else
+            {
+                aspectSettingList[index].aspect_t_pluto = true;
                 ((PictureBox)sender).Image = Properties.Resources.pluto_on;
             }
 

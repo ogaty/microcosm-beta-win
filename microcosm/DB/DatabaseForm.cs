@@ -79,7 +79,7 @@ namespace microcosm.DB
             XMLDBManager DBMgr = new XMLDBManager(e.Node.Tag.ToString());
             UserData data = DBMgr.getObject();
 
-            eventListViewRender(data, datadir + @"\" + e.Node.Text);
+            eventListViewRender(data, e.Node.Tag.ToString());
         }
 
         // ラベルクリア

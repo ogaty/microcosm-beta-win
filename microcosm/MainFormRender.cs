@@ -291,6 +291,7 @@ namespace microcosm
             List<double> degreeList = new List<double>();
             natallist.ForEach(planet =>
             {
+                // 天体表示させない
                 if (!planet.isDisp)
                 {
                     return;
@@ -323,6 +324,7 @@ namespace microcosm
                 point.Y += setting.zodiacRadius / 2;
                 point.Y -= 15;
                 g.DrawString(Common.getPlanetSymbol(planet.no), fnt, brush, point.X, point.Y);
+                Console.WriteLine(planet.absolute_position - startdegree);
             });
 
             if (setting.bands == 2)
@@ -429,6 +431,10 @@ namespace microcosm
             Graphics g = Graphics.FromImage(canvas);
             for (int i = 0; i < list.Count; i++)
             {
+                if (!list[i].isAspectDisp)
+                {
+                    continue;
+                }
                 PointF startPoint;
                 PointF endPoint;
                 Pen pen;
@@ -447,10 +453,14 @@ namespace microcosm
                 startPoint.Y *= -1;
                 startPoint.Y += setting.zodiacRingOuterPadding.Y;
                 startPoint.Y += setting.zodiacRadius / 2;
-                if (aspectKind == 1)
+                if (aspectKind == 1) // natal
                 {
                     for (int j = 0; j < list[i].aspects.Count; j++)
                     {
+                        if (!list[i].isAspectDisp )
+                        {
+//                            continue;
+                        }
                         if (endPosition == 1)
                         {
                             endPoint = rotate(setting.calcInnerRadius() / 2, 0, list[i].aspects[j].target_position - startDegree);
@@ -490,12 +500,19 @@ namespace microcosm
                         }
                         g.DrawLine(pen, startPoint, endPoint);
                         pen.Dispose();
+#if DEBUG
+                        Console.WriteLine("1 i:" + i.ToString() + " j:" + j.ToString() + " deg:" + (list[i].aspects[j].target_position - startDegree).ToString());
+#endif
                     }
 
-                } else if (aspectKind == 2)
+                } else if (aspectKind == 2) // progress
                 {
                     for (int j = 0; j < list[i].progressAspects.Count; j++)
                     {
+                        if (!list[j].isAspectDisp)
+                        {
+//                            continue;
+                        }
                         endPoint = rotate(setting.calcThirdInnerRadius() / 2, 0, list[i].progressAspects[j].target_position - startDegree);
                         endPoint.X += setting.zodiacRingOuterPadding.X;
                         endPoint.X += setting.zodiacRadius / 2;
@@ -524,13 +541,20 @@ namespace microcosm
                         }
                         g.DrawLine(pen, startPoint, endPoint);
                         pen.Dispose();
+#if DEBUG
+                        Console.WriteLine("2 i:" + i.ToString() + " j:" + j.ToString() + " deg:" + (list[i].progressAspects[j].target_position - startDegree).ToString());
+#endif
                     }
 
                 }
-                else if (aspectKind == 3)
+                else if (aspectKind == 3) // transit
                 {
                     for (int j = 0; j < list[i].transitAspects.Count; j++)
                     {
+                        if (!list[j].isAspectDisp)
+                        {
+//                            continue;
+                        }
                         endPoint = rotate(setting.calcSecondInnerRadius() / 2, 0, list[i].transitAspects[j].target_position - startDegree);
                         endPoint.X += setting.zodiacRingOuterPadding.X;
                         endPoint.X += setting.zodiacRadius / 2;
@@ -559,6 +583,9 @@ namespace microcosm
                         }
                         g.DrawLine(pen, startPoint, endPoint);
                         pen.Dispose();
+#if DEBUG
+                        Console.WriteLine("3 i:" + i.ToString() + " j:" + j.ToString() + " deg:" + (list[i].transitAspects[j].target_position - startDegree).ToString());
+#endif
                     }
 
                 }

@@ -51,6 +51,14 @@ namespace microcosm.DB
 
                 if (eventListView.FocusedItem.Bounds.Contains(e.Location))
                 {
+                    if (eventListView.SelectedItems[0].Index == 0)
+                    {
+                        deleteEventToolStripMenuItem.Enabled = false;
+                    } else
+                    {
+                        deleteEventToolStripMenuItem.Enabled = true;
+                    }
+
                     eventListView.ContextMenuStrip = contextMenuStrip3;
                 }
                 else
@@ -133,8 +141,14 @@ namespace microcosm.DB
             User u = (User)eventListView.Items[0].Tag;
 
             int index = eventListView.SelectedItems[0].Index;
+            if (index ==0)
+            {
+                return;
+            }
+
             eventListView.Items[index].Remove();
-            u.udata.userevent.RemoveAt(index);
+            // ユーザーデータの分indexがずれる
+            u.udata.userevent.RemoveAt(index - 1);
 
             XmlSerializer serializer = new XmlSerializer(typeof(UserData));
             if (File.Exists(u.filename))

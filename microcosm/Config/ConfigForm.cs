@@ -90,6 +90,10 @@ namespace microcosm.Config
                 this.mainform.config.progression = 3;
             }
 
+            if (!Directory.Exists(Path.GetDirectoryName(mainform.filename)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(mainform.filename));
+            }
             if (File.Exists(mainform.filename))
             {
                 File.Delete(mainform.filename);

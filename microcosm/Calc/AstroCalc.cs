@@ -85,25 +85,29 @@ namespace microcosm.Calc
                 }
 
 
-                PlanetData p = new PlanetData() { no = i, absolute_position = x[0], speed = x[3], aspects = new List<Aspect>(), progressAspects = new List<Aspect>(), transitAspects = new List<Aspect>(), sensitive = false, isDisp = true };
+                PlanetData p = new PlanetData() { no = i, absolute_position = x[0], speed = x[3], aspects = new List<Aspect>(), progressAspects = new List<Aspect>(), transitAspects = new List<Aspect>(), sensitive = false, isDisp = true, isAspectDisp = true };
                 if (config.centric == ECentric.HELIO_CENTRIC && i == 0)
                 {
                     // ヘリオセントリック太陽
                     p.isDisp = false;
+                    p.isAspectDisp = false;
                 }
                 if (i >= 10)
                 {
                     p.isDisp = false;
+                    p.isAspectDisp = false;
                 }
                 if (i == 11)
                 {
                     // ヘッド
                     p.isDisp = true;
+                    p.isAspectDisp = true;
                 }
                 if (config.centric == ECentric.HELIO_CENTRIC && i == 14)
                 {
                     // ヘリオセントリック地球
                     p.isDisp = true;
+                    p.isAspectDisp = true;
                 }
                 planetdata.Add(p);
             });
@@ -308,8 +312,17 @@ namespace microcosm.Calc
             // if (natal-natal)
             for (int i = 0; i < list.Count - 2; i++)
             {
+                if (!list[i].isAspectDisp)
+                {
+                    continue;
+                }
                 for (int j = i + 1; j < list.Count - 1; j++)
                 {
+                    if (!list[j].isAspectDisp)
+                    {
+                        continue;
+                    }
+
                     // 90.0 と　300.0では210度ではなく150度にならなければいけない
                     double aspect_degree = list[i].absolute_position - list[j].absolute_position;
 
@@ -321,7 +334,6 @@ namespace microcosm.Calc
                     {
                         aspect_degree = Math.Abs(aspect_degree);
                     }
-
 
                     foreach (AspectKind kind in Enum.GetValues(typeof(AspectKind)))
                     {
