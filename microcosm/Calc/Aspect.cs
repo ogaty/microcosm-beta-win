@@ -17,8 +17,9 @@ namespace microcosm.Calc
     };
     public class Aspect
     {
-        public double target_position;
-        public AspectKind aspect_kind;
-        public int soft_hard;
+        public double target_position; // 絶対位置
+        public AspectKind aspect_kind; // アスペクト種別
+        public int soft_hard; // ソフトorハード
+        public int target_no; // ターゲット番号
     }
 }

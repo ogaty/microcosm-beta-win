@@ -457,9 +457,9 @@ namespace microcosm
                 {
                     for (int j = 0; j < list[i].aspects.Count; j++)
                     {
-                        if (!list[i].isAspectDisp )
+                        if (!list[list[i].aspects[j].target_no].isAspectDisp )
                         {
-//                            continue;
+                            continue;
                         }
                         if (endPosition == 1)
                         {

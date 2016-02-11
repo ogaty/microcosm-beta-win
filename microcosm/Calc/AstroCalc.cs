@@ -348,13 +348,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_1st)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_1st &&
                                   aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_1st)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             } else if (kind == AspectKind.INCONJUNCT)
@@ -362,13 +362,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_150 &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_150)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_150 &&
                                   aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_150)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             } else
@@ -376,13 +376,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_2nd &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_2nd)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_2nd &&
                                   aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_2nd)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             }
@@ -399,13 +399,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_1st)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_1st)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             } else if (kind == AspectKind.INCONJUNCT)
@@ -413,13 +413,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_150 &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_150)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_150 &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_150)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             } else
@@ -427,13 +427,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_2nd &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_2nd)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_2nd &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_2nd)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             }
@@ -450,13 +450,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_1st)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_1st)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             } else if (kind == AspectKind.INCONJUNCT)
@@ -464,13 +464,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_150 &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_150)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_150 &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_150)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             } else
@@ -478,13 +478,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_2nd &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_2nd)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = list[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_2nd &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_2nd)
                                 {
-                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    list[i].aspects.Add(new Aspect() { target_position = list[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = list[j].no });
                                     break;
                                 }
                             }
@@ -528,12 +528,12 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_1st)
                                 {
-                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = toList[j].no });
                                     break;
                                 } else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_1st)
                                 {
-                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = toList[j].no });
                                     break;
                                 }
                             } else if (i == Common.ZODIAC_MOON)
@@ -541,13 +541,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_soft_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_soft_1st)
                                 {
-                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = toList[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_1st &&
                                   aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_1st)
                                 {
-                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = toList[j].no });
                                     break;
                                 }
 
@@ -557,13 +557,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_1st)
                                 {
-                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = toList[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_1st &&
                                      aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_1st)
                                 {
-                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    fromList[i].progressAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = toList[j].no });
                                     break;
                                 }
 
@@ -576,13 +576,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_soft_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_soft_1st)
                                 {
-                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = toList[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_sun_hard_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_sun_hard_1st)
                                 {
-                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = toList[j].no });
                                     break;
                                 }
                             }
@@ -591,13 +591,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_soft_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_soft_1st)
                                 {
-                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind ,soft_hard  = 2});
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind ,soft_hard  = 2, target_no = toList[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_moon_hard_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_moon_hard_1st)
                                 {
-                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = toList[j].no });
                                     break;
                                 }
 
@@ -607,13 +607,13 @@ namespace microcosm.Calc
                                 if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_soft_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_soft_1st)
                                 {
-                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2 });
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 2, target_no = toList[j].no });
                                     break;
                                 }
                                 else if (aspect_degree < getDegree(kind) + a_setting.orb_nn_other_hard_1st &&
                                     aspect_degree > getDegree(kind) - a_setting.orb_nn_other_hard_1st)
                                 {
-                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1 });
+                                    fromList[i].transitAspects.Add(new Aspect() { target_position = toList[j].absolute_position, aspect_kind = kind, soft_hard = 1, target_no = toList[j].no });
                                     break;
                                 }
 
