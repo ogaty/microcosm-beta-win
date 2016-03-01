@@ -177,5 +177,11 @@ namespace microcosm.DB
 
         }
 
+        public void eventListViewRename(string filename)
+        {
+            User u = (User)eventListView.Items[0].Tag;
+            eventListViewRender(u.udata, filename);
+        }
+
     }
 }

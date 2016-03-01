@@ -37,6 +37,7 @@ namespace microcosm.DB
                     return;
                 }
                 File.Move(filename, dbform.datadir + @"\" + dirnameBox.Text);
+                dbform.eventListViewRename(dbform.datadir + @"\" + dirnameBox.Text);
             } else if (Directory.Exists(filename))
             {
                 if (File.Exists(dbform.datadir + @"\" + dirnameBox.Text) || Directory.Exists(dbform.datadir + @"\" + dirnameBox.Text))

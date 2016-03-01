@@ -54,6 +54,11 @@ namespace microcosm.DB
 
         private static TreeNode CreateDirectoryNode(DirectoryInfo directoryInfo)
         {
+            if (!Directory.Exists(directoryInfo.FullName))
+            {
+                Directory.CreateDirectory(directoryInfo.FullName);
+            }
+
             var directoryNode = new TreeNode(directoryInfo.Name) { Tag = directoryInfo.FullName };
             foreach (var directory in directoryInfo.GetDirectories()) { 
                 directoryNode.Nodes.Add(CreateDirectoryNode(directory));
