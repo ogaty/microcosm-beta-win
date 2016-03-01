@@ -54,6 +54,10 @@ namespace microcosm
 
             // リスト
             // 天体10
+            int leftBottom = 0;
+            int rightBottom = 0;
+            int rightTop = 0;
+            int leftTop = 0;
             Enumerable.Range(0, 10).ToList().ForEach(i =>
             {
                 ListViewItem item = new ListViewItem(Common.getPlanetSymbol(i)) { Font = new Font("Segoe UI Symbol", 11) };
@@ -65,6 +69,22 @@ namespace microcosm
                     txt += "R";
                 }
                 item.SubItems.Add(txt);
+                if (natallist[i].absolute_position < 90.0)
+                {
+                    leftBottom++;
+                }
+                else if (natallist[i].absolute_position < 180.0)
+                {
+                    rightBottom++;
+                }
+                else if (natallist[i].absolute_position < 270.0)
+                {
+                    rightTop++;
+                }
+                else
+                {
+                    leftTop++;
+                }
 
                 if (setting.bands > 1 && progresslist != null)
                 {
@@ -81,6 +101,10 @@ namespace microcosm
                 planetList.Items.Add(item);
 
             });
+            houseLeftBottom.Text = leftBottom.ToString();
+            houseRightBottom.Text = rightBottom.ToString();
+            houseRightTop.Text = rightTop.ToString();
+            houseLeftTop.Text = leftTop.ToString();
 
             // カスプ12
             Label[] labels = { cusp1, cusp2, cusp3, cusp4, cusp5, cusp6, cusp7, cusp8, cusp9, cusp10, cusp11, cusp12 };

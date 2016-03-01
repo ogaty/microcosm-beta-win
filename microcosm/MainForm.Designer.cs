@@ -91,6 +91,10 @@
             this.eventDateLabel = new System.Windows.Forms.Label();
             this.eventLatLabel = new System.Windows.Forms.Label();
             this.eventPlaceLabel = new System.Windows.Forms.Label();
+            this.houseLeftTop = new System.Windows.Forms.Label();
+            this.houseLeftBottom = new System.Windows.Forms.Label();
+            this.houseRightBottom = new System.Windows.Forms.Label();
+            this.houseRightTop = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.leftPanel.SuspendLayout();
@@ -113,7 +117,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(13, 4, 0, 4);
-            this.menuStrip1.Size = new System.Drawing.Size(2222, 44);
+            this.menuStrip1.Size = new System.Drawing.Size(2422, 44);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -269,12 +273,16 @@
             this.panel1.Location = new System.Drawing.Point(0, 44);
             this.panel1.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(568, 1261);
+            this.panel1.Size = new System.Drawing.Size(568, 1318);
             this.panel1.TabIndex = 6;
             // 
             // leftPanel
             // 
             this.leftPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.leftPanel.Controls.Add(this.houseRightTop);
+            this.leftPanel.Controls.Add(this.houseRightBottom);
+            this.leftPanel.Controls.Add(this.houseLeftBottom);
+            this.leftPanel.Controls.Add(this.houseLeftTop);
             this.leftPanel.Controls.Add(this.progressionLabel);
             this.leftPanel.Controls.Add(this.cusp12);
             this.leftPanel.Controls.Add(this.cusp11);
@@ -309,13 +317,13 @@
             this.leftPanel.Location = new System.Drawing.Point(0, 0);
             this.leftPanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(561, 1261);
+            this.leftPanel.Size = new System.Drawing.Size(537, 1318);
             this.leftPanel.TabIndex = 1;
             // 
             // progressionLabel
             // 
             this.progressionLabel.AutoSize = true;
-            this.progressionLabel.Location = new System.Drawing.Point(41, 1186);
+            this.progressionLabel.Location = new System.Drawing.Point(33, 1263);
             this.progressionLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.progressionLabel.Name = "progressionLabel";
             this.progressionLabel.Size = new System.Drawing.Size(130, 24);
@@ -580,7 +588,7 @@
             // houseCalcLabel
             // 
             this.houseCalcLabel.AutoSize = true;
-            this.houseCalcLabel.Location = new System.Drawing.Point(41, 1144);
+            this.houseCalcLabel.Location = new System.Drawing.Point(33, 1221);
             this.houseCalcLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.houseCalcLabel.Name = "houseCalcLabel";
             this.houseCalcLabel.Size = new System.Drawing.Size(90, 24);
@@ -590,7 +598,7 @@
             // centricLabel
             // 
             this.centricLabel.AutoSize = true;
-            this.centricLabel.Location = new System.Drawing.Point(202, 1144);
+            this.centricLabel.Location = new System.Drawing.Point(194, 1221);
             this.centricLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.centricLabel.Name = "centricLabel";
             this.centricLabel.Size = new System.Drawing.Size(114, 24);
@@ -600,7 +608,7 @@
             // tropicalLabel
             // 
             this.tropicalLabel.AutoSize = true;
-            this.tropicalLabel.Location = new System.Drawing.Point(384, 1144);
+            this.tropicalLabel.Location = new System.Drawing.Point(376, 1221);
             this.tropicalLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.tropicalLabel.Name = "tropicalLabel";
             this.tropicalLabel.Size = new System.Drawing.Size(83, 24);
@@ -668,21 +676,24 @@
             this.chartPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartPanel.Location = new System.Drawing.Point(568, 44);
             this.chartPanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.chartPanel.MinimumSize = new System.Drawing.Size(1600, 600);
             this.chartPanel.Name = "chartPanel";
-            this.chartPanel.Size = new System.Drawing.Size(1654, 1261);
+            this.chartPanel.Size = new System.Drawing.Size(1854, 1318);
             this.chartPanel.TabIndex = 10;
             this.chartPanel.TabStop = false;
             // 
             // panel2
             // 
+            this.panel2.AutoSize = true;
             this.panel2.BackColor = System.Drawing.SystemColors.Window;
             this.panel2.Controls.Add(this.aspectSelect);
             this.panel2.Controls.Add(this.groupBox3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1875, 44);
+            this.panel2.Location = new System.Drawing.Point(2094, 44);
             this.panel2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.panel2.MinimumSize = new System.Drawing.Size(300, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(347, 1261);
+            this.panel2.Size = new System.Drawing.Size(328, 1318);
             this.panel2.TabIndex = 11;
             // 
             // aspectSelect
@@ -761,11 +772,48 @@
             this.eventPlaceLabel.TabIndex = 3;
             this.eventPlaceLabel.Text = "東京都 中央区";
             // 
+            // houseLeftTop
+            // 
+            this.houseLeftTop.AutoSize = true;
+            this.houseLeftTop.Location = new System.Drawing.Point(33, 1148);
+            this.houseLeftTop.Name = "houseLeftTop";
+            this.houseLeftTop.Size = new System.Drawing.Size(22, 24);
+            this.houseLeftTop.TabIndex = 35;
+            this.houseLeftTop.Text = "0";
+            // 
+            // houseLeftBottom
+            // 
+            this.houseLeftBottom.AutoSize = true;
+            this.houseLeftBottom.Location = new System.Drawing.Point(33, 1183);
+            this.houseLeftBottom.Name = "houseLeftBottom";
+            this.houseLeftBottom.Size = new System.Drawing.Size(22, 24);
+            this.houseLeftBottom.TabIndex = 36;
+            this.houseLeftBottom.Text = "0";
+            // 
+            // houseRightBottom
+            // 
+            this.houseRightBottom.AutoSize = true;
+            this.houseRightBottom.Location = new System.Drawing.Point(77, 1183);
+            this.houseRightBottom.Name = "houseRightBottom";
+            this.houseRightBottom.Size = new System.Drawing.Size(22, 24);
+            this.houseRightBottom.TabIndex = 37;
+            this.houseRightBottom.Text = "0";
+            // 
+            // houseRightTop
+            // 
+            this.houseRightTop.AutoSize = true;
+            this.houseRightTop.Location = new System.Drawing.Point(77, 1148);
+            this.houseRightTop.Name = "houseRightTop";
+            this.houseRightTop.Size = new System.Drawing.Size(22, 24);
+            this.houseRightTop.TabIndex = 38;
+            this.houseRightTop.Text = "0";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2222, 1305);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(2422, 1362);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.chartPanel);
             this.Controls.Add(this.label2);
@@ -774,6 +822,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.MinimumSize = new System.Drawing.Size(2200, 700);
             this.Name = "MainForm";
             this.Text = "microcosm";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -862,6 +911,10 @@
         private System.Windows.Forms.ToolStripMenuItem NowDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem VersionToolStripMenuItem;
+        private System.Windows.Forms.Label houseRightTop;
+        private System.Windows.Forms.Label houseRightBottom;
+        private System.Windows.Forms.Label houseLeftBottom;
+        private System.Windows.Forms.Label houseLeftTop;
     }
 }
 
