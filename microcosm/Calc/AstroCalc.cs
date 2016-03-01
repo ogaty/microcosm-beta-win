@@ -117,7 +117,7 @@ namespace microcosm.Calc
         }
 
         // カスプを計算
-        public double[] CuspCalc(int year, int month, int day, int hour, int min, double sec, double lat, double lng)
+        public double[] CuspCalc(int year, int month, int day, int hour, int min, double sec, double lat, double lng, int house)
         {
             int utc_year = 0;
             int utc_month = 0;
@@ -138,7 +138,19 @@ namespace microcosm.Calc
             double[] cusps = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             double[] ascmc = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-            s.swe_houses(dret[1], lat, lng, 'P', cusps, ascmc);
+            if (house == 0)
+            {
+                s.swe_houses(dret[1], lat, lng, 'P', cusps, ascmc);
+            } else if (house == 1)
+            {
+                s.swe_houses(dret[1], lat, lng, 'K', cusps, ascmc);
+            } else if (house == 2)
+            {
+                s.swe_houses(dret[1], lat, lng, 'C', cusps, ascmc);
+            } else
+            {
+                s.swe_houses(dret[1], lat, lng, 'E', cusps, ascmc);
+            }
             s.swe_close();
 
             return cusps;

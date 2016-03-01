@@ -319,7 +319,7 @@ namespace microcosm
         public void chartRefresh()
         {
             natallist = calc.PositionCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
-            natalcusp = calc.CuspCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng);
+            natalcusp = calc.CuspCalc(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second, setting.natal_lat, setting.natal_lng, config.houseCalc);
             natallist = calc.AspectCalcSame(aspectSetting, natallist);
 
             chartRefreshNoCalc();
@@ -345,14 +345,14 @@ namespace microcosm
                 {
                     progresslist = calc.CompositProgressionCalc(natallist, new DateTime(setting.natal_year, setting.natal_month, setting.natal_day, setting.natal_hour, setting.natal_minute, setting.natal_second), new DateTime(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second));
                 }
-                progresscusp = calc.CuspCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
+                progresscusp = calc.CuspCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng, config.houseCalc);
                 progresslist = calc.AspectCalcSame(aspectSetting, progresslist);
                 natallist = calc.AspectCalcOther(aspectSetting, natallist, progresslist, 1);
 
                 if (setting.bands > 2)
                 {
                     transitlist = calc.PositionCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
-                    transitcusp = calc.CuspCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng);
+                    transitcusp = calc.CuspCalc(setting.transit_year, setting.transit_month, setting.transit_day, setting.transit_hour, setting.transit_minute, setting.transit_second, setting.transit_lat, setting.transit_lng, config.houseCalc);
                     transitlist = calc.AspectCalcSame(aspectSetting, transitlist);
                     natallist = calc.AspectCalcOther(aspectSetting, natallist, transitlist, 2);
                     progresslist = calc.AspectCalcOther(aspectSetting, progresslist, transitlist, 2);

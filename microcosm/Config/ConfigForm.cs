@@ -27,6 +27,7 @@ namespace microcosm.Config
 
         private void ConfigForm_Load(object sender, EventArgs e)
         {
+            // 中心点
             ECentric centric = this.mainform.config.centric;
             if (centric == ECentric.GEO_CENTRIC)
             {
@@ -38,12 +39,13 @@ namespace microcosm.Config
                 centric_herio.Checked = true;
             }
 
-            if (this.mainform.config.progression == 1)
+            // プログレス
+            if (this.mainform.config.progression == 0)
             {
                 primaryProgression.Checked = true;
                 secondaryProgression.Checked = false;
                 compositProgression.Checked = false;
-            } else if (this.mainform.config.progression == 2)
+            } else if (this.mainform.config.progression == 1)
             {
                 primaryProgression.Checked = false;
                 secondaryProgression.Checked = true;
@@ -55,6 +57,37 @@ namespace microcosm.Config
                 compositProgression.Checked = true;
             }
 
+            // ハウス
+            if (mainform.config.houseCalc == 0)
+            {
+                house_pla.Checked = true;
+                house_koch.Checked = false;
+                house_cam.Checked = false;
+                house_equ.Checked = false;
+            }
+            else if (mainform.config.houseCalc == 1)
+            {
+                house_pla.Checked = false;
+                house_koch.Checked = true;
+                house_cam.Checked = false;
+                house_equ.Checked = false;
+            }
+            else if (mainform.config.houseCalc == 2)
+            {
+                house_pla.Checked = false;
+                house_koch.Checked = false;
+                house_cam.Checked = true;
+                house_equ.Checked = false;
+            } else
+            {
+                house_pla.Checked = false;
+                house_koch.Checked = false;
+                house_cam.Checked = false;
+                house_equ.Checked = true;
+            }
+
+
+            //デフォルト地形
             placeBox.Text = mainform.config.defaultPlace;
             latBox.Text = mainform.config.lat.ToString();
             lngBox.Text = mainform.config.lng.ToString();
@@ -81,13 +114,26 @@ namespace microcosm.Config
             this.mainform.config.lng = double.Parse(lngBox.Text);
             if (primaryProgression.Checked)
             {
-                this.mainform.config.progression = 1;
+                this.mainform.config.progression = 0;
             } else if (secondaryProgression.Checked)
             {
-                this.mainform.config.progression = 2;
+                this.mainform.config.progression = 1;
             } else
             {
-                this.mainform.config.progression = 3;
+                this.mainform.config.progression = 2;
+            }
+            if (house_pla.Checked)
+            {
+                this.mainform.config.houseCalc = 0;
+            } else if (house_koch.Checked)
+            {
+                this.mainform.config.houseCalc = 1;
+            } else if (house_cam.Checked)
+            {
+                this.mainform.config.houseCalc = 2;
+            } else
+            {
+                this.mainform.config.houseCalc = 3;
             }
 
             if (!Directory.Exists(Path.GetDirectoryName(mainform.filename)))

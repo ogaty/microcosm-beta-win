@@ -47,6 +47,10 @@ namespace microcosm.Config
         [XmlElement("progression")]
         public int progression { get; set; }
 
+        // ハウス
+        [XmlElement("house")]
+        public int houseCalc { get; set; }
+
         // SolarFireっぽく表示orAMATERUっぽく表示
         [XmlElement("dispPattern")]
         public int dispPattern { get; set; }

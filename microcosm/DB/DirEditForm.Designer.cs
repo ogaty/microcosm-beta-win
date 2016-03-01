@@ -37,24 +37,27 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(28, 26);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 12);
+            this.label1.Size = new System.Drawing.Size(106, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "新規名称";
             // 
             // dirnameBox
             // 
-            this.dirnameBox.Location = new System.Drawing.Point(15, 28);
+            this.dirnameBox.Location = new System.Drawing.Point(33, 56);
+            this.dirnameBox.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.dirnameBox.Name = "dirnameBox";
-            this.dirnameBox.Size = new System.Drawing.Size(184, 19);
+            this.dirnameBox.Size = new System.Drawing.Size(394, 31);
             this.dirnameBox.TabIndex = 1;
             // 
             // okBtn
             // 
-            this.okBtn.Location = new System.Drawing.Point(15, 67);
+            this.okBtn.Location = new System.Drawing.Point(33, 134);
+            this.okBtn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.okBtn.Name = "okBtn";
-            this.okBtn.Size = new System.Drawing.Size(75, 23);
+            this.okBtn.Size = new System.Drawing.Size(163, 46);
             this.okBtn.TabIndex = 2;
             this.okBtn.Text = "決定";
             this.okBtn.UseVisualStyleBackColor = true;
@@ -62,9 +65,10 @@
             // 
             // cancelBtn
             // 
-            this.cancelBtn.Location = new System.Drawing.Point(124, 67);
+            this.cancelBtn.Location = new System.Drawing.Point(269, 134);
+            this.cancelBtn.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.cancelBtn.Name = "cancelBtn";
-            this.cancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.cancelBtn.Size = new System.Drawing.Size(163, 46);
             this.cancelBtn.TabIndex = 3;
             this.cancelBtn.Text = "キャンセル";
             this.cancelBtn.UseVisualStyleBackColor = true;
@@ -72,13 +76,16 @@
             // 
             // DirEditForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(213, 106);
+            this.ClientSize = new System.Drawing.Size(503, 212);
             this.Controls.Add(this.cancelBtn);
             this.Controls.Add(this.okBtn);
             this.Controls.Add(this.dirnameBox);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "DirEditForm";
             this.Text = "DirEditForm";
             this.Load += new System.EventHandler(this.DirEditForm_Load);

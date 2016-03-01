@@ -45,27 +45,30 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(28, 26);
+            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(184, 16);
+            this.label1.Size = new System.Drawing.Size(350, 33);
             this.label1.TabIndex = 0;
             this.label1.Text = "microcosm for windows";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(215, 17);
+            this.label2.Location = new System.Drawing.Point(466, 34);
+            this.label2.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 12);
+            this.label2.Size = new System.Drawing.Size(121, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "Version 0.1";
             // 
             // ogatismLabel
             // 
             this.ogatismLabel.AutoSize = true;
-            this.ogatismLabel.Location = new System.Drawing.Point(177, 38);
+            this.ogatismLabel.Location = new System.Drawing.Point(384, 76);
+            this.ogatismLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.ogatismLabel.Name = "ogatismLabel";
-            this.ogatismLabel.Size = new System.Drawing.Size(96, 12);
+            this.ogatismLabel.Size = new System.Drawing.Size(189, 24);
             this.ogatismLabel.TabIndex = 3;
             this.ogatismLabel.TabStop = true;
             this.ogatismLabel.Text = "http://ogatism.jp/";
@@ -74,9 +77,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(50, 38);
+            this.label4.Location = new System.Drawing.Point(108, 76);
+            this.label4.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 12);
+            this.label4.Size = new System.Drawing.Size(143, 24);
             this.label4.TabIndex = 4;
             this.label4.Text = "(C) 緒形雄二";
             // 
@@ -84,18 +88,20 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(6, 18);
+            this.label5.Location = new System.Drawing.Point(13, 36);
+            this.label5.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 16);
+            this.label5.Size = new System.Drawing.Size(256, 33);
             this.label5.TabIndex = 5;
             this.label5.Text = "Swiss Ephemeris";
             // 
             // swissLabel
             // 
             this.swissLabel.AutoSize = true;
-            this.swissLabel.Location = new System.Drawing.Point(165, 45);
+            this.swissLabel.Location = new System.Drawing.Point(358, 90);
+            this.swissLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.swissLabel.Name = "swissLabel";
-            this.swissLabel.Size = new System.Drawing.Size(120, 12);
+            this.swissLabel.Size = new System.Drawing.Size(241, 24);
             this.swissLabel.TabIndex = 6;
             this.swissLabel.TabStop = true;
             this.swissLabel.Text = "http://www.astro.com/";
@@ -104,9 +110,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 45);
+            this.label6.Location = new System.Drawing.Point(82, 90);
+            this.label6.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 12);
+            this.label6.Size = new System.Drawing.Size(199, 24);
             this.label6.TabIndex = 7;
             this.label6.Text = "(C) Astrodienst AG";
             // 
@@ -114,18 +121,20 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label7.Location = new System.Drawing.Point(6, 67);
+            this.label7.Location = new System.Drawing.Point(13, 134);
+            this.label7.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(105, 16);
+            this.label7.Size = new System.Drawing.Size(201, 33);
             this.label7.TabIndex = 8;
             this.label7.Text = "SwissEphNet";
             // 
             // EphNetLabel
             // 
             this.EphNetLabel.AutoSize = true;
-            this.EphNetLabel.Location = new System.Drawing.Point(165, 89);
+            this.EphNetLabel.Location = new System.Drawing.Point(358, 178);
+            this.EphNetLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.EphNetLabel.Name = "EphNetLabel";
-            this.EphNetLabel.Size = new System.Drawing.Size(219, 12);
+            this.EphNetLabel.Size = new System.Drawing.Size(430, 24);
             this.EphNetLabel.TabIndex = 9;
             this.EphNetLabel.TabStop = true;
             this.EphNetLabel.Text = "https://github.com/ygrenier/SwissEphNet";
@@ -138,23 +147,28 @@
             this.Libraries.Controls.Add(this.label5);
             this.Libraries.Controls.Add(this.label6);
             this.Libraries.Controls.Add(this.swissLabel);
-            this.Libraries.Location = new System.Drawing.Point(12, 65);
+            this.Libraries.Location = new System.Drawing.Point(26, 130);
+            this.Libraries.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.Libraries.Name = "Libraries";
-            this.Libraries.Size = new System.Drawing.Size(398, 113);
+            this.Libraries.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.Libraries.Size = new System.Drawing.Size(862, 226);
             this.Libraries.TabIndex = 10;
             this.Libraries.TabStop = false;
             this.Libraries.Text = "Libraries";
             // 
             // Version
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 190);
+            this.ClientSize = new System.Drawing.Size(914, 380);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.ogatismLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Libraries);
+            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Version";
             this.Text = "Version";
             this.Libraries.ResumeLayout(false);

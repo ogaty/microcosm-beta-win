@@ -148,6 +148,20 @@ namespace microcosm
             {
                 progressionLabel.Text = "CPS";
             }
+            if (config.houseCalc == 0)
+            {
+                houseCalcLabel.Text = "placidus";
+            } else if (config.houseCalc == 1)
+            {
+                houseCalcLabel.Text = "koch";
+            } else if (config.houseCalc == 2)
+            {
+                houseCalcLabel.Text = "campanus";
+            } else
+            {
+                houseCalcLabel.Text = "equal";
+            }
+            
 
         }
 
