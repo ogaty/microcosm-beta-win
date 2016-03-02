@@ -48,6 +48,10 @@
             this.lngLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.leftPanel = new System.Windows.Forms.Panel();
+            this.houseRightTop = new System.Windows.Forms.Label();
+            this.houseRightBottom = new System.Windows.Forms.Label();
+            this.houseLeftBottom = new System.Windows.Forms.Label();
+            this.houseLeftTop = new System.Windows.Forms.Label();
             this.progressionLabel = new System.Windows.Forms.Label();
             this.cusp12 = new System.Windows.Forms.Label();
             this.cusp11 = new System.Windows.Forms.Label();
@@ -91,10 +95,14 @@
             this.eventDateLabel = new System.Windows.Forms.Label();
             this.eventLatLabel = new System.Windows.Forms.Label();
             this.eventPlaceLabel = new System.Windows.Forms.Label();
-            this.houseLeftTop = new System.Windows.Forms.Label();
-            this.houseLeftBottom = new System.Windows.Forms.Label();
-            this.houseRightBottom = new System.Windows.Forms.Label();
-            this.houseRightTop = new System.Windows.Forms.Label();
+            this.fire = new System.Windows.Forms.Label();
+            this.water = new System.Windows.Forms.Label();
+            this.earth = new System.Windows.Forms.Label();
+            this.air = new System.Windows.Forms.Label();
+            this.fireLabel = new System.Windows.Forms.Label();
+            this.airLabel = new System.Windows.Forms.Label();
+            this.earthLabel = new System.Windows.Forms.Label();
+            this.waterLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.leftPanel.SuspendLayout();
@@ -279,6 +287,14 @@
             // leftPanel
             // 
             this.leftPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.leftPanel.Controls.Add(this.waterLabel);
+            this.leftPanel.Controls.Add(this.earthLabel);
+            this.leftPanel.Controls.Add(this.airLabel);
+            this.leftPanel.Controls.Add(this.fireLabel);
+            this.leftPanel.Controls.Add(this.air);
+            this.leftPanel.Controls.Add(this.earth);
+            this.leftPanel.Controls.Add(this.water);
+            this.leftPanel.Controls.Add(this.fire);
             this.leftPanel.Controls.Add(this.houseRightTop);
             this.leftPanel.Controls.Add(this.houseRightBottom);
             this.leftPanel.Controls.Add(this.houseLeftBottom);
@@ -319,6 +335,42 @@
             this.leftPanel.Name = "leftPanel";
             this.leftPanel.Size = new System.Drawing.Size(537, 1318);
             this.leftPanel.TabIndex = 1;
+            // 
+            // houseRightTop
+            // 
+            this.houseRightTop.AutoSize = true;
+            this.houseRightTop.Location = new System.Drawing.Point(77, 1148);
+            this.houseRightTop.Name = "houseRightTop";
+            this.houseRightTop.Size = new System.Drawing.Size(22, 24);
+            this.houseRightTop.TabIndex = 38;
+            this.houseRightTop.Text = "0";
+            // 
+            // houseRightBottom
+            // 
+            this.houseRightBottom.AutoSize = true;
+            this.houseRightBottom.Location = new System.Drawing.Point(77, 1183);
+            this.houseRightBottom.Name = "houseRightBottom";
+            this.houseRightBottom.Size = new System.Drawing.Size(22, 24);
+            this.houseRightBottom.TabIndex = 37;
+            this.houseRightBottom.Text = "0";
+            // 
+            // houseLeftBottom
+            // 
+            this.houseLeftBottom.AutoSize = true;
+            this.houseLeftBottom.Location = new System.Drawing.Point(33, 1183);
+            this.houseLeftBottom.Name = "houseLeftBottom";
+            this.houseLeftBottom.Size = new System.Drawing.Size(22, 24);
+            this.houseLeftBottom.TabIndex = 36;
+            this.houseLeftBottom.Text = "0";
+            // 
+            // houseLeftTop
+            // 
+            this.houseLeftTop.AutoSize = true;
+            this.houseLeftTop.Location = new System.Drawing.Point(33, 1148);
+            this.houseLeftTop.Name = "houseLeftTop";
+            this.houseLeftTop.Size = new System.Drawing.Size(22, 24);
+            this.houseLeftTop.TabIndex = 35;
+            this.houseLeftTop.Text = "0";
             // 
             // progressionLabel
             // 
@@ -691,7 +743,6 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(2094, 44);
             this.panel2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.panel2.MinimumSize = new System.Drawing.Size(300, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(328, 1318);
             this.panel2.TabIndex = 11;
@@ -772,41 +823,77 @@
             this.eventPlaceLabel.TabIndex = 3;
             this.eventPlaceLabel.Text = "東京都 中央区";
             // 
-            // houseLeftTop
+            // fire
             // 
-            this.houseLeftTop.AutoSize = true;
-            this.houseLeftTop.Location = new System.Drawing.Point(33, 1148);
-            this.houseLeftTop.Name = "houseLeftTop";
-            this.houseLeftTop.Size = new System.Drawing.Size(22, 24);
-            this.houseLeftTop.TabIndex = 35;
-            this.houseLeftTop.Text = "0";
+            this.fire.AutoSize = true;
+            this.fire.Location = new System.Drawing.Point(173, 1147);
+            this.fire.Name = "fire";
+            this.fire.Size = new System.Drawing.Size(42, 24);
+            this.fire.TabIndex = 39;
+            this.fire.Text = "fire";
             // 
-            // houseLeftBottom
+            // water
             // 
-            this.houseLeftBottom.AutoSize = true;
-            this.houseLeftBottom.Location = new System.Drawing.Point(33, 1183);
-            this.houseLeftBottom.Name = "houseLeftBottom";
-            this.houseLeftBottom.Size = new System.Drawing.Size(22, 24);
-            this.houseLeftBottom.TabIndex = 36;
-            this.houseLeftBottom.Text = "0";
+            this.water.AutoSize = true;
+            this.water.Location = new System.Drawing.Point(347, 1183);
+            this.water.Name = "water";
+            this.water.Size = new System.Drawing.Size(65, 24);
+            this.water.TabIndex = 40;
+            this.water.Text = "water";
             // 
-            // houseRightBottom
+            // earth
             // 
-            this.houseRightBottom.AutoSize = true;
-            this.houseRightBottom.Location = new System.Drawing.Point(77, 1183);
-            this.houseRightBottom.Name = "houseRightBottom";
-            this.houseRightBottom.Size = new System.Drawing.Size(22, 24);
-            this.houseRightBottom.TabIndex = 37;
-            this.houseRightBottom.Text = "0";
+            this.earth.AutoSize = true;
+            this.earth.Location = new System.Drawing.Point(347, 1147);
+            this.earth.Name = "earth";
+            this.earth.Size = new System.Drawing.Size(61, 24);
+            this.earth.TabIndex = 41;
+            this.earth.Text = "earth";
             // 
-            // houseRightTop
+            // air
             // 
-            this.houseRightTop.AutoSize = true;
-            this.houseRightTop.Location = new System.Drawing.Point(77, 1148);
-            this.houseRightTop.Name = "houseRightTop";
-            this.houseRightTop.Size = new System.Drawing.Size(22, 24);
-            this.houseRightTop.TabIndex = 38;
-            this.houseRightTop.Text = "0";
+            this.air.AutoSize = true;
+            this.air.Location = new System.Drawing.Point(173, 1183);
+            this.air.Name = "air";
+            this.air.Size = new System.Drawing.Size(34, 24);
+            this.air.TabIndex = 42;
+            this.air.Text = "air";
+            // 
+            // fireLabel
+            // 
+            this.fireLabel.AutoSize = true;
+            this.fireLabel.Location = new System.Drawing.Point(262, 1147);
+            this.fireLabel.Name = "fireLabel";
+            this.fireLabel.Size = new System.Drawing.Size(22, 24);
+            this.fireLabel.TabIndex = 43;
+            this.fireLabel.Text = "0";
+            // 
+            // airLabel
+            // 
+            this.airLabel.AutoSize = true;
+            this.airLabel.Location = new System.Drawing.Point(262, 1183);
+            this.airLabel.Name = "airLabel";
+            this.airLabel.Size = new System.Drawing.Size(22, 24);
+            this.airLabel.TabIndex = 44;
+            this.airLabel.Text = "0";
+            // 
+            // earthLabel
+            // 
+            this.earthLabel.AutoSize = true;
+            this.earthLabel.Location = new System.Drawing.Point(474, 1147);
+            this.earthLabel.Name = "earthLabel";
+            this.earthLabel.Size = new System.Drawing.Size(22, 24);
+            this.earthLabel.TabIndex = 45;
+            this.earthLabel.Text = "0";
+            // 
+            // waterLabel
+            // 
+            this.waterLabel.AutoSize = true;
+            this.waterLabel.Location = new System.Drawing.Point(474, 1183);
+            this.waterLabel.Name = "waterLabel";
+            this.waterLabel.Size = new System.Drawing.Size(22, 24);
+            this.waterLabel.TabIndex = 46;
+            this.waterLabel.Text = "0";
             // 
             // MainForm
             // 
@@ -915,6 +1002,14 @@
         private System.Windows.Forms.Label houseRightBottom;
         private System.Windows.Forms.Label houseLeftBottom;
         private System.Windows.Forms.Label houseLeftTop;
+        private System.Windows.Forms.Label waterLabel;
+        private System.Windows.Forms.Label earthLabel;
+        private System.Windows.Forms.Label airLabel;
+        private System.Windows.Forms.Label fireLabel;
+        private System.Windows.Forms.Label air;
+        private System.Windows.Forms.Label earth;
+        private System.Windows.Forms.Label water;
+        private System.Windows.Forms.Label fire;
     }
 }
 

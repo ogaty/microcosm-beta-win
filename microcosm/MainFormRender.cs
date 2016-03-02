@@ -52,60 +52,6 @@ namespace microcosm
                 }
             }
 
-            // リスト
-            // 天体10
-            int leftBottom = 0;
-            int rightBottom = 0;
-            int rightTop = 0;
-            int leftTop = 0;
-            Enumerable.Range(0, 10).ToList().ForEach(i =>
-            {
-                ListViewItem item = new ListViewItem(Common.getPlanetSymbol(i)) { Font = new Font("Segoe UI Symbol", 11) };
-                //                item.Font = new Font("Zodiac S", 12);
-                string txt = Common.getSignText(natallist[i].absolute_position) + "  " +
-                    Common.getDeg(natallist[i].absolute_position).ToString("00.000");
-                if (natallist[i].speed < 0)
-                {
-                    txt += "R";
-                }
-                item.SubItems.Add(txt);
-                if (natallist[i].absolute_position < 90.0)
-                {
-                    leftBottom++;
-                }
-                else if (natallist[i].absolute_position < 180.0)
-                {
-                    rightBottom++;
-                }
-                else if (natallist[i].absolute_position < 270.0)
-                {
-                    rightTop++;
-                }
-                else
-                {
-                    leftTop++;
-                }
-
-                if (setting.bands > 1 && progresslist != null)
-                {
-                    item.SubItems.Add(Common.getSignText(progresslist[i].absolute_position) + "  " +
-                        Common.getDeg(progresslist[i].absolute_position).ToString("00.000"));
-                    if (setting.bands > 2 && transitlist != null)
-                    {
-                        item.SubItems.Add(Common.getSignText(transitlist[i].absolute_position) + "  " +
-                            Common.getDeg(transitlist[i].absolute_position).ToString("00.000"));
-                    }
-
-                }
-
-                planetList.Items.Add(item);
-
-            });
-            houseLeftBottom.Text = leftBottom.ToString();
-            houseRightBottom.Text = rightBottom.ToString();
-            houseRightTop.Text = rightTop.ToString();
-            houseLeftTop.Text = leftTop.ToString();
-
             // カスプ12
             Label[] labels = { cusp1, cusp2, cusp3, cusp4, cusp5, cusp6, cusp7, cusp8, cusp9, cusp10, cusp11, cusp12 };
 
@@ -153,6 +99,93 @@ namespace microcosm
                 //                    Common.getDeg(natalcusp[i]).ToString("00.000"));
                 labels[i - 1].Text = Common.getSignText(natalcusp[i]) + "  " + Common.getDeg(natalcusp[i]).ToString("00.000");
             });
+
+            var sortcusp = natalcusp;
+            Array.Sort(sortcusp);
+            // リスト
+            // 天体10
+            int leftBottom = 0;
+            int rightBottom = 0;
+            int rightTop = 0;
+            int leftTop = 0;
+            int fire = 0;
+            int earth = 0;
+            int air = 0;
+            int water = 0;
+            Enumerable.Range(0, 10).ToList().ForEach(i =>
+            {
+                ListViewItem item = new ListViewItem(Common.getPlanetSymbol(i)) { Font = new Font("Segoe UI Symbol", 11) };
+                //                item.Font = new Font("Zodiac S", 12);
+                string txt = Common.getSignText(natallist[i].absolute_position) + "  " +
+                    Common.getDeg(natallist[i].absolute_position).ToString("00.000");
+                if (natallist[i].speed < 0)
+                {
+                    txt += "R";
+                }
+                item.SubItems.Add(txt);
+                if (natallist[i].absolute_position < sortcusp[4])
+                {
+                    leftBottom++;
+                }
+                else if (natallist[i].absolute_position < sortcusp[7])
+                {
+                    rightBottom++;
+                }
+                else if (natallist[i].absolute_position < sortcusp[10])
+                {
+                    rightTop++;
+                }
+                else
+                {
+                    leftTop++;
+                }
+
+                if (natallist[i].absolute_position < 30.0 ||
+                    (120.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 150.0) ||
+                    (240.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 270.0))
+                {
+                    fire++;
+                }
+                else if (natallist[i].absolute_position < 60.0 ||
+                  (150.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 180.0) ||
+                  (270.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 300.0))
+                {
+                    earth++;
+                }
+                else if (natallist[i].absolute_position < 90.0 ||
+                  (180.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 210.0) ||
+                  (300.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 330.0))
+                {
+                    air++;
+                }
+                else {
+                    water++;
+                }
+
+                    if (setting.bands > 1 && progresslist != null)
+                {
+                    item.SubItems.Add(Common.getSignText(progresslist[i].absolute_position) + "  " +
+                        Common.getDeg(progresslist[i].absolute_position).ToString("00.000"));
+                    if (setting.bands > 2 && transitlist != null)
+                    {
+                        item.SubItems.Add(Common.getSignText(transitlist[i].absolute_position) + "  " +
+                            Common.getDeg(transitlist[i].absolute_position).ToString("00.000"));
+                    }
+
+                }
+
+                planetList.Items.Add(item);
+
+            });
+            houseLeftBottom.Text = leftBottom.ToString();
+            houseRightBottom.Text = rightBottom.ToString();
+            houseRightTop.Text = rightTop.ToString();
+            houseLeftTop.Text = leftTop.ToString();
+            fireLabel.Text = fire.ToString();
+            earthLabel.Text = earth.ToString();
+            airLabel.Text = air.ToString();
+            waterLabel.Text = water.ToString();
+
 
             if (config.centric == ECentric.HELIO_CENTRIC)
             {
