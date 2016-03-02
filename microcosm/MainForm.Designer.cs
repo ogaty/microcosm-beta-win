@@ -48,6 +48,14 @@
             this.lngLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.leftPanel = new System.Windows.Forms.Panel();
+            this.waterLabel = new System.Windows.Forms.Label();
+            this.earthLabel = new System.Windows.Forms.Label();
+            this.airLabel = new System.Windows.Forms.Label();
+            this.fireLabel = new System.Windows.Forms.Label();
+            this.air = new System.Windows.Forms.Label();
+            this.earth = new System.Windows.Forms.Label();
+            this.water = new System.Windows.Forms.Label();
+            this.fire = new System.Windows.Forms.Label();
             this.houseRightTop = new System.Windows.Forms.Label();
             this.houseRightBottom = new System.Windows.Forms.Label();
             this.houseLeftBottom = new System.Windows.Forms.Label();
@@ -86,7 +94,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.centerSlider = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
-            this.chartPanel = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.aspectSelect = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -95,23 +102,16 @@
             this.eventDateLabel = new System.Windows.Forms.Label();
             this.eventLatLabel = new System.Windows.Forms.Label();
             this.eventPlaceLabel = new System.Windows.Forms.Label();
-            this.fire = new System.Windows.Forms.Label();
-            this.water = new System.Windows.Forms.Label();
-            this.earth = new System.Windows.Forms.Label();
-            this.air = new System.Windows.Forms.Label();
-            this.fireLabel = new System.Windows.Forms.Label();
-            this.airLabel = new System.Windows.Forms.Label();
-            this.earthLabel = new System.Windows.Forms.Label();
-            this.waterLabel = new System.Windows.Forms.Label();
+            this.chartPanel = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.leftPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -335,6 +335,78 @@
             this.leftPanel.Name = "leftPanel";
             this.leftPanel.Size = new System.Drawing.Size(537, 1318);
             this.leftPanel.TabIndex = 1;
+            // 
+            // waterLabel
+            // 
+            this.waterLabel.AutoSize = true;
+            this.waterLabel.Location = new System.Drawing.Point(474, 1183);
+            this.waterLabel.Name = "waterLabel";
+            this.waterLabel.Size = new System.Drawing.Size(22, 24);
+            this.waterLabel.TabIndex = 46;
+            this.waterLabel.Text = "0";
+            // 
+            // earthLabel
+            // 
+            this.earthLabel.AutoSize = true;
+            this.earthLabel.Location = new System.Drawing.Point(474, 1147);
+            this.earthLabel.Name = "earthLabel";
+            this.earthLabel.Size = new System.Drawing.Size(22, 24);
+            this.earthLabel.TabIndex = 45;
+            this.earthLabel.Text = "0";
+            // 
+            // airLabel
+            // 
+            this.airLabel.AutoSize = true;
+            this.airLabel.Location = new System.Drawing.Point(262, 1183);
+            this.airLabel.Name = "airLabel";
+            this.airLabel.Size = new System.Drawing.Size(22, 24);
+            this.airLabel.TabIndex = 44;
+            this.airLabel.Text = "0";
+            // 
+            // fireLabel
+            // 
+            this.fireLabel.AutoSize = true;
+            this.fireLabel.Location = new System.Drawing.Point(262, 1147);
+            this.fireLabel.Name = "fireLabel";
+            this.fireLabel.Size = new System.Drawing.Size(22, 24);
+            this.fireLabel.TabIndex = 43;
+            this.fireLabel.Text = "0";
+            // 
+            // air
+            // 
+            this.air.AutoSize = true;
+            this.air.Location = new System.Drawing.Point(173, 1183);
+            this.air.Name = "air";
+            this.air.Size = new System.Drawing.Size(34, 24);
+            this.air.TabIndex = 42;
+            this.air.Text = "air";
+            // 
+            // earth
+            // 
+            this.earth.AutoSize = true;
+            this.earth.Location = new System.Drawing.Point(347, 1147);
+            this.earth.Name = "earth";
+            this.earth.Size = new System.Drawing.Size(61, 24);
+            this.earth.TabIndex = 41;
+            this.earth.Text = "earth";
+            // 
+            // water
+            // 
+            this.water.AutoSize = true;
+            this.water.Location = new System.Drawing.Point(347, 1183);
+            this.water.Name = "water";
+            this.water.Size = new System.Drawing.Size(65, 24);
+            this.water.TabIndex = 40;
+            this.water.Text = "water";
+            // 
+            // fire
+            // 
+            this.fire.AutoSize = true;
+            this.fire.Location = new System.Drawing.Point(173, 1147);
+            this.fire.Name = "fire";
+            this.fire.Size = new System.Drawing.Size(42, 24);
+            this.fire.TabIndex = 39;
+            this.fire.Text = "fire";
             // 
             // houseRightTop
             // 
@@ -722,18 +794,6 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "label2";
             // 
-            // chartPanel
-            // 
-            this.chartPanel.BackColor = System.Drawing.Color.LightCyan;
-            this.chartPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chartPanel.Location = new System.Drawing.Point(568, 44);
-            this.chartPanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.chartPanel.MinimumSize = new System.Drawing.Size(1600, 600);
-            this.chartPanel.Name = "chartPanel";
-            this.chartPanel.Size = new System.Drawing.Size(1854, 1318);
-            this.chartPanel.TabIndex = 10;
-            this.chartPanel.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.AutoSize = true;
@@ -823,77 +883,16 @@
             this.eventPlaceLabel.TabIndex = 3;
             this.eventPlaceLabel.Text = "東京都 中央区";
             // 
-            // fire
+            // chartPanel
             // 
-            this.fire.AutoSize = true;
-            this.fire.Location = new System.Drawing.Point(173, 1147);
-            this.fire.Name = "fire";
-            this.fire.Size = new System.Drawing.Size(42, 24);
-            this.fire.TabIndex = 39;
-            this.fire.Text = "fire";
-            // 
-            // water
-            // 
-            this.water.AutoSize = true;
-            this.water.Location = new System.Drawing.Point(347, 1183);
-            this.water.Name = "water";
-            this.water.Size = new System.Drawing.Size(65, 24);
-            this.water.TabIndex = 40;
-            this.water.Text = "water";
-            // 
-            // earth
-            // 
-            this.earth.AutoSize = true;
-            this.earth.Location = new System.Drawing.Point(347, 1147);
-            this.earth.Name = "earth";
-            this.earth.Size = new System.Drawing.Size(61, 24);
-            this.earth.TabIndex = 41;
-            this.earth.Text = "earth";
-            // 
-            // air
-            // 
-            this.air.AutoSize = true;
-            this.air.Location = new System.Drawing.Point(173, 1183);
-            this.air.Name = "air";
-            this.air.Size = new System.Drawing.Size(34, 24);
-            this.air.TabIndex = 42;
-            this.air.Text = "air";
-            // 
-            // fireLabel
-            // 
-            this.fireLabel.AutoSize = true;
-            this.fireLabel.Location = new System.Drawing.Point(262, 1147);
-            this.fireLabel.Name = "fireLabel";
-            this.fireLabel.Size = new System.Drawing.Size(22, 24);
-            this.fireLabel.TabIndex = 43;
-            this.fireLabel.Text = "0";
-            // 
-            // airLabel
-            // 
-            this.airLabel.AutoSize = true;
-            this.airLabel.Location = new System.Drawing.Point(262, 1183);
-            this.airLabel.Name = "airLabel";
-            this.airLabel.Size = new System.Drawing.Size(22, 24);
-            this.airLabel.TabIndex = 44;
-            this.airLabel.Text = "0";
-            // 
-            // earthLabel
-            // 
-            this.earthLabel.AutoSize = true;
-            this.earthLabel.Location = new System.Drawing.Point(474, 1147);
-            this.earthLabel.Name = "earthLabel";
-            this.earthLabel.Size = new System.Drawing.Size(22, 24);
-            this.earthLabel.TabIndex = 45;
-            this.earthLabel.Text = "0";
-            // 
-            // waterLabel
-            // 
-            this.waterLabel.AutoSize = true;
-            this.waterLabel.Location = new System.Drawing.Point(474, 1183);
-            this.waterLabel.Name = "waterLabel";
-            this.waterLabel.Size = new System.Drawing.Size(22, 24);
-            this.waterLabel.TabIndex = 46;
-            this.waterLabel.Text = "0";
+            this.chartPanel.BackColor = System.Drawing.Color.LightCyan;
+            this.chartPanel.Location = new System.Drawing.Point(568, 48);
+            this.chartPanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.chartPanel.MinimumSize = new System.Drawing.Size(1400, 600);
+            this.chartPanel.Name = "chartPanel";
+            this.chartPanel.Size = new System.Drawing.Size(1654, 1318);
+            this.chartPanel.TabIndex = 10;
+            this.chartPanel.TabStop = false;
             // 
             // MainForm
             // 
@@ -924,10 +923,10 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).EndInit();
             this.panel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -980,7 +979,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox chartPanel;
         private System.Windows.Forms.ToolStripMenuItem 表示DToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem チャートToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem singleChartToolStripMenuItem;
@@ -1010,6 +1008,7 @@
         private System.Windows.Forms.Label earth;
         private System.Windows.Forms.Label water;
         private System.Windows.Forms.Label fire;
+        private System.Windows.Forms.PictureBox chartPanel;
     }
 }
 
