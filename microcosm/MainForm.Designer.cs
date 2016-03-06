@@ -90,9 +90,6 @@
             this.centricLabel = new System.Windows.Forms.Label();
             this.tropicalLabel = new System.Windows.Forms.Label();
             this.planetList = new System.Windows.Forms.ListView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.centerSlider = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.aspectSelect = new System.Windows.Forms.ComboBox();
@@ -103,15 +100,24 @@
             this.eventLatLabel = new System.Windows.Forms.Label();
             this.eventPlaceLabel = new System.Windows.Forms.Label();
             this.chartPanel = new System.Windows.Forms.PictureBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.cardinalLabel = new System.Windows.Forms.Label();
+            this.fixedLabel = new System.Windows.Forms.Label();
+            this.mutableLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.leftPanel.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -287,18 +293,6 @@
             // leftPanel
             // 
             this.leftPanel.BackColor = System.Drawing.SystemColors.Window;
-            this.leftPanel.Controls.Add(this.waterLabel);
-            this.leftPanel.Controls.Add(this.earthLabel);
-            this.leftPanel.Controls.Add(this.airLabel);
-            this.leftPanel.Controls.Add(this.fireLabel);
-            this.leftPanel.Controls.Add(this.air);
-            this.leftPanel.Controls.Add(this.earth);
-            this.leftPanel.Controls.Add(this.water);
-            this.leftPanel.Controls.Add(this.fire);
-            this.leftPanel.Controls.Add(this.houseRightTop);
-            this.leftPanel.Controls.Add(this.houseRightBottom);
-            this.leftPanel.Controls.Add(this.houseLeftBottom);
-            this.leftPanel.Controls.Add(this.houseLeftTop);
             this.leftPanel.Controls.Add(this.progressionLabel);
             this.leftPanel.Controls.Add(this.cusp12);
             this.leftPanel.Controls.Add(this.cusp11);
@@ -339,7 +333,7 @@
             // waterLabel
             // 
             this.waterLabel.AutoSize = true;
-            this.waterLabel.Location = new System.Drawing.Point(474, 1183);
+            this.waterLabel.Location = new System.Drawing.Point(310, 183);
             this.waterLabel.Name = "waterLabel";
             this.waterLabel.Size = new System.Drawing.Size(22, 24);
             this.waterLabel.TabIndex = 46;
@@ -348,7 +342,7 @@
             // earthLabel
             // 
             this.earthLabel.AutoSize = true;
-            this.earthLabel.Location = new System.Drawing.Point(474, 1147);
+            this.earthLabel.Location = new System.Drawing.Point(310, 83);
             this.earthLabel.Name = "earthLabel";
             this.earthLabel.Size = new System.Drawing.Size(22, 24);
             this.earthLabel.TabIndex = 45;
@@ -357,7 +351,7 @@
             // airLabel
             // 
             this.airLabel.AutoSize = true;
-            this.airLabel.Location = new System.Drawing.Point(262, 1183);
+            this.airLabel.Location = new System.Drawing.Point(310, 132);
             this.airLabel.Name = "airLabel";
             this.airLabel.Size = new System.Drawing.Size(22, 24);
             this.airLabel.TabIndex = 44;
@@ -366,7 +360,7 @@
             // fireLabel
             // 
             this.fireLabel.AutoSize = true;
-            this.fireLabel.Location = new System.Drawing.Point(262, 1147);
+            this.fireLabel.Location = new System.Drawing.Point(310, 28);
             this.fireLabel.Name = "fireLabel";
             this.fireLabel.Size = new System.Drawing.Size(22, 24);
             this.fireLabel.TabIndex = 43;
@@ -375,7 +369,7 @@
             // air
             // 
             this.air.AutoSize = true;
-            this.air.Location = new System.Drawing.Point(173, 1183);
+            this.air.Location = new System.Drawing.Point(213, 132);
             this.air.Name = "air";
             this.air.Size = new System.Drawing.Size(34, 24);
             this.air.TabIndex = 42;
@@ -384,7 +378,7 @@
             // earth
             // 
             this.earth.AutoSize = true;
-            this.earth.Location = new System.Drawing.Point(347, 1147);
+            this.earth.Location = new System.Drawing.Point(213, 83);
             this.earth.Name = "earth";
             this.earth.Size = new System.Drawing.Size(61, 24);
             this.earth.TabIndex = 41;
@@ -393,7 +387,7 @@
             // water
             // 
             this.water.AutoSize = true;
-            this.water.Location = new System.Drawing.Point(347, 1183);
+            this.water.Location = new System.Drawing.Point(213, 183);
             this.water.Name = "water";
             this.water.Size = new System.Drawing.Size(65, 24);
             this.water.TabIndex = 40;
@@ -402,7 +396,7 @@
             // fire
             // 
             this.fire.AutoSize = true;
-            this.fire.Location = new System.Drawing.Point(173, 1147);
+            this.fire.Location = new System.Drawing.Point(213, 28);
             this.fire.Name = "fire";
             this.fire.Size = new System.Drawing.Size(42, 24);
             this.fire.TabIndex = 39;
@@ -411,7 +405,7 @@
             // houseRightTop
             // 
             this.houseRightTop.AutoSize = true;
-            this.houseRightTop.Location = new System.Drawing.Point(77, 1148);
+            this.houseRightTop.Location = new System.Drawing.Point(125, 83);
             this.houseRightTop.Name = "houseRightTop";
             this.houseRightTop.Size = new System.Drawing.Size(22, 24);
             this.houseRightTop.TabIndex = 38;
@@ -420,7 +414,7 @@
             // houseRightBottom
             // 
             this.houseRightBottom.AutoSize = true;
-            this.houseRightBottom.Location = new System.Drawing.Point(77, 1183);
+            this.houseRightBottom.Location = new System.Drawing.Point(125, 160);
             this.houseRightBottom.Name = "houseRightBottom";
             this.houseRightBottom.Size = new System.Drawing.Size(22, 24);
             this.houseRightBottom.TabIndex = 37;
@@ -429,7 +423,7 @@
             // houseLeftBottom
             // 
             this.houseLeftBottom.AutoSize = true;
-            this.houseLeftBottom.Location = new System.Drawing.Point(33, 1183);
+            this.houseLeftBottom.Location = new System.Drawing.Point(45, 160);
             this.houseLeftBottom.Name = "houseLeftBottom";
             this.houseLeftBottom.Size = new System.Drawing.Size(22, 24);
             this.houseLeftBottom.TabIndex = 36;
@@ -438,7 +432,7 @@
             // houseLeftTop
             // 
             this.houseLeftTop.AutoSize = true;
-            this.houseLeftTop.Location = new System.Drawing.Point(33, 1148);
+            this.houseLeftTop.Location = new System.Drawing.Point(45, 83);
             this.houseLeftTop.Name = "houseLeftTop";
             this.houseLeftTop.Size = new System.Drawing.Size(22, 24);
             this.houseLeftTop.TabIndex = 35;
@@ -712,7 +706,7 @@
             // houseCalcLabel
             // 
             this.houseCalcLabel.AutoSize = true;
-            this.houseCalcLabel.Location = new System.Drawing.Point(33, 1221);
+            this.houseCalcLabel.Location = new System.Drawing.Point(34, 1136);
             this.houseCalcLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.houseCalcLabel.Name = "houseCalcLabel";
             this.houseCalcLabel.Size = new System.Drawing.Size(90, 24);
@@ -722,7 +716,7 @@
             // centricLabel
             // 
             this.centricLabel.AutoSize = true;
-            this.centricLabel.Location = new System.Drawing.Point(194, 1221);
+            this.centricLabel.Location = new System.Drawing.Point(34, 1180);
             this.centricLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.centricLabel.Name = "centricLabel";
             this.centricLabel.Size = new System.Drawing.Size(114, 24);
@@ -732,7 +726,7 @@
             // tropicalLabel
             // 
             this.tropicalLabel.AutoSize = true;
-            this.tropicalLabel.Location = new System.Drawing.Point(376, 1221);
+            this.tropicalLabel.Location = new System.Drawing.Point(38, 1221);
             this.tropicalLabel.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.tropicalLabel.Name = "tropicalLabel";
             this.tropicalLabel.Size = new System.Drawing.Size(83, 24);
@@ -748,41 +742,6 @@
             this.planetList.TabIndex = 0;
             this.planetList.UseCompatibleStateImageBehavior = false;
             this.planetList.View = System.Windows.Forms.View.Details;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.centerSlider);
-            this.groupBox2.Location = new System.Drawing.Point(1499, 1016);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.groupBox2.Size = new System.Drawing.Size(433, 200);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "サイズ";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 36);
-            this.label1.Margin = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 24);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "中心円";
-            // 
-            // centerSlider
-            // 
-            this.centerSlider.Location = new System.Drawing.Point(195, 36);
-            this.centerSlider.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.centerSlider.Maximum = 120;
-            this.centerSlider.Minimum = 60;
-            this.centerSlider.Name = "centerSlider";
-            this.centerSlider.Size = new System.Drawing.Size(225, 90);
-            this.centerSlider.TabIndex = 0;
-            this.centerSlider.Value = 90;
-            this.centerSlider.Scroll += new System.EventHandler(this.centerSlider_Scroll);
             // 
             // label2
             // 
@@ -890,9 +849,111 @@
             this.chartPanel.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.chartPanel.MinimumSize = new System.Drawing.Size(1400, 600);
             this.chartPanel.Name = "chartPanel";
-            this.chartPanel.Size = new System.Drawing.Size(1654, 1318);
+            this.chartPanel.Size = new System.Drawing.Size(1508, 1067);
             this.chartPanel.TabIndex = 10;
             this.chartPanel.TabStop = false;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tabControl1.Location = new System.Drawing.Point(568, 1085);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1526, 277);
+            this.tabControl1.TabIndex = 12;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.mutableLabel);
+            this.tabPage1.Controls.Add(this.fixedLabel);
+            this.tabPage1.Controls.Add(this.cardinalLabel);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Controls.Add(this.waterLabel);
+            this.tabPage1.Controls.Add(this.houseLeftTop);
+            this.tabPage1.Controls.Add(this.water);
+            this.tabPage1.Controls.Add(this.airLabel);
+            this.tabPage1.Controls.Add(this.earthLabel);
+            this.tabPage1.Controls.Add(this.air);
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.houseLeftBottom);
+            this.tabPage1.Controls.Add(this.fireLabel);
+            this.tabPage1.Controls.Add(this.earth);
+            this.tabPage1.Controls.Add(this.houseRightTop);
+            this.tabPage1.Controls.Add(this.houseRightBottom);
+            this.tabPage1.Controls.Add(this.fire);
+            this.tabPage1.Location = new System.Drawing.Point(8, 39);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1510, 230);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "分布";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(25, 28);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(72, 24);
+            this.label15.TabIndex = 1;
+            this.label15.Text = "House";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(420, 28);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(86, 24);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "cardinal";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(420, 109);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(57, 24);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "fixed";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(420, 183);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(88, 24);
+            this.label18.TabIndex = 49;
+            this.label18.Text = "mutable";
+            // 
+            // cardinalLabel
+            // 
+            this.cardinalLabel.AutoSize = true;
+            this.cardinalLabel.Location = new System.Drawing.Point(581, 28);
+            this.cardinalLabel.Name = "cardinalLabel";
+            this.cardinalLabel.Size = new System.Drawing.Size(22, 24);
+            this.cardinalLabel.TabIndex = 50;
+            this.cardinalLabel.Text = "0";
+            // 
+            // fixedLabel
+            // 
+            this.fixedLabel.AutoSize = true;
+            this.fixedLabel.Location = new System.Drawing.Point(581, 109);
+            this.fixedLabel.Name = "fixedLabel";
+            this.fixedLabel.Size = new System.Drawing.Size(22, 24);
+            this.fixedLabel.TabIndex = 51;
+            this.fixedLabel.Text = "0";
+            // 
+            // mutableLabel
+            // 
+            this.mutableLabel.AutoSize = true;
+            this.mutableLabel.Location = new System.Drawing.Point(581, 183);
+            this.mutableLabel.Name = "mutableLabel";
+            this.mutableLabel.Size = new System.Drawing.Size(22, 24);
+            this.mutableLabel.TabIndex = 52;
+            this.mutableLabel.Text = "0";
             // 
             // MainForm
             // 
@@ -900,10 +961,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2422, 1362);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.chartPanel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -920,13 +981,13 @@
             this.leftPanel.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.centerSlider)).EndInit();
             this.panel2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartPanel)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -947,9 +1008,6 @@
         private System.Windows.Forms.Panel leftPanel;
         private System.Windows.Forms.ToolStripMenuItem オプションOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ConfigToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TrackBar centerSlider;
         private System.Windows.Forms.ListView planetList;
         private System.Windows.Forms.Label centricLabel;
         private System.Windows.Forms.Label tropicalLabel;
@@ -1009,6 +1067,15 @@
         private System.Windows.Forms.Label water;
         private System.Windows.Forms.Label fire;
         private System.Windows.Forms.PictureBox chartPanel;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label mutableLabel;
+        private System.Windows.Forms.Label fixedLabel;
+        private System.Windows.Forms.Label cardinalLabel;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
     }
 }
 

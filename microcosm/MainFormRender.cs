@@ -112,6 +112,9 @@ namespace microcosm
             int earth = 0;
             int air = 0;
             int water = 0;
+            int cardinalSign = 0;
+            int fixedSign = 0;
+            int mutableSign = 0;
             Enumerable.Range(0, 10).ToList().ForEach(i =>
             {
                 ListViewItem item = new ListViewItem(Common.getPlanetSymbol(i)) { Font = new Font("Segoe UI Symbol", 11) };
@@ -140,29 +143,69 @@ namespace microcosm
                     leftTop++;
                 }
 
-                if (natallist[i].absolute_position < 30.0 ||
-                    (120.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 150.0) ||
-                    (240.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 270.0))
+                if (natallist[i].absolute_position < 30.0 )
                 {
+                    cardinalSign++;
                     fire++;
                 }
-                else if (natallist[i].absolute_position < 60.0 ||
-                  (150.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 180.0) ||
-                  (270.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 300.0))
+                else if (natallist[i].absolute_position < 60.0)
                 {
+                    fixedSign++;
                     earth++;
                 }
-                else if (natallist[i].absolute_position < 90.0 ||
-                  (180.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 210.0) ||
-                  (300.0 <= natallist[i].absolute_position && natallist[i].absolute_position < 330.0))
+                else if (natallist[i].absolute_position < 90.0)
                 {
+                    mutableSign++;
                     air++;
                 }
-                else {
+                else if (natallist[i].absolute_position < 120.0)
+                {
+                    cardinalSign++;
+                    water++;
+                }
+                else if (natallist[i].absolute_position < 150.0)
+                {
+                    fixedSign++;
+                    fire++;
+                }
+                else if (natallist[i].absolute_position < 180.0)
+                {
+                    mutableSign++;
+                    earth++;
+                }
+                else if (natallist[i].absolute_position < 210.0)
+                {
+                    cardinalSign++;
+                    air++;
+                }
+                else if (natallist[i].absolute_position < 240.0)
+                {
+                    fixedSign++;
+                    water++;
+                }
+                else if (natallist[i].absolute_position < 270.0)
+                {
+                    mutableSign++;
+                    fire++;
+                }
+                else if (natallist[i].absolute_position < 300.0)
+                {
+                    cardinalSign++;
+                    earth++;
+                }
+                else if (natallist[i].absolute_position < 300.0)
+                {
+                    fixedSign++;
+                    air++;
+                }
+                else
+                {
+                    mutableSign++;
                     water++;
                 }
 
-                    if (setting.bands > 1 && progresslist != null)
+
+                if (setting.bands > 1 && progresslist != null)
                 {
                     item.SubItems.Add(Common.getSignText(progresslist[i].absolute_position) + "  " +
                         Common.getDeg(progresslist[i].absolute_position).ToString("00.000"));
@@ -185,6 +228,9 @@ namespace microcosm
             earthLabel.Text = earth.ToString();
             airLabel.Text = air.ToString();
             waterLabel.Text = water.ToString();
+            cardinalLabel.Text = cardinalSign.ToString();
+            fixedLabel.Text = fixedSign.ToString();
+            mutableLabel.Text = mutableSign.ToString();
 
 
             if (config.centric == ECentric.HELIO_CENTRIC)
